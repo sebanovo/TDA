@@ -1,0 +1,125 @@
+// sumar
+//    campo = eliminar_flecha(campo);
+//    if (dir < 0 || dir > MAX - 1)
+//        throw new Exception("Esta dirección no es valida");
+//    if (campo.empty())
+//        throw new Exception("La cadena ID esta vacía");
+//    if (!hay_al_menos_un_id(campo))
+//        throw new Exception("Tiene que haber almenos un id");
+//
+//    int z = dir;
+//    while (z != NULO) {
+//        if (mem[z].id == campo) {
+//            // x = x + 5;
+//            mem[z].dato = mem[z].dato + 5;
+//            break;
+//        }
+//        z = mem[z].link;
+//    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//void Pintado(int posX, int posY, String cad, TColor color, TCanvas* Canvas)
+//{
+//    TRect rect(posX, posY, posX + TamanoCeldaX, posY + TamanoCeldaY);
+//    //    TColor oldPenColor =
+//    //        Canvas->Pen->Color; // Guarda el color original del lápiz
+//    Canvas->Brush->Color = color; // Cambiar el color de la brocha
+//    Canvas->Pen->Color = clBlack; // Cambia el color del lápiz a negro
+//    // Canvas->Rectangle(
+//    // rect.Left, rect.Top, rect.Right, rect.Bottom); // Dibuja un rectángulo
+//    // Canvas->Pen->Color =
+//    // oldPenColor; // Restablece el color del lápiz al color original
+//
+//    int anchoTexto, posXCentro, posYCentro;
+//    anchoTexto = Canvas->TextWidth(cad);
+//    posXCentro = posX + (TamanoCeldaX - anchoTexto) / 2;
+//    posYCentro = posY + (TamanoCeldaY - Canvas->TextHeight(cad)) / 2;
+//    Canvas->TextOutW(posXCentro, posYCentro, cad);
+//}
+//
+//void CSMemoria::dibujar_memoria(
+//    TColor FormColor, TCanvas* Canvas, int posX, int posY, int a, int b)
+//{
+//    if (a > b) {
+//        return ShowMessage("A tiene que ser menor que B");
+//    }
+//
+//    int auxX = posX;
+//    int auxY = posY;
+//
+//    //bool b = true;
+//    //int p = 0;
+//    //int y = 30;
+//    //int rowHeight = 20;
+//    Canvas->Font->Size = 12;
+//
+//    int anchoTexto, posXCentro, posYCentro;
+//
+//    //DIBUJAMOS CABECERA
+//    Pintado(posX, posY, "dir", FormColor, Canvas);
+//    posX += TamanoCeldaX;
+//    Pintado(posX, posY, "dato", FormColor, Canvas);
+//    posX += TamanoCeldaX;
+//    Pintado(posX, posY, "id", FormColor, Canvas);
+//    posX += TamanoCeldaX;
+//    Pintado(posX, posY, "link", FormColor, Canvas);
+//    posX = auxX;
+//    posY += TamanoCeldaY;
+//
+//    //CICLO FOR PARA LEER EL VECTOR SIMULACION DE MEMORIA
+//    for (int i = a; i <= b; i++) {
+//        if (mem[i].link != libre) {
+//            // Direccion columna
+//            Canvas->Brush->Color = clBtnFace;
+//            Canvas->Pen->Color = clBtnFace;
+//            //            anchoTexto = Canvas->TextWidth(i);
+//            //            posXCentro = posX + (TamanoCeldaX - anchoTexto) / 2;
+//            //            posYCentro = posY + (TamanoCeldaY - Canvas->TextHeight(i)) / 2;
+//
+//            Canvas->Rectangle(
+//                posX, posY, posX + TamanoCeldaX, posY + TamanoCeldaY);
+//            //            Canvas->TextOutW(posX + 3, posY + 3, IntToStr(i));
+//            Pintado(posX, posY, IntToStr(i), clBtnFace, Canvas);
+//            posX += TamanoCeldaX;
+//
+//            // Dato columna
+//            Canvas->Brush->Color = clGreen;
+//            Canvas->Pen->Color = clBlack;
+//            Canvas->Rectangle(
+//                posX, posY, posX + TamanoCeldaX, posY + TamanoCeldaY);
+//            Canvas->TextOutW(posX + 3, posY + 3, IntToStr(mem[i].dato));
+//            posX += TamanoCeldaX;
+//
+//            // Id columna
+//            Canvas->Brush->Color = clYellow;
+//            Canvas->Rectangle(
+//                posX, posY, posX + TamanoCeldaX, posY + TamanoCeldaY);
+//            Canvas->TextOutW(posX + 3, posY + 3, mem[i].id.c_str());
+//            posX += TamanoCeldaX;
+//
+//            // link columna
+//            Canvas->Rectangle(
+//                posX, posY, posX + TamanoCeldaX, posY + TamanoCeldaY);
+//            Canvas->TextOutW(posX + 3, posY + 3, IntToStr(mem[i].link));
+//
+//            posX = auxX;
+//            posY += TamanoCeldaY;
+//            Canvas->Brush->Color = FormColor;
+//        }
+//    }
+//
+//    String textLibre = "LIBRE: " + IntToStr(libre);
+//    Pintado(posX, posY + 10, textLibre, FormColor, Canvas);
+//}
