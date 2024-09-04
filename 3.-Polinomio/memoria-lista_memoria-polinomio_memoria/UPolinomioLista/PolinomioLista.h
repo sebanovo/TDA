@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef PolinomioListaH
-#define PolinomioListaH
+#ifndef UPolinomioListaH
+#define UPolinomioListaH
 //---------------------------------------------------------------------------
 #include <UListaSM/UListaSM.h>
 #include <UListaVector/UListaVector.h>
@@ -16,15 +16,15 @@ namespace UPolinomioLista
     class PolinomioLista
     {
       private:
-        UListaSM::ListaSM* ls;
         UCSMemoria::CSMemoria* mem;
-        // UListaVector::ListaVector* ls;
+        //        UListaSM::ListaSM* ls;
+        UListaVector::ListaVector* ls;
+
+        int buscar_exponente(int exp);
+        int buscar_termino_n(int n);
       public:
         PolinomioLista();
         PolinomioLista(UCSMemoria::CSMemoria* m);
-        int buscar_exponente(int exp);
-        int buscar_termino_n(int n);
-        void crear(UCSMemoria::CSMemoria* m);
         bool es_cero();
         int grado();
         void poner_en_cero();
@@ -36,15 +36,17 @@ namespace UPolinomioLista
         void sumar(PolinomioLista* p1, PolinomioLista* p2);
         void restar(PolinomioLista* p1, PolinomioLista* p2);
         void multiplicar(PolinomioLista* P1, PolinomioLista* P2);
-        int evaluar(int x);
+        double evaluar(double x);
+        std::string mostrar();
         ~PolinomioLista();
-
         void dibujar_polinomio(TForm* Form, int posX, int posY);
 
-        void graficar(TForm* Form, int x0, int y0, int ancho, int alto);
+        void PolinomioLista::graficar(
+            TForm* Form, int posX, int posY, double ancho, double alto);
     };
 
-    void derivar(PolinomioLista* poli, PolinomioLista* poli1);
+    void derivada(PolinomioLista* p, PolinomioLista* p1);
+    std::string mostrar_integral(PolinomioLista p);
 } // namespace UPolinomioLista
 #endif
 

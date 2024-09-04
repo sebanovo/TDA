@@ -173,7 +173,7 @@ namespace UListaSM
             int temp = PtrElementos;
             PtrElementos = mem->obtener_dato(PtrElementos, sig);
             mem->delete_espacio(temp);
-            return;
+            //            return;
         } else {
             int ant = anterior(dir);
             mem->poner_dato(ant, sig, mem->obtener_dato(dir, sig));
@@ -295,8 +295,6 @@ namespace UListaSM
         }
     }
 } // namespace UListaSM
-
-void adpfjiapdf() {}
 
 // void Lista::imprimir(TColor FormColor, TCanvas* Canvas)
 //{

@@ -151,7 +151,7 @@ namespace UListaPuntero
             Nodo* temp = PtrElementos;
             PtrElementos = PtrElementos->sig;
             delete temp;
-            return;
+            //            return;
         } else {
             Nodo* ant = anterior(dir);
             ant->sig = dir->sig;
@@ -255,6 +255,21 @@ namespace UListaPuntero
             }
             x = x->sig;
         }
+    }
+
+    void ListaPuntero::dibujar_lista(TForm* Form, int posX, int posY)
+    {
+        TCanvas* Canvas = Form->Canvas;
+        // limpiar el lienzo
+        int anchoTexto = Canvas->TextWidth(mostrar().c_str());
+        int altoTexto = Canvas->TextHeight(mostrar().c_str());
+        TRect rect(posX, posY, posX + anchoTexto, posY + altoTexto);
+        Canvas->Brush->Color = Form->Color;
+        Canvas->FillRect(rect);
+
+        Form->Canvas->Font->Size = 30;
+        Form->Canvas->Font->Name = "Microsoft YaHei UI";
+        Form->Canvas->TextOutW(posX, posY, mostrar().c_str());
     }
 } // namespace UListaPuntero
 

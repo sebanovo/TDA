@@ -4,7 +4,7 @@
 #pragma hdrstop
 
 #include "PolinomioLista.h"
-
+#include "windows.h"
 #include "math.h"
 
 //---------------------------------------------------------------------------
@@ -16,43 +16,32 @@ namespace UPolinomioLista
 
     PolinomioLista::PolinomioLista()
     {
-        mem = new UCSMemoria::CSMemoria;
-        ls = new UListaSM::ListaSM(mem);
-        // ls = new UListaVector::ListaVector;
+        // mem = new UCSMemoria::CSMemoria;
+        // ls = new UListaSM::ListaSM(mem);
+        ls = new UListaVector::ListaVector;
     }
 
     PolinomioLista::PolinomioLista(UCSMemoria::CSMemoria* m)
     {
-        ls = new UListaSM::ListaSM(m);
-        // ls = new UListaVector::ListaVector;
+        // ls = new UListaSM::ListaSM(m);
+        ls = new UListaVector::ListaVector;
     }
 
-    int PolinomioLista::exponente(int i)
+    // Retorna el exponente del término
+    int PolinomioLista::exponente(int nroTer)
     {
-        int dir = buscar_termino_n(i);
+        int dir = buscar_termino_n(nroTer);
 
         if (dir != -1) {
-            int x = ls->siguiente(dir);
-            x = ls->recupera(x);
-            return x;
+            return ls->recupera(ls->siguiente(dir));
         }
-        // Retorna el exponente del término
     }
 
-    void PolinomioLista::crear(UCSMemoria::CSMemoria* m)
-    {
-        // ls= new Lista(m); //ver el constructor de la clase lista a usar
-        // ls = new ptrlista();
-        // ls= new Vlista();
-    }
-
+    // devuelve la direccion del termino del exponente (osea un nodo)
     int PolinomioLista::buscar_exponente(int exp)
     {
         int dir = ls->siguiente(ls->primero());
 
-        int x, q;
-
-        q = ls->recupera(dir);
         int direxp = -1;
         if (dir != -1) {
             while (dir != -1 && direxp == -1 && dir <= ls->fin()) {
@@ -69,6 +58,7 @@ namespace UPolinomioLista
         return -1;
     }
 
+    // devuelve la direccino del termino n
     int PolinomioLista::buscar_termino_n(int n)
     {
         int dir = ls->primero();
@@ -76,7 +66,7 @@ namespace UPolinomioLista
         if (dir != -1) {
             int dirter = -1;
             while (dir != -1 && dirter == -1) {
-                nt = nt + 1;
+                nt++;
                 if (nt == n) {
                     dirter = dir;
                 }
@@ -108,6 +98,7 @@ namespace UPolinomioLista
             return -1;
     }
 
+    // devuelve el coeficiente del exponente del termino
     int PolinomioLista::coeficiente(int exp)
     {
         int dir = buscar_exponente(exp);
@@ -156,45 +147,88 @@ namespace UPolinomioLista
     void PolinomioLista::poner_en_cero()
     {
         int p = ls->primero();
-        while (ls->_longitud()) {
+        while (ls->_longitud() != 0) {
             ls->suprime(p);
             p = ls->siguiente(p);
         }
     }
 
+    // P1 + P2
     void PolinomioLista::sumar(PolinomioLista* p1, PolinomioLista* p2)
     {
-        poner_en_cero();
-        int ex, co;
-        for (int i = 0; i <= numero_terminos(); i++) {
-            ex = p1->exponente(i);
-            co = p1->coeficiente(ex);
+        // poner_en_cero();
+        for (int i = 1; i <= p1->numero_terminos(); i++) {
+            int ex = p1->exponente(i);
+            int co = p1->coeficiente(ex);
             poner_termino(co, ex);
         }
-        for (int i = 0; i <= numero_terminos(); i++) {
-            ex = p2->exponente(i);
-            co = p2->coeficiente(ex);
+        for (int i = 1; i <= p2->numero_terminos(); i++) {
+            int ex = p2->exponente(i);
+            int co = p2->coeficiente(ex);
             poner_termino(co, ex);
         }
     }
 
+    // P1 - P2
     void PolinomioLista::restar(PolinomioLista* p1, PolinomioLista* p2)
     {
-        poner_en_cero();
-        int ex, co;
-        for (int i = 0; i <= numero_terminos(); i++) {
-            ex = p1->exponente(i);
-            co = p1->coeficiente(ex);
+        // poner_en_cero();
+        for (int i = 1; i <= p1->numero_terminos(); i++) {
+            int ex = p1->exponente(i);
+            int co = p1->coeficiente(ex);
             poner_termino(co, ex);
         }
-        for (int i = 0; i <= numero_terminos(); i++) {
-            ex = p2->exponente(i);
-            co = p2->coeficiente(ex) * -1;
+        for (int i = 1; i <= p2->numero_terminos(); i++) {
+            int ex = p2->exponente(i);
+            int co = p2->coeficiente(ex) * -1;
             poner_termino(co, ex);
         }
     }
 
-    void PolinomioLista::multiplicar(PolinomioLista* p1, PolinomioLista* p2) {}
+    // P1 * P2
+    void PolinomioLista::multiplicar(PolinomioLista* p1, PolinomioLista* p2)
+    {
+        // = (2x + 1) * (3x + 3)
+        // = 2x * 3x + 2x * 3 + 1 * 3x + 1 * 3;
+        // = 6x^2 + 9x + 3
+        for (int i = 1; i <= p1->numero_terminos(); i++) {
+            for (int j = 1; j <= p2->numero_terminos(); j++) {
+                int exp1 = p1->exponente(i);
+                int coef1 = p1->coeficiente(exp1);
+
+                int exp2 = p2->exponente(j);
+                int coef2 = p2->coeficiente(exp2);
+
+                poner_termino(coef1 * coef2, exp1 + exp2);
+            }
+        }
+    }
+
+    double PolinomioLista::evaluar(double x)
+    {
+        double resultado = 0.0;
+
+        for (int i = 1; i <= numero_terminos(); i++) {
+            int exp = exponente(i);
+            int coef = coeficiente(exp);
+
+            resultado += coef * pow(x, exp);
+        }
+        return resultado;
+    }
+
+    std::string PolinomioLista::mostrar()
+    {
+        std::string s = "";
+        for (int i = 1; i <= numero_terminos(); i++) {
+            int exp = exponente(i);
+            int coef = coeficiente(exp);
+
+            s += coef >= 0 && s != "" ? "+" : "";
+            s += std::to_string(coef) + "x^" + std::to_string(exp) + "  ";
+        }
+        return s;
+    }
 
     PolinomioLista::~PolinomioLista()
     {
@@ -202,80 +236,96 @@ namespace UPolinomioLista
         delete mem;
     }
 
+    void derivada(PolinomioLista* p, PolinomioLista* p1)
+    {
+        for (int i = 1; i <= p->numero_terminos(); i++) {
+            int exp = p->exponente(i);
+            int co = p->coeficiente(exp);
+            p->poner_termino(co * exp, exp - 1);
+        }
+    };
+
+    std::string mostrar_integral(PolinomioLista p)
+    {
+        std::string s = "";
+        for (int i = 1; i <= p.numero_terminos(); i++) {
+            int exp = p.exponente(i);
+            int co = p.coeficiente(exp);
+
+            s += "(" + std::to_string(co) + "x^" + std::to_string(exp + 1) +
+                 ")/" + std::to_string(exp + 1) + " + ";
+            if (i == p.numero_terminos())
+                s += "C";
+        }
+        return s;
+    }
+
     void PolinomioLista::dibujar_polinomio(TForm* Form, int posX, int posY)
     {
         ls->dibujar_lista(Form, posX, posY);
     }
 
-    void derivar(PolinomioLista* poli, PolinomioLista* poli1)
-    {
-        int ex, co;
-        for (int i = 1; i <= poli->numero_terminos(); i++) {
-            ex = poli->exponente(i);
-            co = poli->coeficiente(ex);
-            poli1->poner_termino(co * ex, ex - 1);
-        }
-    }
-
-    int PolinomioLista::evaluar(int x)
-    {
-        int resultado = 0;
-        for (int i = 1; i <= numero_terminos(); i++) {
-            int coef = coeficiente(exponente(i));
-            int exp = exponente(i);
-            resultado += coef * std::pow(x, exp);
-        }
-        return resultado;
-    }
-
     void PolinomioLista::graficar(
-        TForm* Form, int x0, int y0, int ancho, int alto)
+        TForm* Form, int posX, int posY, double ancho, double alto)
     {
         TCanvas* Canvas = Form->Canvas;
         Canvas->FillRect(Canvas->ClipRect);
-        int factorEscala = 5;
-        double paso = 10;
+        HDC hdc = Canvas->Handle;
+        int savedDC = SaveDC(hdc);
+        IntersectClipRect(hdc, posX, posY, posX + ancho, posY + alto);
 
-        // Dibuja el marco límite con un color diferente
+        int factorEscala = 50;
+
         Canvas->Pen->Color = clBlack;
-        //        Canvas->Rectangle(
-        //            x0 - ancho / 2, y0 - alto / 2, x0 + ancho / 2, y0 + alto / 2);
+        Canvas->Brush->Color = Form->Color;
+        Canvas->Pen->Width = 8;
 
-        // Dibuja el eje X y el eje Y con el mismo color que el marco
-        Canvas->MoveTo(x0, y0 - alto / 2);
-        Canvas->LineTo(x0, y0 + alto / 2);
-        Canvas->MoveTo(x0 - ancho / 2, y0);
-        Canvas->LineTo(x0 + ancho / 2, y0);
+        // dibujar el marco
+        Canvas->Brush->Color = clBtnFace;
+        Canvas->Rectangle(posX, posY, posX + ancho, posY + alto);
+        Canvas->Brush->Color = Form->Color;
 
-        int c = 0;
+        // dibujar los ejes
+        Canvas->Pen->Width = 1;
+        Canvas->MoveTo(posX + ancho / 2, posY);
+        Canvas->LineTo(posX + ancho / 2, posY + alto);
+        Canvas->MoveTo(posX, posY + alto / 2);
+        Canvas->LineTo(posX + ancho, posY + alto / 2);
 
-        // Dibuja el gráfico del polinomio
-        for (double x = -ancho / 2; x <= ancho / 2; x += paso) {
-            int y = evaluar(x / factorEscala) * factorEscala;
+        for (int i = posX; i < posX + ancho; i = i + 50) {
+            Canvas->MoveTo(i, posY + alto / 2 - 5);
+            Canvas->LineTo(i, posY + alto / 2 + 5);
+        }
 
-            // Traslada la posición (x, y) a las coordenadas del canvas
-            int xCanvas = x0 + static_cast<int>(x);
-            int yCanvas = y0 - y;
+        for (int i = posY; i < posY + alto; i = i + 50) {
+            Canvas->MoveTo(posX + ancho / 2 - 5, i);
+            Canvas->LineTo(posX + ancho / 2 + 5, i);
+        }
 
-            // Verifica si el punto está dentro de los límites del marco
-            if (xCanvas >= x0 - ancho / 2 && xCanvas <= x0 + ancho / 2 &&
-                yCanvas >= y0 - alto / 2 && yCanvas <= y0 + alto / 2)
-            {
-                if (x == -ancho / 2) {
-                    Canvas->MoveTo(xCanvas, yCanvas);
-                } else {
-                    if (c == 0) {
-                        Canvas->Pen->Color = Form->Color;
-                        Canvas->LineTo(xCanvas, yCanvas);
-                        Canvas->Pen->Color = clBlack;
-                        c++;
-                    } else {
-                        Canvas->LineTo(xCanvas, yCanvas);
-                    }
-                }
+        // Dibujar la función
+        Canvas->Pen->Color = clBlue;
+        Canvas->Pen->Width = 3;
+        int centroX = posX + ancho / 2;
+        int centroY = posY + alto / 2;
+
+        bool dentroDelMarco = false;
+
+        for (double x = -ancho / (2.0 * factorEscala);
+             x <= ancho / (2.0 * factorEscala); x += 0.01)
+        {
+            int graficoX = centroX + static_cast<int>(x * factorEscala);
+            int graficoY =
+                centroY - static_cast<int>(evaluar(x) * factorEscala);
+
+            if (x == -ancho / (2.0 * factorEscala)) {
+                Canvas->MoveTo(graficoX, graficoY);
+            } else {
+                Canvas->LineTo(graficoX, graficoY);
             }
         }
+
+        RestoreDC(hdc, savedDC);
     }
 
-} //namespace UPolinomioLista
+} // namespace UPolinomioLista
 

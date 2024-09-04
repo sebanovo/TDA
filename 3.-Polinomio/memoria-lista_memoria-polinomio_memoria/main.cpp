@@ -90,15 +90,16 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
 {
     int posX = 300;
     int posY = 900;
-    polinomioLista->dibujar_polinomio(Form1, posX, posY);
-    //    polinomioLista->graficar(Form1, 1000, 500, 900, 900);
+    //    polinomioLista->dibujar_polinomio(Form1, posX, posY);
+    polinomioLista->graficar(Form1, 1000, 10, 700, 700);
+    //    polinomioLista->graficar(Form1, 10, 10, 900, 900);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button13Click(TObject* Sender)
 {
     UPolinomioLista::PolinomioLista* poli1 =
         new UPolinomioLista::PolinomioLista(M);
-    UPolinomioLista::derivar(polinomioLista, poli1);
+    UPolinomioLista::derivada(polinomioLista, poli1);
 }
 //---------------------------------------------------------------------------
 

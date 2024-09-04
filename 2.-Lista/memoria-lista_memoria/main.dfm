@@ -12,8 +12,8 @@ object Form1: TForm1
   Font.Style = []
   TextHeight = 15
   object Button1: TButton
-    Left = 16
-    Top = 8
+    Left = 24
+    Top = 48
     Width = 153
     Height = 49
     Caption = 'Crear memoria'
@@ -27,8 +27,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 16
-    Top = 63
+    Left = 24
+    Top = 103
     Width = 153
     Height = 49
     Caption = 'Pedir espacio'
@@ -42,8 +42,8 @@ object Form1: TForm1
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 16
-    Top = 118
+    Left = 24
+    Top = 158
     Width = 153
     Height = 49
     Caption = 'LIberar espacio'
@@ -57,8 +57,8 @@ object Form1: TForm1
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 16
-    Top = 173
+    Left = 24
+    Top = 213
     Width = 153
     Height = 49
     Caption = 'Mostrar memoria'
@@ -72,8 +72,8 @@ object Form1: TForm1
     OnClick = Button4Click
   end
   object Button5: TButton
-    Left = 16
-    Top = 228
+    Left = 24
+    Top = 268
     Width = 153
     Height = 49
     Caption = 'Poner dato'
@@ -87,8 +87,8 @@ object Form1: TForm1
     OnClick = Button5Click
   end
   object Edit1: TEdit
-    Left = 183
-    Top = 72
+    Left = 191
+    Top = 112
     Width = 217
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -100,8 +100,8 @@ object Form1: TForm1
     TabOrder = 5
   end
   object Edit2: TEdit
-    Left = 183
-    Top = 127
+    Left = 191
+    Top = 167
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -113,8 +113,8 @@ object Form1: TForm1
     TabOrder = 6
   end
   object Edit3: TEdit
-    Left = 183
-    Top = 182
+    Left = 191
+    Top = 222
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -128,8 +128,8 @@ object Form1: TForm1
     TextHint = 'a'
   end
   object Edit4: TEdit
-    Left = 310
-    Top = 182
+    Left = 318
+    Top = 222
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -143,8 +143,8 @@ object Form1: TForm1
     TextHint = 'b'
   end
   object Edit5: TEdit
-    Left = 183
-    Top = 237
+    Left = 191
+    Top = 277
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -156,8 +156,8 @@ object Form1: TForm1
     TabOrder = 9
   end
   object Edit6: TEdit
-    Left = 310
-    Top = 237
+    Left = 318
+    Top = 277
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -170,8 +170,8 @@ object Form1: TForm1
     Text = '->'
   end
   object Edit7: TEdit
-    Left = 437
-    Top = 237
+    Left = 445
+    Top = 277
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -184,8 +184,8 @@ object Form1: TForm1
     Text = '1'
   end
   object Button6: TButton
-    Left = 16
-    Top = 360
+    Left = 24
+    Top = 339
     Width = 153
     Height = 49
     Caption = 'Crear lista'
@@ -199,8 +199,8 @@ object Form1: TForm1
     OnClick = Button6Click
   end
   object Button7: TButton
-    Left = 16
-    Top = 415
+    Left = 24
+    Top = 394
     Width = 153
     Height = 49
     Caption = 'Insertar primero'
@@ -214,8 +214,8 @@ object Form1: TForm1
     OnClick = Button7Click
   end
   object Button8: TButton
-    Left = 16
-    Top = 470
+    Left = 24
+    Top = 449
     Width = 153
     Height = 49
     Caption = 'Insertar '#250'ltimo'
@@ -229,8 +229,8 @@ object Form1: TForm1
     OnClick = Button8Click
   end
   object Button9: TButton
-    Left = 16
-    Top = 525
+    Left = 24
+    Top = 504
     Width = 153
     Height = 49
     Caption = 'Mostrar lista'
@@ -244,8 +244,8 @@ object Form1: TForm1
     OnClick = Button9Click
   end
   object Edit8: TEdit
-    Left = 183
-    Top = 424
+    Left = 191
+    Top = 403
     Width = 217
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -257,8 +257,8 @@ object Form1: TForm1
     TabOrder = 16
   end
   object Edit9: TEdit
-    Left = 183
-    Top = 479
+    Left = 191
+    Top = 458
     Width = 217
     Height = 31
     Font.Charset = ANSI_CHARSET

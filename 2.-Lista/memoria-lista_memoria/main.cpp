@@ -1,3 +1,4 @@
+
 //---------------------------------------------------------------------------
 
 #include <vcl.h>
@@ -22,7 +23,7 @@ void __fastcall TForm1::Button2Click(TObject* Sender)
     M->new_espacio(ids.c_str());
 }
 //---------------------------------------------------------------------------
-void _fastcall TForm1::Button3Click(TObject* Sender)
+void __fastcall TForm1::Button3Click(TObject* Sender)
 {
     AnsiString dir = Edit2->Text;
     M->delete_espacio(dir.ToInt());

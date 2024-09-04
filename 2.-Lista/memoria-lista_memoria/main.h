@@ -20,6 +20,10 @@ class TForm1 : public TForm
     TButton* Button3;
     TButton* Button4;
     TButton* Button5;
+    TButton* Button6;
+    TButton* Button7;
+    TButton* Button8;
+    TButton* Button9;
     TEdit* Edit1;
     TEdit* Edit2;
     TEdit* Edit3;
@@ -27,10 +31,6 @@ class TForm1 : public TForm
     TEdit* Edit5;
     TEdit* Edit6;
     TEdit* Edit7;
-    TButton* Button6;
-    TButton* Button7;
-    TButton* Button8;
-    TButton* Button9;
     TEdit* Edit8;
     TEdit* Edit9;
     void __fastcall Button1Click(TObject* Sender);

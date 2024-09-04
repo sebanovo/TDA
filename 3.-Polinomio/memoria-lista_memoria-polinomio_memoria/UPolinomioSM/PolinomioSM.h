@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef PolinomioSMH
-#define PolinomioSMH
+#ifndef UPolinomioSMH
+#define UPolinomioSMH
 //---------------------------------------------------------------------------
 #include <iostream>
 #include <string>
@@ -42,6 +42,7 @@ namespace UPolinomioSM
         ~PolinomioSM();
     };
     void derivada(PolinomioSM p, PolinomioSM p1);
+    std::string mostrar_integral(PolinomioSM p);
 } // namespace UPolinomioSM
 #endif
 

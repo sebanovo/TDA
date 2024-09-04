@@ -51,6 +51,8 @@ namespace UListaPuntero
 
         // ejercicios
         void bubble_sort();
+
+        void dibujar_lista(TForm* Form, int posX, int posY);
     };
 
 } // namespace UListaPuntero
