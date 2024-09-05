@@ -43,6 +43,7 @@ namespace UPolinomioLista
 
         void PolinomioLista::graficar(
             TForm* Form, int posX, int posY, double ancho, double alto);
+        void PolinomioLista::graficar_image(TImage* Image);
     };
 
     void derivada(PolinomioLista* p, PolinomioLista* p1);

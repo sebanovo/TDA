@@ -90,9 +90,18 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
 {
     int posX = 300;
     int posY = 900;
-    //    polinomioLista->dibujar_polinomio(Form1, posX, posY);
-    polinomioLista->graficar(Form1, 1000, 10, 700, 700);
-    //    polinomioLista->graficar(Form1, 10, 10, 900, 900);
+
+    // ¡Asegurarse que el TImage si o si tengan el mismo tamaño!
+
+    // Solo podemos dimensionar esto aquí no podemos hacerlo
+    // dentro de la funcion graficar
+    if (Image1->Width > Image1->Height)
+        Image1->Height = Image1->Width;
+    else
+        Image1->Width = Image1->Height;
+    polinomioLista->graficar_image(Image1);
+
+    //    polinomioLista->graficar(Form1, 1000, 10, 700, 700);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button13Click(TObject* Sender)

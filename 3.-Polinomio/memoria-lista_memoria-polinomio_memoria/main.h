@@ -12,6 +12,8 @@
 #include "UListaSM/UListaSM.h"
 #include "UListaVector/UListaVector.h"
 #include "UPolinomioLista/PolinomioLista.h"
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -40,6 +42,7 @@ class TForm1 : public TForm
     TButton* Button11;
     TButton* Button12;
     TButton* Button13;
+    TImage* Image1;
     void __fastcall Button1Click(TObject* Sender);
     void __fastcall Button2Click(TObject* Sender);
     void __fastcall Button3Click(TObject* Sender);
@@ -59,6 +62,12 @@ class TForm1 : public TForm
     UPolinomioLista::PolinomioLista* polinomioLista;
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);
+    __fastcall ~TForm1()
+    {
+        delete polinomioLista;
+        delete listaSM;
+        delete M;
+    }
 };
 //---------------------------------------------------------------------------
 extern PACKAGE TForm1* Form1;
