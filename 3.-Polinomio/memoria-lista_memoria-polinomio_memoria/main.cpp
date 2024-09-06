@@ -99,9 +99,10 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
         Image1->Height = Image1->Width;
     else
         Image1->Width = Image1->Height;
-    polinomioLista->graficar_image(Image1);
 
-    //    polinomioLista->graficar(Form1, 1000, 10, 700, 700);
+    polinomioLista->dibujar_polinomio(Form1, 400, 800);
+    //    polinomioLista->graficar_image(Image1);
+    polinomioLista->graficar(Form1, 600, 10, 700, 700);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button13Click(TObject* Sender)

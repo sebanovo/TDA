@@ -12,10 +12,10 @@ object Form1: TForm1
   Font.Style = []
   TextHeight = 15
   object Image1: TImage
-    Left = 588
-    Top = 127
-    Width = 405
-    Height = 386
+    Left = 203
+    Top = 480
+    Width = 101
+    Height = 89
   end
   object Button1: TButton
     Left = 16

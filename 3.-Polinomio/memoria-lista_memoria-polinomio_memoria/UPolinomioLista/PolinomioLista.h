@@ -17,7 +17,7 @@ namespace UPolinomioLista
     {
       private:
         UCSMemoria::CSMemoria* mem;
-        //        UListaSM::ListaSM* ls;
+        // UListaSM::ListaSM* ls;
         UListaVector::ListaVector* ls;
 
         int buscar_exponente(int exp);
@@ -41,9 +41,8 @@ namespace UPolinomioLista
         ~PolinomioLista();
         void dibujar_polinomio(TForm* Form, int posX, int posY);
 
-        void PolinomioLista::graficar(
-            TForm* Form, int posX, int posY, double ancho, double alto);
-        void PolinomioLista::graficar_image(TImage* Image);
+        void graficar(TForm* Form, int posX, int posY, int ancho, int alto);
+        void graficar_image(TImage* Image);
     };
 
     void derivada(PolinomioLista* p, PolinomioLista* p1);
