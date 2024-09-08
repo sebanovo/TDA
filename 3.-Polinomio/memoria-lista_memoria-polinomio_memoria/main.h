@@ -14,6 +14,8 @@
 #include "UPolinomioLista/PolinomioLista.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.Dialogs.hpp>
+#include <Vcl.ExtDlgs.hpp>
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
@@ -43,6 +45,7 @@ class TForm1 : public TForm
     TButton* Button12;
     TButton* Button13;
     TImage* Image1;
+    TSavePictureDialog* SavePictureDialog1;
     void __fastcall Button1Click(TObject* Sender);
     void __fastcall Button2Click(TObject* Sender);
     void __fastcall Button3Click(TObject* Sender);

@@ -12,10 +12,10 @@ object Form1: TForm1
   Font.Style = []
   TextHeight = 15
   object Image1: TImage
-    Left = 203
-    Top = 480
-    Width = 101
-    Height = 89
+    Left = 600
+    Top = 83
+    Width = 385
+    Height = 194
   end
   object Button1: TButton
     Left = 16
@@ -360,5 +360,10 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 23
+  end
+  object SavePictureDialog1: TSavePictureDialog
+    DefaultExt = 'bmp'
+    Left = 944
+    Top = 672
   end
 end

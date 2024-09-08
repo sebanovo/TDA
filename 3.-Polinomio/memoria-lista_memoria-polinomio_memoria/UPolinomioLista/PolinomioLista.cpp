@@ -327,10 +327,11 @@ namespace UPolinomioLista
                 Canvas->Pen->Width = 2;
                 Canvas->Pen->Color = clBlack;
             }
-
+            // +x
             Canvas->MoveTo(i, centroY - 5);
             Canvas->LineTo(i, centroY + 5);
 
+            // -x
             Canvas->MoveTo(2 * centroX - i, centroY - 5);
             Canvas->LineTo(2 * centroX - i, centroY + 5);
         }
@@ -352,10 +353,11 @@ namespace UPolinomioLista
                 Canvas->Pen->Width = 2;
                 Canvas->Pen->Color = clBlack;
             }
-
+            // +y
             Canvas->MoveTo(centroX - 5, j);
             Canvas->LineTo(centroX + 5, j);
 
+            // -y
             Canvas->MoveTo(centroX - 5, 2 * centroY - j);
             Canvas->LineTo(centroX + 5, 2 * centroY - j);
         }
@@ -400,6 +402,7 @@ namespace UPolinomioLista
     void PolinomioLista::graficar_image(TImage* Image)
     {
         TCanvas* Canvas = Image->Canvas;
+        Canvas->FillRect(Canvas->ClipRect);
 
         int ancho = Image->Width;
         int alto = Image->Height;
@@ -419,10 +422,10 @@ namespace UPolinomioLista
         Canvas->LineTo(ancho / 2, alto);
         Canvas->MoveTo(0, alto / 2);
         Canvas->LineTo(ancho, alto / 2);
+
+        // dibujar las | del eje X
         int centroX = ancho / 2;
         int centroY = alto / 2;
-
-        // dibujar los | de los ejes
         for (int i = centroX; i < ancho; i += factorEscala) {
             if (i > centroX && i < ancho) {
                 Canvas->Pen->Width = 1;
@@ -436,14 +439,6 @@ namespace UPolinomioLista
                 Canvas->MoveTo(ancho - i, 0);
                 Canvas->LineTo(ancho - i, alto);
 
-                // horizantales +
-                Canvas->MoveTo(0, alto - i);
-                Canvas->LineTo(ancho, alto - i);
-
-                // horizantes -
-                Canvas->MoveTo(0, i);
-                Canvas->LineTo(ancho, i);
-
                 Canvas->Pen->Width = 2;
                 Canvas->Pen->Color = clBlack;
             }
@@ -455,6 +450,25 @@ namespace UPolinomioLista
             // -x
             Canvas->MoveTo(ancho - i, centroY - 5);
             Canvas->LineTo(ancho - i, centroY + 5);
+        }
+
+        // dibujar las | del eje Y
+        for (int i = centroY; i < alto; i += factorEscala) {
+            if (i > centroY && i < alto) {
+                Canvas->Pen->Width = 1;
+                Canvas->Pen->Color = clScrollBar;
+
+                // horizantales +
+                Canvas->MoveTo(0, alto - i);
+                Canvas->LineTo(ancho, alto - i);
+
+                // horizantes -
+                Canvas->MoveTo(0, i);
+                Canvas->LineTo(ancho, i);
+
+                Canvas->Pen->Width = 2;
+                Canvas->Pen->Color = clBlack;
+            }
 
             // +y
             Canvas->MoveTo(centroX - 5, i);
@@ -468,15 +482,13 @@ namespace UPolinomioLista
         // dibujar la funcion
         bool esContinua = false;
         double limite = alto;
-        Canvas->Pen->Color = clBlue;
-        Canvas->Pen->Width = 3;
         double a = -ancho / (2.0 * factorEscala);
         double b = a * -1;
 
+        Canvas->Pen->Color = clBlue;
+        Canvas->Pen->Width = 3;
         Canvas->MoveTo(centroX, centroY);
 
-        //        for (double x = -ancho / (2.0 * factorEscala);
-        //             x <= ancho / (2.0 * factorEscala); x += 0.01)
         for (double x = a; x <= b; x += 0.01) {
             int graficoX = centroX + (int)(x * factorEscala);
             double yValor = evaluar(x);

@@ -95,21 +95,24 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
 
     // Solo podemos dimensionar esto aquí no podemos hacerlo
     // dentro de la funcion graficar
-    if (Image1->Width > Image1->Height)
-        Image1->Height = Image1->Width;
-    else
-        Image1->Width = Image1->Height;
+    //    if (Image1->Width > Image1->Height)
+    //        Image1->Height = Image1->Width;
+    //    else
+    //        Image1->Width = Image1->Height;
 
     polinomioLista->dibujar_polinomio(Form1, 400, 800);
-    //    polinomioLista->graficar_image(Image1);
-    polinomioLista->graficar(Form1, 600, 10, 700, 700);
+    polinomioLista->graficar_image(Image1);
+    //    polinomioLista->graficar(Form1, 600, 10, 700, 700);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button13Click(TObject* Sender)
 {
-    UPolinomioLista::PolinomioLista* poli1 =
-        new UPolinomioLista::PolinomioLista(M);
-    UPolinomioLista::derivada(polinomioLista, poli1);
+    //    UPolinomioLista::PolinomioLista* poli1 =
+    //        new UPolinomioLista::PolinomioLista(M);
+    //    UPolinomioLista::derivada(polinomioLista, poli1);
+
+    SavePictureDialog1->Execute();
+    Image1->Picture->SaveToFile(SavePictureDialog1->FileName);
 }
 //---------------------------------------------------------------------------
 
