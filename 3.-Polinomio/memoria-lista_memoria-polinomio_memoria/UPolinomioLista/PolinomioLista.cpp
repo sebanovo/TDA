@@ -515,5 +515,56 @@ namespace UPolinomioLista
         Canvas->Brush->Style = bsSolid;
     }
 
+    void PolinomioLista::graficarIntegral(TImage* Image, double a, double b)
+    {
+        TCanvas* Canvas = Image->Canvas;
+        int alto = Image->Height;
+        int ancho = Image->Width;
+        int factorEscala = 50;
+        int borderWidth = 8;
+        int centroX = Image->Width / 2;
+        int centroY = Image->Height / 2;
+        int limite = alto;
+
+        double dx = 0.001;
+
+        Canvas->Pen->Width = 1;
+        Canvas->Pen->Color = clBackground;
+        Canvas->Brush->Style = bsSolid;
+        Canvas->MoveTo(centroX, centroY);
+
+        // Parte derecha (x >= 0)
+        for (double x = 0; x <= b; x += dx) {
+            int graficoX1 = centroX + (int)(x * factorEscala);
+            int graficoX2 = centroX + (int)((x + dx) * factorEscala);
+            double yValor = evaluar(x);
+            int graficoY = centroY - (int)(yValor * factorEscala);
+
+            if (std::abs(yValor) <= limite) {
+                TRect rect(graficoX1, centroY, graficoX2, graficoY);
+                Canvas->Rectangle(rect);
+            }
+        }
+
+        // Parte izquierda (x <= 0)
+        for (double x = 0; x >= a; x -= dx) {
+            int graficoX1 = centroX + (int)(x * factorEscala);
+            int graficoX2 = centroX + (int)((x - dx) * factorEscala);
+            double yValor = evaluar(x);
+            int graficoY = centroY - (int)(yValor * factorEscala);
+
+            if (std::abs(yValor) <= limite) {
+                TRect rect(graficoX2, centroY, graficoX1, graficoY);
+                Canvas->Rectangle(rect);
+            }
+        }
+
+        // dibujar el marco
+        Canvas->Pen->Color = clBlack;
+        Canvas->Pen->Width = borderWidth;
+        Canvas->Brush->Style = bsClear;
+        Canvas->Rectangle(0, 0, ancho, alto);
+        Canvas->Brush->Style = bsSolid;
+    }
 } // namespace UPolinomioLista
 

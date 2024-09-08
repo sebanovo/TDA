@@ -111,8 +111,9 @@ void __fastcall TForm1::Button13Click(TObject* Sender)
     //        new UPolinomioLista::PolinomioLista(M);
     //    UPolinomioLista::derivada(polinomioLista, poli1);
 
-    SavePictureDialog1->Execute();
-    Image1->Picture->SaveToFile(SavePictureDialog1->FileName);
+    //    SavePictureDialog1->Execute();
+    //    Image1->Picture->SaveToFile(SavePictureDialog1->FileName);
+    polinomioLista->graficarIntegral(Image1, -1, 2);
 }
 //---------------------------------------------------------------------------
 
