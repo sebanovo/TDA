@@ -21,9 +21,9 @@ namespace UPolinomioVector
         bool es_cero();
         int grado();
         int coeficiente(int exp);
-        void sumar(PolinomioVector p1, PolinomioVector p2);
-        void restar(PolinomioVector p1, PolinomioVector p2);
-        void multiplicar(PolinomioVector p1, PolinomioVector p3);
+        void sumar(PolinomioVector* p1, PolinomioVector* p2);
+        void restar(PolinomioVector* p1, PolinomioVector* p2);
+        void multiplicar(PolinomioVector* p1, PolinomioVector* p3);
         void poner_termino(int coef, int exp);
         int numero_terminos();
         int exponente(int nroTer);
@@ -42,8 +42,8 @@ namespace UPolinomioVector
 
         void graficarIntegral(TImage* Image, double a, double b);
     };
-    void derivada(PolinomioVector p, PolinomioVector p1);
-    string mostrar_integral(PolinomioVector p);
+    void derivada(PolinomioVector* p, PolinomioVector* p1);
+    string mostrar_integral(PolinomioVector* p);
 } // namespace UPolinomioVector
 
 #endif

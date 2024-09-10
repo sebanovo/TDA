@@ -5,31 +5,28 @@
 #pragma hdrstop
 
 #include "PolinomioLista.h"
+
 #include "math.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UPolinomioLista
-{
+namespace UPolinomioLista {
     using UCSMemoria::NULO;
 
-    PolinomioLista::PolinomioLista()
-    {
+    PolinomioLista::PolinomioLista() {
         // mem = new UCSMemoria::CSMemoria;
         // ls = new UListaSM::ListaSM(mem);
         ls = new UListaVector::ListaVector;
     }
 
-    PolinomioLista::PolinomioLista(UCSMemoria::CSMemoria* m)
-    {
+    PolinomioLista::PolinomioLista(UCSMemoria::CSMemoria* m) {
         // ls = new UListaSM::ListaSM(m);
         ls = new UListaVector::ListaVector;
     }
 
     // Retorna el exponente del término
-    int PolinomioLista::exponente(int nroTer)
-    {
+    int PolinomioLista::exponente(int nroTer) {
         int dir = buscar_termino_n(nroTer);
 
         if (dir != -1) {
@@ -38,8 +35,7 @@ namespace UPolinomioLista
     }
 
     // devuelve la direccion del termino del exponente (osea un nodo)
-    int PolinomioLista::buscar_exponente(int exp)
-    {
+    int PolinomioLista::buscar_exponente(int exp) {
         int dir = ls->siguiente(ls->primero());
 
         int direxp = -1;
@@ -59,8 +55,7 @@ namespace UPolinomioLista
     }
 
     // devuelve la direccino del termino n
-    int PolinomioLista::buscar_termino_n(int n)
-    {
+    int PolinomioLista::buscar_termino_n(int n) {
         int dir = ls->primero();
         int nt = 0;
         if (dir != -1) {
@@ -77,13 +72,11 @@ namespace UPolinomioLista
             return -1;
     }
 
-    bool PolinomioLista::es_cero()
-    {
+    bool PolinomioLista::es_cero() {
         return ls->_longitud() == 0;
     }
 
-    int PolinomioLista::grado()
-    {
+    int PolinomioLista::grado() {
         int dir = ls->siguiente(ls->primero());
         if (dir != -1) {
             int MaxG = ls->recupera(dir);
@@ -99,8 +92,7 @@ namespace UPolinomioLista
     }
 
     // devuelve el coeficiente del exponente del termino
-    int PolinomioLista::coeficiente(int exp)
-    {
+    int PolinomioLista::coeficiente(int exp) {
         int dir = buscar_exponente(exp);
         if (dir != -1) {
             return ls->recupera(ls->anterior(dir));
@@ -108,8 +100,7 @@ namespace UPolinomioLista
             return -1;
     }
 
-    void PolinomioLista::asignar_coeficiente(int coef, int exp)
-    {
+    void PolinomioLista::asignar_coeficiente(int coef, int exp) {
         int dir = buscar_exponente(exp);
         if (dir != -1) {
             int dirCoef = ls->anterior(dir);
@@ -121,8 +112,7 @@ namespace UPolinomioLista
         }
     }
 
-    void PolinomioLista::poner_termino(int coef, int exp)
-    {
+    void PolinomioLista::poner_termino(int coef, int exp) {
         int direxp = buscar_exponente(exp);
         if (direxp != -1) {
             int dirCoef = ls->anterior(direxp);
@@ -139,13 +129,11 @@ namespace UPolinomioLista
         }
     }
 
-    int PolinomioLista::numero_terminos()
-    {
+    int PolinomioLista::numero_terminos() {
         return ls->_longitud() / 2;
     }
 
-    void PolinomioLista::poner_en_cero()
-    {
+    void PolinomioLista::poner_en_cero() {
         int p = ls->primero();
         while (ls->_longitud() != 0) {
             ls->suprime(p);
@@ -154,8 +142,7 @@ namespace UPolinomioLista
     }
 
     // P1 + P2
-    void PolinomioLista::sumar(PolinomioLista* p1, PolinomioLista* p2)
-    {
+    void PolinomioLista::sumar(PolinomioLista* p1, PolinomioLista* p2) {
         // poner_en_cero();
         for (int i = 1; i <= p1->numero_terminos(); i++) {
             int ex = p1->exponente(i);
@@ -170,8 +157,7 @@ namespace UPolinomioLista
     }
 
     // P1 - P2
-    void PolinomioLista::restar(PolinomioLista* p1, PolinomioLista* p2)
-    {
+    void PolinomioLista::restar(PolinomioLista* p1, PolinomioLista* p2) {
         // poner_en_cero();
         for (int i = 1; i <= p1->numero_terminos(); i++) {
             int ex = p1->exponente(i);
@@ -186,8 +172,7 @@ namespace UPolinomioLista
     }
 
     // P1 * P2
-    void PolinomioLista::multiplicar(PolinomioLista* p1, PolinomioLista* p2)
-    {
+    void PolinomioLista::multiplicar(PolinomioLista* p1, PolinomioLista* p2) {
         // = (2x + 1) * (3x + 3)
         // = 2x * 3x + 2x * 3 + 1 * 3x + 1 * 3;
         // = 6x^2 + 9x + 3
@@ -204,8 +189,7 @@ namespace UPolinomioLista
         }
     }
 
-    double PolinomioLista::evaluar(double x)
-    {
+    double PolinomioLista::evaluar(double x) {
         double resultado = 0.0;
 
         for (int i = 1; i <= numero_terminos(); i++) {
@@ -217,8 +201,7 @@ namespace UPolinomioLista
         return resultado;
     }
 
-    std::string PolinomioLista::mostrar()
-    {
+    std::string PolinomioLista::mostrar() {
         std::string s = "";
         for (int i = 1; i <= numero_terminos(); i++) {
             int exp = exponente(i);
@@ -230,14 +213,12 @@ namespace UPolinomioLista
         return s;
     }
 
-    PolinomioLista::~PolinomioLista()
-    {
+    PolinomioLista::~PolinomioLista() {
         delete ls;
         delete mem;
     }
 
-    void derivada(PolinomioLista* p, PolinomioLista* p1)
-    {
+    void derivada(PolinomioLista* p, PolinomioLista* p1) {
         for (int i = 1; i <= p->numero_terminos(); i++) {
             int exp = p->exponente(i);
             int co = p->coeficiente(exp);
@@ -245,23 +226,21 @@ namespace UPolinomioLista
         }
     };
 
-    std::string mostrar_integral(PolinomioLista p)
-    {
+    std::string mostrar_integral(PolinomioLista* p) {
         std::string s = "";
-        for (int i = 1; i <= p.numero_terminos(); i++) {
-            int exp = p.exponente(i);
-            int co = p.coeficiente(exp);
+        for (int i = 1; i <= p->numero_terminos(); i++) {
+            int exp = p->exponente(i);
+            int co = p->coeficiente(exp);
 
             s += "(" + std::to_string(co) + "x^" + std::to_string(exp + 1) +
                  ")/" + std::to_string(exp + 1) + " + ";
-            if (i == p.numero_terminos())
+            if (i == p->numero_terminos())
                 s += "C";
         }
         return s;
     }
 
-    void PolinomioLista::dibujar_polinomio(TForm* Form, int posX, int posY)
-    {
+    void PolinomioLista::dibujar_polinomio(TForm* Form, int posX, int posY) {
         // ls->dibujar_lista(Form, posX, posY);
 
         TCanvas* Canvas = Form->Canvas;
@@ -278,8 +257,7 @@ namespace UPolinomioLista
     }
 
     void PolinomioLista::graficar(
-        TForm* Form, int posX, int posY, int ancho, int alto)
-    {
+        TForm* Form, int posX, int posY, int ancho, int alto) {
         TCanvas* Canvas = Form->Canvas;
         TRect rect(posX, posY, posX + ancho, posY + alto);
         Canvas->FillRect(rect);
@@ -399,8 +377,7 @@ namespace UPolinomioLista
         RestoreDC(hdc, savedDC);
     }
 
-    void PolinomioLista::graficar_image(TImage* Image)
-    {
+    void PolinomioLista::graficar_image(TImage* Image) {
         TCanvas* Canvas = Image->Canvas;
         Canvas->FillRect(Canvas->ClipRect);
 
@@ -515,8 +492,7 @@ namespace UPolinomioLista
         Canvas->Brush->Style = bsSolid;
     }
 
-    void PolinomioLista::graficarIntegral(TImage* Image, double a, double b)
-    {
+    void PolinomioLista::graficarIntegral(TImage* Image, double a, double b) {
         TCanvas* Canvas = Image->Canvas;
         int alto = Image->Height;
         int ancho = Image->Width;
@@ -566,5 +542,4 @@ namespace UPolinomioLista
         Canvas->Rectangle(0, 0, ancho, alto);
         Canvas->Brush->Style = bsSolid;
     }
-} // namespace UPolinomioLista
-
+}  // namespace UPolinomioLista

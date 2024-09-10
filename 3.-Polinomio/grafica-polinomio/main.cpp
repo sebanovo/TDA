@@ -48,7 +48,8 @@ void __fastcall TForm1::Button5Click(TObject* Sender)
 
 void __fastcall TForm1::Button10Click(TObject* Sender)
 {
-    polinomioLista = new UPolinomioLista::PolinomioLista(M);
+    //    polinomioLista = new UPolinomioLista::PolinomioLista(M);
+    polinomioLista = new UPolinomioSM::PolinomioSM(M);
 }
 //---------------------------------------------------------------------------
 
@@ -65,17 +66,24 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
 {
     int posX = 300;
     int posY = 900;
+    double a = Edit8->Text.ToDouble();
+    double b = Edit9->Text.ToDouble();
+
     Canvas->FillRect(Canvas->ClipRect);
     polinomioLista->dibujar_polinomio(Form1, 700, 800);
-    polinomioLista->graficar_image(Image1);
+    polinomioLista->graficar_image(Image1, a, b);
     // polinomioLista->graficar(Form1, 600, 10, 700, 700);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button13Click(TObject* Sender)
 {
-    UPolinomioLista::PolinomioLista* nuevoPolinomio =
-        new UPolinomioLista::PolinomioLista(M);
-    UPolinomioLista::derivada(polinomioLista, nuevoPolinomio);
+    //    UPolinomioLista::PolinomioLista* nuevoPolinomio =
+    //        new UPolinomioLista::PolinomioLista(M);
+    //    UPolinomioLista::derivada(polinomioLista, nuevoPolinomio);
+
+    UPolinomioSM::PolinomioSM* nuevoPolinomio =
+        new UPolinomioSM::PolinomioSM(M);
+    UPolinomioSM::derivada(polinomioLista, nuevoPolinomio);
 }
 //---------------------------------------------------------------------------
 

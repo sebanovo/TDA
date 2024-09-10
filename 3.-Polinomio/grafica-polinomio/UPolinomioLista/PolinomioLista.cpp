@@ -32,9 +32,8 @@ namespace UPolinomioLista
     {
         int dir = buscar_termino_n(nroTer);
 
-        if (dir != -1) {
-            return ls->recupera(ls->siguiente(dir));
-        }
+        return dir != -1 ? ls->recupera(ls->siguiente(dir))
+                         : throw new Exception("fuera de rango");
     }
 
     // devuelve la direccion del termino del exponente (osea un nodo)
@@ -245,16 +244,16 @@ namespace UPolinomioLista
         }
     };
 
-    std::string mostrar_integral(PolinomioLista p)
+    std::string mostrar_integral(PolinomioLista* p)
     {
         std::string s = "";
-        for (int i = 1; i <= p.numero_terminos(); i++) {
-            int exp = p.exponente(i);
-            int co = p.coeficiente(exp);
+        for (int i = 1; i <= p->numero_terminos(); i++) {
+            int exp = p->exponente(i);
+            int co = p->coeficiente(exp);
 
             s += "(" + std::to_string(co) + "x^" + std::to_string(exp + 1) +
                  ")/" + std::to_string(exp + 1) + " + ";
-            if (i == p.numero_terminos())
+            if (i == p->numero_terminos())
                 s += "C";
         }
         return s;
@@ -399,7 +398,7 @@ namespace UPolinomioLista
         RestoreDC(hdc, savedDC);
     }
 
-    void PolinomioLista::graficar_image(TImage* Image)
+    void PolinomioLista::graficar_image(TImage* Image, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         Canvas->FillRect(Canvas->ClipRect);
@@ -482,8 +481,8 @@ namespace UPolinomioLista
         // dibujar la funcion
         bool esContinua = false;
         double limite = alto;
-        double a = -ancho / (2.0 * factorEscala);
-        double b = a * -1;
+        //        double a = -ancho / (2.0 * factorEscala);
+        //        double b = a * -1;
 
         Canvas->Pen->Color = clBlue;
         Canvas->Pen->Width = 3;

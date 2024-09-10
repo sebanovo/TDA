@@ -48,53 +48,53 @@ namespace UPolinomioVector
         return 0;
     }
 
-    void PolinomioVector::sumar(PolinomioVector p1, PolinomioVector p2)
+    void PolinomioVector::sumar(PolinomioVector* p1, PolinomioVector* p2)
     {
-        for (int i = 1; i <= p1.numero_terminos(); i++) {
-            int exp = p1.exponente(i);
-            int coef = p1.coeficiente(exp);
+        for (int i = 1; i <= p1->numero_terminos(); i++) {
+            int exp = p1->exponente(i);
+            int coef = p1->coeficiente(exp);
             poner_termino(coef, exp);
         }
-        for (int i = 1; i <= p2.numero_terminos(); i++) {
-            int exp = p2.exponente(i);
-            int coef = p2.coeficiente(exp);
+        for (int i = 1; i <= p2->numero_terminos(); i++) {
+            int exp = p2->exponente(i);
+            int coef = p2->coeficiente(exp);
             poner_termino(coef, exp);
         }
     }
 
-    void PolinomioVector::restar(PolinomioVector p1, PolinomioVector p2)
+    void PolinomioVector::restar(PolinomioVector* p1, PolinomioVector* p2)
     {
-        for (int i = 1; i <= p1.numero_terminos(); i++) {
-            int exp = p1.exponente(i);
-            int coef = p1.coeficiente(exp);
+        for (int i = 1; i <= p1->numero_terminos(); i++) {
+            int exp = p1->exponente(i);
+            int coef = p1->coeficiente(exp);
             poner_termino(coef, exp);
         }
-        for (int i = 1; i <= p2.numero_terminos(); i++) {
-            int exp = p2.exponente(i);
-            int coef = p2.coeficiente(exp) * -1;
+        for (int i = 1; i <= p2->numero_terminos(); i++) {
+            int exp = p2->exponente(i);
+            int coef = p2->coeficiente(exp) * -1;
             poner_termino(coef, exp);
         }
     }
 
-    void PolinomioVector::multiplicar(PolinomioVector p1, PolinomioVector p2)
+    void PolinomioVector::multiplicar(PolinomioVector* p1, PolinomioVector* p2)
     {
         // P1 * P2 = (2x + 1) * (3x + 3)
         // 2x * 3x + 2x * 3 + 1 * 3x + 1 * 3;
         // 6x^2 + 9x + 3
-        for (int i = 1; i <= p1.numero_terminos(); i++) {
-            for (int j = 1; j <= p2.numero_terminos(); j++) {
-                int exp1 = p1.exponente(i);
-                int coef1 = p1.coeficiente(exp1);
+        for (int i = 1; i <= p1->numero_terminos(); i++) {
+            for (int j = 1; j <= p2->numero_terminos(); j++) {
+                int exp1 = p1->exponente(i);
+                int coef1 = p1->coeficiente(exp1);
 
-                int exp2 = p2.exponente(j);
-                int coef2 = p2.coeficiente(exp2);
+                int exp2 = p2->exponente(j);
+                int coef2 = p2->coeficiente(exp2);
 
                 poner_termino(coef1 * coef2, exp1 + exp2);
             }
         }
     }
 
-    // retorna la direccion del exponenete
+    // retorna la direccion del exponente
     int PolinomioVector::buscar_exponente(int exp)
     {
         for (int i = 1; i <= nt; i++) {

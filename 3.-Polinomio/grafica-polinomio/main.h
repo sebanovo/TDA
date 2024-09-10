@@ -12,6 +12,7 @@
 #include "UListaSM/UListaSM.h"
 #include "UListaVector/UListaVector.h"
 #include "UPolinomioLista/PolinomioLista.h"
+#include "UPolinomioSM/PolinomioSM.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Dialogs.hpp>
@@ -39,6 +40,8 @@ class TForm1 : public TForm
     TButton* Button12;
     TButton* Button13;
     TImage* Image1;
+    TEdit* Edit8;
+    TEdit* Edit9;
     void __fastcall Button1Click(TObject* Sender);
     void __fastcall Button2Click(TObject* Sender);
     void __fastcall Button3Click(TObject* Sender);
@@ -51,7 +54,8 @@ class TForm1 : public TForm
   private:
     UCSMemoria::CSMemoria* M; // User declarations
     UListaSM::ListaSM* listaSM;
-    UPolinomioLista::PolinomioLista* polinomioLista;
+    //    UPolinomioLista::PolinomioLista* polinomioLista;
+    UPolinomioSM::PolinomioSM* polinomioLista;
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);
     __fastcall ~TForm1()

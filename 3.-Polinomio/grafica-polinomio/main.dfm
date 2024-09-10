@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'Form1'
+  Caption = 'ffffff'
   ClientHeight = 661
   ClientWidth = 1104
   Color = clActiveCaption
@@ -145,7 +145,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 8
-    Text = '11'
+    Text = '20'
     TextHint = 'b'
   end
   object Edit5: TEdit
@@ -274,5 +274,19 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 17
+  end
+  object Edit8: TEdit
+    Left = 167
+    Top = 527
+    Width = 114
+    Height = 23
+    TabOrder = 18
+  end
+  object Edit9: TEdit
+    Left = 302
+    Top = 527
+    Width = 121
+    Height = 23
+    TabOrder = 19
   end
 end

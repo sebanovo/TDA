@@ -31,9 +31,9 @@ namespace UPolinomioSM
         bool es_cero();
         int grado();
         int coeficiente(int exp);
-        void sumar(PolinomioSM p1, PolinomioSM p2);
-        void restar(PolinomioSM p1, PolinomioSM p2);
-        void multiplicar(PolinomioSM p1, PolinomioSM p3);
+        void sumar(PolinomioSM* p1, PolinomioSM* p2);
+        void restar(PolinomioSM* p1, PolinomioSM* p2);
+        void multiplicar(PolinomioSM* p1, PolinomioSM* p3);
         void poner_termino(int coef, int exp);
         int numero_terminos();
         int exponente(int nroTer);
@@ -45,12 +45,12 @@ namespace UPolinomioSM
         // graficar
         void dibujar_polinomio(TForm* Form, int posX, int posY);
         void graficar(TForm* Form, int posX, int posY, int ancho, int alto);
-        void graficar_image(TImage* Image);
+        void graficar_image(TImage* Image, double a, double b);
 
         void graficarIntegral(TImage* Image, double a, double b);
     };
-    void derivada(PolinomioSM p, PolinomioSM p1);
-    std::string mostrar_integral(PolinomioSM p);
+    void derivada(PolinomioSM* p, PolinomioSM* p1);
+    std::string mostrar_integral(PolinomioSM* p);
 } // namespace UPolinomioSM
 #endif
 

@@ -43,13 +43,13 @@ namespace UPolinomioLista
         // graficar
         void dibujar_polinomio(TForm* Form, int posX, int posY);
         void graficar(TForm* Form, int posX, int posY, int ancho, int alto);
-        void graficar_image(TImage* Image);
+        void graficar_image(TImage* Image, double a, double b);
 
         void graficarIntegral(TImage* Image, double a, double b);
     };
 
     void derivada(PolinomioLista* p, PolinomioLista* p1);
-    std::string mostrar_integral(PolinomioLista p);
+    std::string mostrar_integral(PolinomioLista* p);
 } // namespace UPolinomioLista
 #endif
 
