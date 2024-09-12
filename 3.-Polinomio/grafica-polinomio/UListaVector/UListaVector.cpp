@@ -40,6 +40,8 @@ namespace UListaVector
         // if (vacia()) {
         //     throw new Exception("La lista esta vacia\n");
         // }
+        if (vacia())
+            return -1;
         return 1;
         // if (!vacia()) {
         //     return 0;
@@ -125,8 +127,8 @@ namespace UListaVector
         //         cout << "Error de direccion\n";
         //     }
         // }
-        if (vacia())
-            throw new Exception("La lista esta vacía\n");
+        //        if (vacia())
+        //            throw new Exception("La lista esta vacía\n");
         return elementos[dir];
     }
 
