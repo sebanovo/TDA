@@ -13,13 +13,13 @@ object Form1: TForm1
   TextHeight = 15
   object Image1: TImage
     Left = 556
-    Top = 131
+    Top = 75
     Width = 509
     Height = 497
   end
   object Button1: TButton
     Left = 8
-    Top = 112
+    Top = 56
     Width = 153
     Height = 49
     Caption = 'Crear memoria'
@@ -34,7 +34,7 @@ object Form1: TForm1
   end
   object Button2: TButton
     Left = 8
-    Top = 167
+    Top = 111
     Width = 153
     Height = 49
     Caption = 'Pedir espacio'
@@ -49,7 +49,7 @@ object Form1: TForm1
   end
   object Button3: TButton
     Left = 8
-    Top = 222
+    Top = 166
     Width = 153
     Height = 49
     Caption = 'LIberar espacio'
@@ -64,7 +64,7 @@ object Form1: TForm1
   end
   object Button4: TButton
     Left = 8
-    Top = 579
+    Top = 523
     Width = 153
     Height = 49
     Caption = 'Mostrar memoria'
@@ -79,7 +79,7 @@ object Form1: TForm1
   end
   object Button5: TButton
     Left = 8
-    Top = 277
+    Top = 221
     Width = 153
     Height = 49
     Caption = 'Poner dato'
@@ -94,7 +94,7 @@ object Form1: TForm1
   end
   object Edit1: TEdit
     Left = 175
-    Top = 176
+    Top = 120
     Width = 217
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -107,7 +107,7 @@ object Form1: TForm1
   end
   object Edit2: TEdit
     Left = 175
-    Top = 231
+    Top = 175
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -120,7 +120,7 @@ object Form1: TForm1
   end
   object Edit3: TEdit
     Left = 167
-    Top = 588
+    Top = 532
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -135,7 +135,7 @@ object Form1: TForm1
   end
   object Edit4: TEdit
     Left = 294
-    Top = 588
+    Top = 532
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -150,7 +150,7 @@ object Form1: TForm1
   end
   object Edit5: TEdit
     Left = 175
-    Top = 286
+    Top = 230
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -163,7 +163,7 @@ object Form1: TForm1
   end
   object Edit6: TEdit
     Left = 302
-    Top = 286
+    Top = 230
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -177,7 +177,7 @@ object Form1: TForm1
   end
   object Edit7: TEdit
     Left = 429
-    Top = 286
+    Top = 230
     Width = 121
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -191,7 +191,7 @@ object Form1: TForm1
   end
   object Button10: TButton
     Left = 8
-    Top = 359
+    Top = 303
     Width = 153
     Height = 49
     Caption = 'Crear polinomio'
@@ -206,7 +206,7 @@ object Form1: TForm1
   end
   object Button11: TButton
     Left = 8
-    Top = 414
+    Top = 358
     Width = 153
     Height = 49
     Caption = 'Poner termino'
@@ -221,7 +221,7 @@ object Form1: TForm1
   end
   object Button12: TButton
     Left = 8
-    Top = 524
+    Top = 468
     Width = 153
     Height = 49
     Caption = 'Graficar Polinomio'
@@ -236,7 +236,7 @@ object Form1: TForm1
   end
   object Button13: TButton
     Left = 8
-    Top = 469
+    Top = 413
     Width = 153
     Height = 49
     Caption = 'Derivada'
@@ -251,7 +251,7 @@ object Form1: TForm1
   end
   object Edit10: TEdit
     Left = 175
-    Top = 423
+    Top = 367
     Width = 106
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -264,7 +264,7 @@ object Form1: TForm1
   end
   object Edit11: TEdit
     Left = 302
-    Top = 423
+    Top = 367
     Width = 105
     Height = 31
     Font.Charset = ANSI_CHARSET
@@ -277,14 +277,14 @@ object Form1: TForm1
   end
   object Edit8: TEdit
     Left = 167
-    Top = 527
+    Top = 471
     Width = 114
     Height = 23
     TabOrder = 18
   end
   object Edit9: TEdit
     Left = 302
-    Top = 527
+    Top = 471
     Width = 121
     Height = 23
     TabOrder = 19
