@@ -74,18 +74,21 @@ void __fastcall TForm1::Button6Click(TObject* Sender)
 
 void __fastcall TForm1::Button7Click(TObject* Sender)
 {
-    String Conjunto;
-    Conjunto = InputBox("Mostrar Conjunto", "Conjunto", "");
+    String conjunto = InputBox("Mostrar Conjunto", "Conjunto", "");
+    int radio = 200;
 
-    switch (Conjunto[1]) {
+    switch (conjunto[1]) {
         case 'A':
-            A->dibujar_conjunto(Form1, 800, 200);
+            A->dibujar_conjunto(Form1, 800, 100);
+            A->graficar_conjunto(Form1, 500, 600, radio, "A");
             break;
         case 'B':
-            B->dibujar_conjunto(Form1, 800, 300);
+            B->dibujar_conjunto(Form1, 800, 200);
+            B->graficar_conjunto(Form1, 1000, 600, radio, "B");
             break;
         case 'C':
-            C->dibujar_conjunto(Form1, 800, 400);
+            C->dibujar_conjunto(Form1, 800, 300);
+            C->graficar_conjunto(Form1, 1500, 600, radio, "C");
             break;
         default:
             ShowMessage("Conjunto No Valido");

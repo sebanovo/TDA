@@ -34,6 +34,8 @@ namespace UConjuntoSM
         std::string mostrar();
 
         void dibujar_conjunto(TForm* Form, int posX, int posY);
+        void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
+            std::string nombre);
     };
 
     void _union();
