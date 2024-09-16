@@ -29,16 +29,12 @@ class TForm1 : public TForm
   __published: // IDE-managed Components
     TButton* Button1;
     TButton* Button2;
-    TEdit* Edit1;
-    TImage* Image1;
     TButton* Button3;
     TButton* Button4;
     TButton* Button5;
     TButton* Button6;
     TButton* Button7;
     TButton* Button8;
-    TButton* Button9;
-    TButton* Button10;
     void __fastcall Button1Click(TObject* Sender);
     void __fastcall Button2Click(TObject* Sender);
     void __fastcall Button3Click(TObject* Sender);
@@ -47,13 +43,13 @@ class TForm1 : public TForm
     void __fastcall Button6Click(TObject* Sender);
     void __fastcall Button7Click(TObject* Sender);
     void __fastcall Button8Click(TObject* Sender);
-    void __fastcall Button9Click(TObject* Sender);
-    void __fastcall Button10Click(TObject* Sender);
   private:
-    UCSMemoria::CSMemoria* M; // User declarations
-    UConjuntoSM::ConjuntoSM* A;
-    UConjuntoSM::ConjuntoSM* B;
-    UConjuntoSM::ConjuntoSM* C;
+    //    UConjuntoPuntero::ConjuntoPuntero* A;
+    //    UConjuntoPuntero::ConjuntoPuntero* B;
+    //    UConjuntoPuntero::ConjuntoPuntero* C;
+    UConjuntoVector::ConjuntoVector* A;
+    UConjuntoVector::ConjuntoVector* B;
+    UConjuntoVector::ConjuntoVector* C;
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);
     __fastcall ~TForm1();

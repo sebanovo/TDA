@@ -1,7 +1,7 @@
 object Form1: TForm1
   Left = 0
   Top = 0
-  Caption = 'ffffff'
+  Caption = 'Form1'
   ClientHeight = 661
   ClientWidth = 1104
   Color = clActiveCaption
@@ -11,18 +11,12 @@ object Form1: TForm1
   Font.Name = 'Segoe UI'
   Font.Style = []
   TextHeight = 15
-  object Image1: TImage
-    Left = 1048
-    Top = 27
-    Width = 33
-    Height = 30
-  end
   object Button1: TButton
-    Left = 8
-    Top = 48
+    Left = 16
+    Top = 63
     Width = 153
     Height = 49
-    Caption = 'Crear memoria'
+    Caption = 'Crear Conjunto A'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -17
@@ -33,51 +27,8 @@ object Form1: TForm1
     OnClick = Button1Click
   end
   object Button2: TButton
-    Left = 8
-    Top = 103
-    Width = 153
-    Height = 49
-    Caption = 'Pedir espacio'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -17
-    Font.Name = '@Microsoft YaHei UI'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 1
-    OnClick = Button2Click
-  end
-  object Edit1: TEdit
-    Left = 175
-    Top = 112
-    Width = 217
-    Height = 31
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -17
-    Font.Name = '@Microsoft YaHei UI'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 2
-  end
-  object Button3: TButton
-    Left = 8
-    Top = 191
-    Width = 153
-    Height = 49
-    Caption = 'Crear Conjunto A'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -17
-    Font.Name = '@Microsoft YaHei UI'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 3
-    OnClick = Button3Click
-  end
-  object Button4: TButton
-    Left = 8
-    Top = 246
+    Left = 16
+    Top = 118
     Width = 153
     Height = 49
     Caption = 'Crear Conjunto B'
@@ -87,12 +38,12 @@ object Form1: TForm1
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
-    OnClick = Button4Click
+    TabOrder = 1
+    OnClick = Button2Click
   end
-  object Button5: TButton
-    Left = 8
-    Top = 301
+  object Button3: TButton
+    Left = 16
+    Top = 173
     Width = 153
     Height = 49
     Caption = 'Crear Conjunto C'
@@ -102,12 +53,12 @@ object Form1: TForm1
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 5
-    OnClick = Button5Click
+    TabOrder = 2
+    OnClick = Button3Click
   end
-  object Button6: TButton
-    Left = 8
-    Top = 356
+  object Button4: TButton
+    Left = 16
+    Top = 228
     Width = 153
     Height = 49
     Caption = 'Insertar Elemento'
@@ -117,12 +68,12 @@ object Form1: TForm1
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 6
-    OnClick = Button6Click
+    TabOrder = 3
+    OnClick = Button4Click
   end
-  object Button7: TButton
-    Left = 8
-    Top = 411
+  object Button5: TButton
+    Left = 16
+    Top = 283
     Width = 153
     Height = 49
     Caption = 'Mostrar Conjunto'
@@ -132,12 +83,12 @@ object Form1: TForm1
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 7
-    OnClick = Button7Click
+    TabOrder = 4
+    OnClick = Button5Click
   end
-  object Button8: TButton
-    Left = 8
-    Top = 466
+  object Button6: TButton
+    Left = 16
+    Top = 338
     Width = 153
     Height = 49
     Caption = 'Union'
@@ -147,12 +98,12 @@ object Form1: TForm1
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 8
-    OnClick = Button8Click
+    TabOrder = 5
+    OnClick = Button6Click
   end
-  object Button9: TButton
-    Left = 8
-    Top = 521
+  object Button7: TButton
+    Left = 16
+    Top = 393
     Width = 153
     Height = 49
     Caption = 'Interseccion'
@@ -162,12 +113,12 @@ object Form1: TForm1
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 9
-    OnClick = Button9Click
+    TabOrder = 6
+    OnClick = Button7Click
   end
-  object Button10: TButton
-    Left = 8
-    Top = 576
+  object Button8: TButton
+    Left = 16
+    Top = 448
     Width = 153
     Height = 49
     Caption = 'Salir'
@@ -177,7 +128,6 @@ object Form1: TForm1
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
-    TabOrder = 10
-    OnClick = Button10Click
+    TabOrder = 7
   end
 end
