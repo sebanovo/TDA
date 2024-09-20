@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'ffffff'
-  ClientHeight = 661
-  ClientWidth = 1104
+  ClientHeight = 647
+  ClientWidth = 959
   Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,20 +12,20 @@ object Form1: TForm1
   Font.Style = []
   TextHeight = 15
   object Image1: TImage
-    Left = 556
-    Top = 75
+    Left = 428
+    Top = 77
     Width = 509
     Height = 497
   end
   object Button1: TButton
     Left = 8
-    Top = 56
+    Top = 8
     Width = 153
     Height = 49
     Caption = 'Crear memoria'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -34,13 +34,13 @@ object Form1: TForm1
   end
   object Button2: TButton
     Left = 8
-    Top = 111
+    Top = 63
     Width = 153
     Height = 49
     Caption = 'Pedir espacio'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -49,13 +49,13 @@ object Form1: TForm1
   end
   object Button3: TButton
     Left = 8
-    Top = 166
+    Top = 118
     Width = 153
     Height = 49
     Caption = 'LIberar espacio'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -64,13 +64,13 @@ object Form1: TForm1
   end
   object Button4: TButton
     Left = 8
-    Top = 523
+    Top = 228
     Width = 153
     Height = 49
     Caption = 'Mostrar memoria'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -79,13 +79,13 @@ object Form1: TForm1
   end
   object Button5: TButton
     Left = 8
-    Top = 221
+    Top = 173
     Width = 153
     Height = 49
     Caption = 'Poner dato'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -94,12 +94,12 @@ object Form1: TForm1
   end
   object Edit1: TEdit
     Left = 175
-    Top = 120
-    Width = 217
-    Height = 31
+    Top = 72
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -107,25 +107,25 @@ object Form1: TForm1
   end
   object Edit2: TEdit
     Left = 175
-    Top = 175
-    Width = 121
-    Height = 31
+    Top = 127
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
     TabOrder = 6
   end
   object Edit3: TEdit
-    Left = 167
-    Top = 532
-    Width = 121
-    Height = 31
+    Left = 175
+    Top = 237
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -134,13 +134,13 @@ object Form1: TForm1
     TextHint = 'a'
   end
   object Edit4: TEdit
-    Left = 294
-    Top = 532
-    Width = 121
-    Height = 31
+    Left = 255
+    Top = 237
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -150,25 +150,25 @@ object Form1: TForm1
   end
   object Edit5: TEdit
     Left = 175
-    Top = 230
-    Width = 121
-    Height = 31
+    Top = 182
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
     TabOrder = 9
   end
   object Edit6: TEdit
-    Left = 302
-    Top = 230
-    Width = 121
-    Height = 31
+    Left = 255
+    Top = 182
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -176,13 +176,13 @@ object Form1: TForm1
     Text = '->'
   end
   object Edit7: TEdit
-    Left = 429
-    Top = 230
-    Width = 121
-    Height = 31
+    Left = 335
+    Top = 182
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -191,13 +191,13 @@ object Form1: TForm1
   end
   object Button10: TButton
     Left = 8
-    Top = 303
+    Top = 317
     Width = 153
     Height = 49
-    Caption = 'Crear polinomio'
+    Caption = 'Crear polinomio A'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -206,13 +206,13 @@ object Form1: TForm1
   end
   object Button11: TButton
     Left = 8
-    Top = 358
+    Top = 427
     Width = 153
     Height = 49
-    Caption = 'Poner termino'
+    Caption = 'Poner termino A'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -221,13 +221,13 @@ object Form1: TForm1
   end
   object Button12: TButton
     Left = 8
-    Top = 468
+    Top = 537
     Width = 153
     Height = 49
-    Caption = 'Graficar Polinomio'
+    Caption = 'Graficar Polinomios'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -236,13 +236,13 @@ object Form1: TForm1
   end
   object Button13: TButton
     Left = 8
-    Top = 413
+    Top = 592
     Width = 153
     Height = 49
-    Caption = 'Derivada'
+    Caption = 'intersectar'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
@@ -251,42 +251,112 @@ object Form1: TForm1
   end
   object Edit10: TEdit
     Left = 175
-    Top = 367
-    Width = 106
-    Height = 31
+    Top = 436
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
     TabOrder = 16
   end
   object Edit11: TEdit
-    Left = 302
-    Top = 367
-    Width = 105
-    Height = 31
+    Left = 255
+    Top = 436
+    Width = 74
+    Height = 28
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
-    Font.Height = -17
+    Font.Height = -15
     Font.Name = '@Microsoft YaHei UI'
     Font.Style = []
     ParentFont = False
     TabOrder = 17
   end
   object Edit8: TEdit
-    Left = 167
-    Top = 471
-    Width = 114
-    Height = 23
+    Left = 175
+    Top = 546
+    Width = 74
+    Height = 28
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 18
+    Text = '-10'
   end
   object Edit9: TEdit
-    Left = 302
-    Top = 471
-    Width = 121
-    Height = 23
+    Left = 255
+    Top = 546
+    Width = 74
+    Height = 28
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
     TabOrder = 19
+    Text = '10'
+  end
+  object Button6: TButton
+    Left = 8
+    Top = 372
+    Width = 153
+    Height = 49
+    Caption = 'Crear Polinomio B'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 20
+    OnClick = Button6Click
+  end
+  object Button7: TButton
+    Left = 8
+    Top = 482
+    Width = 153
+    Height = 49
+    Caption = 'Poner Termino B'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 21
+    OnClick = Button7Click
+  end
+  object Edit12: TEdit
+    Left = 175
+    Top = 491
+    Width = 74
+    Height = 28
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 22
+  end
+  object Edit13: TEdit
+    Left = 255
+    Top = 491
+    Width = 74
+    Height = 28
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -15
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 23
   end
 end

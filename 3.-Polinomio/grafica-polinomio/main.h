@@ -42,6 +42,10 @@ class TForm1 : public TForm
     TImage* Image1;
     TEdit* Edit8;
     TEdit* Edit9;
+    TButton* Button6;
+    TButton* Button7;
+    TEdit* Edit12;
+    TEdit* Edit13;
     void __fastcall Button1Click(TObject* Sender);
     void __fastcall Button2Click(TObject* Sender);
     void __fastcall Button3Click(TObject* Sender);
@@ -51,11 +55,14 @@ class TForm1 : public TForm
     void __fastcall Button11Click(TObject* Sender);
     void __fastcall Button12Click(TObject* Sender);
     void __fastcall Button13Click(TObject* Sender);
+    void __fastcall Button6Click(TObject* Sender);
+    void __fastcall Button7Click(TObject* Sender);
   private:
     UCSMemoria::CSMemoria* M; // User declarations
     UListaSM::ListaSM* listaSM;
     //    UPolinomioLista::PolinomioLista* polinomioLista;
     UPolinomioSM::PolinomioSM* polinomioLista;
+    UPolinomioSM::PolinomioSM* polinomioLista2;
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);
     __fastcall ~TForm1()

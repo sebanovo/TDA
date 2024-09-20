@@ -45,12 +45,15 @@ namespace UPolinomioSM
         // graficar
         void dibujar_polinomio(TForm* Form, int posX, int posY);
         void graficar(TForm* Form, int posX, int posY, int ancho, int alto);
-        void graficar_image(TImage* Image, double a, double b);
-
-        void graficarIntegral(TImage* Image, double a, double b);
+        void graficar_image(
+            TImage* Image, double a, double b, PolinomioSM* pol2);
+        void graficar_integral(TImage* Image, double a, double b);
     };
     void derivada(PolinomioSM* p, PolinomioSM* p1);
     std::string mostrar_integral(PolinomioSM* p);
+    std::string intersectar(PolinomioSM* p1, PolinomioSM* p2, int a, int b);
+    void graficar_interseccion(
+        TImage* Image, PolinomioSM* p1, PolinomioSM* p2, double a, double b);
 } // namespace UPolinomioSM
 #endif
 
