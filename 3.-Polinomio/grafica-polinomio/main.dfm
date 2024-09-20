@@ -13,7 +13,7 @@ object Form1: TForm1
   TextHeight = 15
   object Image1: TImage
     Left = 428
-    Top = 77
+    Top = 89
     Width = 509
     Height = 497
   end

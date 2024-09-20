@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-#include "UCSMemoria/UCSMemoria.h"
+#include "UCSMemoria/CSMemoria.h"
 
 namespace UConjuntoSM
 {
@@ -37,10 +37,6 @@ namespace UConjuntoSM
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
             std::string nombre);
     };
-
-    void _union();
-    void _interseccion();
-    void _equivalentes();
 
     void _union(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c);
     void _interseccion(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c);

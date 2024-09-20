@@ -266,27 +266,6 @@ namespace UConjuntoLista
         // }
 
         delete aux;
-    };
-
-    void _union()
-    {
-        ConjuntoLista* a = new ConjuntoLista();
-        ConjuntoLista* b = new ConjuntoLista();
-        ConjuntoLista* c = new ConjuntoLista();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        UConjuntoLista::_union(a, b, c);
-        std::cout << a->mostrar() << std::endl;
-        std::cout << b->mostrar() << std::endl;
-        std::cout << c->mostrar() << std::endl;
-
-        delete a, b, c;
     }
 
     void _interseccion(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c)
@@ -310,48 +289,9 @@ namespace UConjuntoLista
         delete aux;
     }
 
-    void _interseccion()
-    {
-        ConjuntoLista* a = new ConjuntoLista();
-        ConjuntoLista* b = new ConjuntoLista();
-        ConjuntoLista* c = new ConjuntoLista();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        _interseccion(a, b, c);
-        std::cout << a->mostrar() << std::endl;
-        std::cout << b->mostrar() << std::endl;
-        std::cout << c->mostrar() << std::endl;
-
-        delete a, b, c;
-    }
-
     bool _equivalentes(ConjuntoLista* a, ConjuntoLista* b)
     {
         return a->cardinal() == b->cardinal();
-    }
-
-    void _equivalentes()
-    {
-        ConjuntoLista* a = new ConjuntoLista();
-        ConjuntoLista* b = new ConjuntoLista();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        std::cout << (_equivalentes(a, b) ? "si" : "no") << " equivalentes"
-                  << std::endl;
-
-        delete a, b;
     }
 } // namespace UConjuntoLista
 

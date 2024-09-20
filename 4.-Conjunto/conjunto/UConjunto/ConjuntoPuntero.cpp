@@ -279,27 +279,6 @@ namespace UConjuntoPuntero
         delete aux;
     };
 
-    void _union()
-    {
-        ConjuntoPuntero* a = new ConjuntoPuntero();
-        ConjuntoPuntero* b = new ConjuntoPuntero();
-        ConjuntoPuntero* c = new ConjuntoPuntero();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        _union(a, b, c);
-        std::cout << a->mostrar() << std::endl;
-        std::cout << b->mostrar() << std::endl;
-        std::cout << c->mostrar() << std::endl;
-
-        delete a, b, c;
-    }
-
     void _interseccion(
         ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
     {
@@ -322,48 +301,9 @@ namespace UConjuntoPuntero
         delete aux;
     }
 
-    void _interseccion()
-    {
-        ConjuntoPuntero* a = new ConjuntoPuntero();
-        ConjuntoPuntero* b = new ConjuntoPuntero();
-        ConjuntoPuntero* c = new ConjuntoPuntero();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        _interseccion(a, b, c);
-        std::cout << a->mostrar() << std::endl;
-        std::cout << b->mostrar() << std::endl;
-        std::cout << c->mostrar() << std::endl;
-
-        delete a, b, c;
-    }
-
     bool _equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b)
     {
         return a->cardinal() == b->cardinal();
-    }
-
-    void _equivalentes()
-    {
-        ConjuntoPuntero* a = new ConjuntoPuntero();
-        ConjuntoPuntero* b = new ConjuntoPuntero();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        std::cout << (_equivalentes(a, b) ? "si" : "no") << " equivalentes"
-                  << std::endl;
-
-        delete a, b;
     }
 } // namespace UConjuntoPuntero
 

@@ -36,10 +36,6 @@ namespace UConjuntoPuntero
             std::string nombre);
     };
 
-    void _union();
-    void _interseccion();
-    void _equivalentes();
-
     void _union(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
     void _interseccion(
         ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);

@@ -1,10 +1,10 @@
 //---------------------------------------------------------------------------
 
-#ifndef UPolinomioListaH
-#define UPolinomioListaH
+#ifndef PolinomioListaH
+#define PolinomioListaH
 //---------------------------------------------------------------------------
-#include "ULista/UListaSM.h"
-#include "ULista/UListaVector.h"
+#include "ULista/ListaSM.h"
+#include "ULista/ListaVector.h"
 
 #include <iostream>
 #include <string>
@@ -41,15 +41,19 @@ namespace UPolinomioLista
         ~PolinomioLista();
 
         // graficar
-        void dibujar_polinomio(TForm* Form, int posX, int posY);
         void graficar(TForm* Form, int posX, int posY, int ancho, int alto);
+        void dibujar_polinomio(TForm* Form, int posX, int posY);
         void graficar_image(TImage* Image, double a, double b);
-
-        void graficarIntegral(TImage* Image, double a, double b);
+        void graficar_integral(TImage* Image, double a, double b);
     };
 
     void derivada(PolinomioLista* p, PolinomioLista* p1);
     std::string mostrar_integral(PolinomioLista* p);
+
+    std::string intersectar(
+        PolinomioLista* p1, PolinomioLista* p2, int a, int b);
+    void graficar_interseccion(TImage* Image, PolinomioLista* p1,
+        PolinomioLista* p2, double a, double b);
 } // namespace UPolinomioLista
 #endif
 

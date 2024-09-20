@@ -153,23 +153,24 @@
             <DependentOn>UConjunto\ConjuntoVector.h</DependentOn>
             <BuildOrder>11</BuildOrder>
         </CppCompile>
-        <CppCompile Include="UCSMemoria\UCSMemoria.cpp">
-            <BuildOrder>5</BuildOrder>
+        <CppCompile Include="UCSMemoria\CSMemoria.cpp">
+            <DependentOn>UCSMemoria\CSMemoria.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
         </CppCompile>
         <None Include="UCSMemoria\UCSMemoria.h">
             <BuildOrder>6</BuildOrder>
         </None>
-        <CppCompile Include="ULista\UListaPuntero.cpp">
-            <DependentOn>ULista\UListaPuntero.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
+        <CppCompile Include="ULista\ListaPuntero.cpp">
+            <DependentOn>ULista\ListaPuntero.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ULista\UListaSM.cpp">
-            <DependentOn>ULista\UListaSM.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
+        <CppCompile Include="ULista\ListaSM.cpp">
+            <DependentOn>ULista\ListaSM.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
         </CppCompile>
-        <CppCompile Include="ULista\UListaVector.cpp">
-            <DependentOn>ULista\UListaVector.h</DependentOn>
-            <BuildOrder>14</BuildOrder>
+        <CppCompile Include="ULista\ListaVector.cpp">
+            <DependentOn>ULista\ListaVector.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
         </CppCompile>
         <CppCompile Include="UPolinomio\PolinomioLista.cpp">
             <BuildOrder>15</BuildOrder>

@@ -7,12 +7,14 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "UCSMemoria/UCSMemoria.h"
-#include "UListaPuntero/UListaPuntero.h"
-#include "UListaSM/UListaSM.h"
-#include "UListaVector/UListaVector.h"
-#include "UPolinomioLista/PolinomioLista.h"
-#include "UPolinomioSM/PolinomioSM.h"
+#include "UCSMemoria/CSMemoria.h"
+#include "ULista/ListaPuntero.h"
+#include "ULista/ListaSM.h"
+#include "ULista/ListaVector.h"
+#include "UPolinomio/PolinomioLista.h"
+#include "UPolinomio/PolinomioSM.h"
+#include "UPolinomio/PolinomioPuntero.h"
+#include "UPolinomio/PolinomioVector.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Dialogs.hpp>
@@ -59,16 +61,14 @@ class TForm1 : public TForm
     void __fastcall Button7Click(TObject* Sender);
   private:
     UCSMemoria::CSMemoria* M; // User declarations
-    UListaSM::ListaSM* listaSM;
-    //    UPolinomioLista::PolinomioLista* polinomioLista;
-    UPolinomioSM::PolinomioSM* polinomioLista;
-    UPolinomioSM::PolinomioSM* polinomioLista2;
+    UPolinomioSM::PolinomioSM* pol1;
+    UPolinomioSM::PolinomioSM* pol2;
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);
     __fastcall ~TForm1()
     {
-        delete polinomioLista;
-        delete listaSM;
+        delete pol1;
+        delete pol2;
         delete M;
     }
 };

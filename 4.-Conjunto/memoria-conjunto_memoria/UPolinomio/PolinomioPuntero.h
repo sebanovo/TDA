@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef UPolinomioPunteroH
-#define UPolinomioPunteroH
+#ifndef PolinomioPunteroH
+#define PolinomioPunteroH
 //---------------------------------------------------------------------------
 #include <iostream>
 #include <string>
@@ -42,14 +42,18 @@ namespace UPolinomioPuntero
         ~PolinomioPuntero();
 
         // graficar
-        void dibujar_polinomio(TForm* Form, int posX, int posY);
         void graficar(TForm* Form, int posX, int posY, int ancho, int alto);
-        void graficar_image(TImage* Image);
-
-        void graficarIntegral(TImage* Image, double a, double b);
+        void dibujar_polinomio(TForm* Form, int posX, int posY);
+        void graficar_image(TImage* Image, double a, double b);
+        void graficar_integral(TImage* Image, double a, double b);
     };
     void derivada(PolinomioPuntero* p, PolinomioPuntero* p1);
     std::string mostrar_integral(PolinomioPuntero* p);
+
+    std::string intersectar(
+        PolinomioPuntero* p1, PolinomioPuntero* p2, int a, int b);
+    void graficar_interseccion(TImage* Image, PolinomioPuntero* p1,
+        PolinomioPuntero* p2, double a, double b);
 } // namespace UPolinomioPuntero
 #endif
 

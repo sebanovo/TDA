@@ -6,8 +6,8 @@
 #include <iostream>
 #include <string>
 
-#include "ULista/UListaSM.h"
-#include "ULista/UListaVector.h"
+#include "ULista/ListaSM.h"
+#include "ULista/ListaVector.h"
 
 // Conjunto LISTA
 // SOLO FUNCIONA PARA UNA (LISTA SM) Y (LISTA VECTOR)
@@ -37,10 +37,6 @@ namespace UConjuntoLista
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
             std::string nombre);
     };
-
-    void _union();
-    void _interseccion();
-    void _equivalentes();
 
     void _union(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
     void _interseccion(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);

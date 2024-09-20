@@ -4,6 +4,7 @@
 
 #pragma hdrstop
 
+#include <vector>
 #include "PolinomioLista.h"
 #include "math.h"
 
@@ -261,8 +262,6 @@ namespace UPolinomioLista
 
     void PolinomioLista::dibujar_polinomio(TForm* Form, int posX, int posY)
     {
-        // ls->dibujar_lista(Form, posX, posY);
-
         TCanvas* Canvas = Form->Canvas;
         // limpiar el lienzo
         int anchoTexto = Canvas->TextWidth(mostrar().c_str());
@@ -405,7 +404,8 @@ namespace UPolinomioLista
 
         int ancho = Image->Width;
         int alto = Image->Height;
-        int factorEscala = 50;
+        //        int factorEscala = 50;
+        int factorEscala = 30;
         int borderWidth = 8;
 
         // pintar el fondo
@@ -514,7 +514,7 @@ namespace UPolinomioLista
         Canvas->Brush->Style = bsSolid;
     }
 
-    void PolinomioLista::graficarIntegral(TImage* Image, double a, double b)
+    void PolinomioLista::graficar_integral(TImage* Image, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         int alto = Image->Height;
@@ -564,6 +564,197 @@ namespace UPolinomioLista
         Canvas->Brush->Style = bsClear;
         Canvas->Rectangle(0, 0, ancho, alto);
         Canvas->Brush->Style = bsSolid;
+    }
+
+    void graficar_interseccion(TImage* Image, PolinomioLista* p1,
+        PolinomioLista* p2, double a, double b)
+    {
+        TCanvas* Canvas = Image->Canvas;
+        Canvas->FillRect(Canvas->ClipRect);
+
+        int ancho = Image->Width;
+        int alto = Image->Height;
+        int factorEscala = 50;
+        int borderWidth = 8;
+
+        // pintar el fondo
+        Canvas->Brush->Color = clBtnFace;
+        Canvas->Pen->Style = psClear;
+        Canvas->Rectangle(0, 0, ancho, alto);
+        Canvas->Pen->Style = psSolid;
+
+        // dibujar los ejes
+        Canvas->Pen->Color = clBlack;
+        Canvas->Pen->Width = 2;
+        Canvas->MoveTo(ancho / 2, 0);
+        Canvas->LineTo(ancho / 2, alto);
+        Canvas->MoveTo(0, alto / 2);
+        Canvas->LineTo(ancho, alto / 2);
+
+        // dibujar las | del eje X
+        int centroX = ancho / 2;
+        int centroY = alto / 2;
+        for (int i = centroX; i < ancho; i += factorEscala) {
+            if (i > centroX && i < ancho) {
+                Canvas->Pen->Width = 1;
+                Canvas->Pen->Color = clScrollBar;
+
+                // verticales +
+                Canvas->MoveTo(i, 0);
+                Canvas->LineTo(i, alto);
+
+                // verticales -
+                Canvas->MoveTo(ancho - i, 0);
+                Canvas->LineTo(ancho - i, alto);
+
+                Canvas->Pen->Width = 2;
+                Canvas->Pen->Color = clBlack;
+            }
+
+            // +x
+            Canvas->MoveTo(i, centroY - 5);
+            Canvas->LineTo(i, centroY + 5);
+
+            // -x
+            Canvas->MoveTo(ancho - i, centroY - 5);
+            Canvas->LineTo(ancho - i, centroY + 5);
+        }
+
+        // dibujar las | del eje Y
+        for (int i = centroY; i < alto; i += factorEscala) {
+            if (i > centroY && i < alto) {
+                Canvas->Pen->Width = 1;
+                Canvas->Pen->Color = clScrollBar;
+
+                // horizantales +
+                Canvas->MoveTo(0, alto - i);
+                Canvas->LineTo(ancho, alto - i);
+
+                // horizantes -
+                Canvas->MoveTo(0, i);
+                Canvas->LineTo(ancho, i);
+
+                Canvas->Pen->Width = 2;
+                Canvas->Pen->Color = clBlack;
+            }
+
+            // +y
+            Canvas->MoveTo(centroX - 5, i);
+            Canvas->LineTo(centroX + 5, i);
+
+            // -y
+            Canvas->MoveTo(centroX - 5, alto - i);
+            Canvas->LineTo(centroX + 5, alto - i);
+        }
+
+        // dibujar la funcion 1
+        bool esContinua = false;
+        double limite = alto;
+
+        Canvas->Pen->Color = clBlue;
+        Canvas->Pen->Width = 3;
+        Canvas->MoveTo(centroX, centroY);
+
+        for (double x = a; x <= b; x += 0.01) {
+            int graficoX = centroX + (int)(x * factorEscala);
+            double yValor = p1->evaluar(x);
+            int graficoY = centroY - (int)(yValor * factorEscala);
+
+            // Limitar los valores extremos
+            if (std::abs(yValor) > limite) {
+                esContinua = false;
+            } else {
+                if (esContinua) {
+                    Canvas->LineTo(graficoX, graficoY);
+                } else {
+                    Canvas->MoveTo(graficoX, graficoY);
+                    esContinua = true;
+                }
+            }
+        }
+
+        // dibujar la funcion 2
+        esContinua = false;
+
+        Canvas->Pen->Color = clRed;
+        Canvas->Pen->Width = 3;
+        Canvas->MoveTo(centroX, centroY);
+
+        for (double x = a; x <= b; x += 0.01) {
+            int graficoX = centroX + (int)(x * factorEscala);
+            double yValor = p2->evaluar(x);
+            int graficoY = centroY - (int)(yValor * factorEscala);
+
+            // Limitar los valores extremos
+            if (std::abs(yValor) > limite) {
+                esContinua = false;
+            } else {
+                if (esContinua) {
+                    Canvas->LineTo(graficoX, graficoY);
+                } else {
+                    Canvas->MoveTo(graficoX, graficoY);
+                    esContinua = true;
+                }
+            }
+        }
+
+        // dibujar intersecciones
+        // IMPORTANTE SOLO GRAFICA CUANDO LOS PUNTOS SON ENTEROS (X,Y) = (int, int)
+        int radio = 5;
+        Canvas->Brush->Color = clBlack;
+        Canvas->Pen->Color = clBlack;
+        Canvas->Pen->Width = factorEscala / 25;
+        for (double x = a; x <= b; x += 1) {
+            int p1X = centroX + (int)(x * factorEscala);
+            int p1Y = centroY - (int)(p1->evaluar(x) * factorEscala);
+
+            int p2X = centroX + (int)(x * factorEscala);
+            int p2Y = centroY - (int)(p2->evaluar(x) * factorEscala);
+
+            if (p1X == p2X && p1Y == p2Y) {
+                Canvas->Ellipse(
+                    p1X - radio, p1Y - radio, p1X + radio, p2Y + radio);
+            }
+        }
+
+        // dibujar el marco
+        Canvas->Pen->Color = clBlack;
+        Canvas->Pen->Width = borderWidth;
+        Canvas->Brush->Style = bsClear;
+        Canvas->Rectangle(0, 0, ancho, alto);
+        Canvas->Brush->Style = bsSolid;
+    }
+
+    std::string intersectar(
+        PolinomioLista* p1, PolinomioLista* p2, int a, int b)
+    {
+        struct Puntos
+        {
+            int x;
+            int y;
+        };
+
+        std::vector<Puntos> puntos;
+
+        for (int x = a; x <= b; x++) {
+            int p1Y = (int)p1->evaluar(x);
+            int p2Y = (int)p2->evaluar(x);
+
+            if (p1Y == p2Y) {
+                puntos.push_back({ x : x, y : p1Y });
+            }
+        }
+
+        if (puntos.empty()) {
+            return "No intersectan en ningún punto";
+        }
+        std::string s = "SOLO PUNTOS ENTEROS Pi = (int, int)\n";
+        for (int i = 0; i < puntos.size(); i++) {
+            s += "P" + std::to_string(i + 1) + "=" + "(" +
+                 std::to_string(puntos[i].x) + "," +
+                 std::to_string(puntos[i].y) + ")" + '\n';
+        }
+        return s;
     }
 } // namespace UPolinomioLista
 

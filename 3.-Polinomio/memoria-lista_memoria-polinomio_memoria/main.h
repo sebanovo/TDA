@@ -7,11 +7,11 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "UCSMemoria/UCSMemoria.h"
-#include "UListaPuntero/UListaPuntero.h"
-#include "UListaSM/UListaSM.h"
-#include "UListaVector/UListaVector.h"
-#include "UPolinomioLista/PolinomioLista.h"
+#include "UCSMemoria/CSMemoria.h"
+#include "ULista/ListaPuntero.h"
+#include "ULista/ListaSM.h"
+#include "ULista/ListaVector.h"
+#include "UPolinomio/PolinomioLista.h"
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Dialogs.hpp>

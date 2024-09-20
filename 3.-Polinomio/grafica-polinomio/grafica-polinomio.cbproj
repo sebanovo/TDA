@@ -65,8 +65,8 @@
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
         <SanitizedProjectName>grafica-polinomio</SanitizedProjectName>
-        <IncludePath>UPolinomioPuntero\;UPolinomioVector\;UPolinomioLista\;UPolinomioSM\;UListaSM\;UListaVector\;UListaPuntero\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>UPolinomioPuntero\;UPolinomioVector\;UPolinomioLista\;UPolinomioSM\;UListaSM\;UListaVector\;UListaPuntero\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>UPolinomio\;ULista\;UPolinomioPuntero\;UPolinomioVector\;UPolinomioLista\;UPolinomioSM\;UListaSM\;UListaVector\;UListaPuntero\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>UPolinomio\;ULista\;UPolinomioPuntero\;UPolinomioVector\;UPolinomioLista\;UPolinomioSM\;UListaSM\;UListaVector\;UListaPuntero\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;ibmonitor;ibxbindings;ibxpress;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclib;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -137,39 +137,37 @@
             <DependentOn>main.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="UCSMemoria\UCSMemoria.cpp">
-            <BuildOrder>5</BuildOrder>
+        <CppCompile Include="UCSMemoria\CSMemoria.cpp">
+            <DependentOn>UCSMemoria\CSMemoria.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
         </CppCompile>
-        <None Include="UCSMemoria\UCSMemoria.h">
-            <BuildOrder>6</BuildOrder>
-        </None>
-        <CppCompile Include="UListaPuntero\UListaPuntero.cpp">
-            <DependentOn>UListaPuntero\UListaPuntero.h</DependentOn>
-            <BuildOrder>7</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UListaSM\UListaSM.cpp">
-            <DependentOn>UListaSM\UListaSM.h</DependentOn>
-            <BuildOrder>9</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UListaVector\UListaVector.cpp">
-            <DependentOn>UListaVector\UListaVector.h</DependentOn>
-            <BuildOrder>8</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UPolinomioLista\PolinomioLista.cpp">
-            <DependentOn>UPolinomioLista\PolinomioLista.h</DependentOn>
-            <BuildOrder>12</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="UPolinomioPuntero\PolinomioPuntero.cpp">
-            <DependentOn>UPolinomioPuntero\PolinomioPuntero.h</DependentOn>
+        <CppCompile Include="ULista\ListaPuntero.cpp">
+            <DependentOn>ULista\ListaPuntero.h</DependentOn>
             <BuildOrder>14</BuildOrder>
         </CppCompile>
-        <CppCompile Include="UPolinomioSM\PolinomioSM.cpp">
-            <DependentOn>UPolinomioSM\PolinomioSM.h</DependentOn>
-            <BuildOrder>11</BuildOrder>
+        <CppCompile Include="ULista\ListaSM.cpp">
+            <DependentOn>ULista\ListaSM.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
         </CppCompile>
-        <CppCompile Include="UPolinomioVector\PolinomioVector.cpp">
-            <DependentOn>UPolinomioVector\PolinomioVector.h</DependentOn>
-            <BuildOrder>13</BuildOrder>
+        <CppCompile Include="ULista\ListaVector.cpp">
+            <DependentOn>ULista\ListaVector.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ULista\UListaSM.cpp">
+            <DependentOn>ULista\UListaSM.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioLista.cpp">
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioPuntero.cpp">
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioSM.cpp">
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioVector.cpp">
+            <BuildOrder>21</BuildOrder>
         </CppCompile>
         <FormResources Include="main.dfm"/>
         <BuildConfiguration Include="Base">

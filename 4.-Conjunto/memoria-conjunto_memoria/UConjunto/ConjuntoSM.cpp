@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <cmath>
 #include <vector>
-#include "UCSMemoria/UCSMemoria.h"
+#include "UCSMemoria/CSMemoria.h"
 #include "ConjuntoSM.h"
 
 //---------------------------------------------------------------------------

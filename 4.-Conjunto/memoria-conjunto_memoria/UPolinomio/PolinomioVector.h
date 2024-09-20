@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef UPolinomioVectorH
-#define UPolinomioVectorH
+#ifndef PolinomioVectorH
+#define PolinomioVectorH
 //---------------------------------------------------------------------------
 #include <iostream>
 #include <string>
@@ -36,14 +36,18 @@ namespace UPolinomioVector
         int buscar_exponente(int exp);
 
         // graficar
-        void dibujar_polinomio(TForm* Form, int posX, int posY);
         void graficar(TForm* Form, int posX, int posY, int ancho, int alto);
-        void graficar_image(TImage* Image);
-
-        void graficarIntegral(TImage* Image, double a, double b);
+        void dibujar_polinomio(TForm* Form, int posX, int posY);
+        void graficar_image(TImage* Image, double a, double b);
+        void graficar_integral(TImage* Image, double a, double b);
     };
     void derivada(PolinomioVector* p, PolinomioVector* p1);
     string mostrar_integral(PolinomioVector* p);
+
+    std::string intersectar(
+        PolinomioVector* p1, PolinomioVector* p2, int a, int b);
+    void graficar_interseccion(TImage* Image, PolinomioVector* p1,
+        PolinomioVector* p2, double a, double b);
 } // namespace UPolinomioVector
 
 #endif

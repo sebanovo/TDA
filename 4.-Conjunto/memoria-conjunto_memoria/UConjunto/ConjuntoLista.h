@@ -6,8 +6,8 @@
 #include <iostream>
 #include <string>
 
-#include "ULista/UListaSM.h"
-#include "ULista/UListaVector.h"
+#include "ULista/ListaSM.h"
+#include "ULista/ListaVector.h"
 
 // Conjunto LISTA
 // SOLO FUNCIONA PARA UNA (LISTA SM) Y (LISTA VECTOR)

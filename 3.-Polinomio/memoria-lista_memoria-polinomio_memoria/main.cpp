@@ -13,7 +13,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {}
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject* Sender)
 {
-    M = new UCSMemoria::CSMemoria();
+    M = new UCSMemoria::CSMemoria;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button2Click(TObject* Sender)
@@ -91,29 +91,15 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
     int posX = 300;
     int posY = 900;
 
-    // ¡Asegurarse que el TImage si o si tengan el mismo tamaño!
-
-    // Solo podemos dimensionar esto aquí no podemos hacerlo
-    // dentro de la funcion graficar
-    //    if (Image1->Width > Image1->Height)
-    //        Image1->Height = Image1->Width;
-    //    else
-    //        Image1->Width = Image1->Height;
-
     polinomioLista->dibujar_polinomio(Form1, 400, 800);
-    polinomioLista->graficar_image(Image1);
-    //    polinomioLista->graficar(Form1, 600, 10, 700, 700);
+    polinomioLista->graficar_image(Image1, -10, 10);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button13Click(TObject* Sender)
 {
-    //    UPolinomioLista::PolinomioLista* poli1 =
-    //        new UPolinomioLista::PolinomioLista(M);
-    //    UPolinomioLista::derivada(polinomioLista, poli1);
-
-    //    SavePictureDialog1->Execute();
-    //    Image1->Picture->SaveToFile(SavePictureDialog1->FileName);
-    polinomioLista->graficarIntegral(Image1, -1, 2);
+    UPolinomioLista::PolinomioLista* poli1 =
+        new UPolinomioLista::PolinomioLista(M);
+    UPolinomioLista::derivada(polinomioLista, poli1);
 }
 //---------------------------------------------------------------------------
 

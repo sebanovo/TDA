@@ -6,7 +6,7 @@
 #include <iostream>
 #include <string>
 
-#include "UCSMemoria/UCSMemoria.h"
+#include "UCSMemoria/CSMemoria.h"
 
 namespace UConjuntoSM
 {
