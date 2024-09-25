@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef UListavectorH
-#define UListavectorH
+#ifndef ListavectorH
+#define ListavectorH
 //---------------------------------------------------------------------------
 #include <string>
 
@@ -12,8 +12,8 @@ namespace UListaVector
     class ListaVector
     {
       private:
-        static constexpr int MAX = 100;
-        int elementos[MAX];
+        const int MAX = 100;
+        int* elementos;
         int longitud;
       public:
         ListaVector();
@@ -29,7 +29,8 @@ namespace UListaVector
         void inserta_ultimo(int element);
         void suprime(direccion dir);
         void modifica(direccion dir, int element);
-        string mostrar();
+        std::string mostrar();
+        ~ListaVector();
 
         // extra
         direccion localiza(int element);
