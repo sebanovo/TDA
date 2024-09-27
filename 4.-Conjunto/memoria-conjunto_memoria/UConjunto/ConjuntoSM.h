@@ -38,10 +38,6 @@ namespace UConjuntoSM
             std::string nombre);
     };
 
-    void _union();
-    void _interseccion();
-    void _equivalentes();
-
     void _union(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c);
     void _interseccion(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c);
     bool _equivalentes(ConjuntoSM* a, ConjuntoSM* b);

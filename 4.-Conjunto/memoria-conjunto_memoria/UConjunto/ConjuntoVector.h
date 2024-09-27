@@ -25,14 +25,15 @@ namespace UConjuntoVector
         int muestrea();
         ~ConjuntoVector();
         std::string mostrar();
-    };
 
-    void _union();
-    void _interseccion();
-    void _equivalentes();
+        void dibujar_conjunto(TForm* Form, int posX, int posY);
+        void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
+            std::string nombre);
+    };
 
     void _union(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c);
     void _interseccion(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c);
     bool _equivalente(ConjuntoVector* a, ConjuntoVector* b);
 } // namespace UConjuntoVector
 #endif
+

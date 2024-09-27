@@ -1,7 +1,9 @@
 //---------------------------------------------------------------------------
 
 #pragma hdrstop
-
+#include <algorithm>
+#include <cmath>
+#include <vector>
 #include "ConjuntoPuntero.h"
 
 //---------------------------------------------------------------------------
@@ -138,6 +140,115 @@ namespace UConjuntoPuntero
         return s + "}";
     }
 
+    void ConjuntoPuntero::dibujar_conjunto(TForm* Form, int posX, int posY)
+    {
+        TCanvas* Canvas = Form->Canvas;
+        // limpiar el lienzo
+        int anchoTexto = Canvas->TextWidth(mostrar().c_str());
+        int altoTexto = Canvas->TextHeight(mostrar().c_str());
+        TRect rect(posX, posY, posX + anchoTexto, posY + altoTexto);
+        Canvas->Brush->Color = Form->Color;
+        Canvas->FillRect(rect);
+
+        Form->Canvas->Font->Size = 30;
+        Form->Canvas->Font->Name = "Microsoft YaHei UI";
+        Form->Canvas->TextOutW(posX, posY, mostrar().c_str());
+    }
+
+    struct Posicion
+    {
+        int x;
+        int y;
+        int width;
+        int height;
+    };
+
+    bool seSolapan(const Posicion a, const Posicion b)
+    {
+        return !(a.x + a.width < b.x || a.x > b.x + b.width ||
+                 a.y + a.height < b.y || a.y > b.y + b.height);
+    }
+
+    void ConjuntoPuntero::graficar_conjunto(
+        TForm* Form, int centroX, int centroY, int radio, std::string nombre)
+    {
+        TCanvas* Canvas = Form->Canvas;
+
+        // limpiar el circulo
+        Canvas->Brush->Color = Form->Color;
+        TRect rect(
+            centroX - radio, centroY - radio, centroX + radio, centroY + radio);
+        Canvas->FillRect(rect);
+
+        // dibujar circulo
+        Canvas->Pen->Width = 10;
+        Canvas->Pen->Color = clBlack;
+        Canvas->Brush->Color = clBtnFace;
+        Canvas->Ellipse(
+            centroX - radio, centroY - radio, centroX + radio, centroY + radio);
+
+        // dibujar el nombre
+        Canvas->Font->Color = clScrollBar;
+        Canvas->Font->Size = radio / 6;
+        Canvas->Brush->Style = bsClear;
+        Canvas->TextOutW(centroX - radio, centroY - radio, nombre.c_str());
+        Canvas->Font->Color = clBlack;
+        Canvas->Brush->Style = bsSolid;
+
+        // dibujar elementos
+        Canvas->Font->Size = radio / 10;
+        Canvas->Font->Name = "Microsoft YaHei UI";
+        Canvas->Font->Style = TFontStyles() << fsBold;
+        Canvas->Brush->Style = bsClear;
+
+        Nodo* pc = PtrConj;
+        std::vector<Posicion> posiciones;
+        while (pc != nullptr) {
+            String dato = String(pc->dato);
+
+            int datoW = Canvas->TextWidth(dato);
+            int datoH = Canvas->TextHeight(dato);
+
+            double angulo;
+            double distancia;
+            int x, y;
+            Posicion nuevaPosicion;
+
+            // Repetir hasta encontrar una posición sin solapamiento
+            bool posicionValida;
+            do {
+                angulo = rand() * 2 * M_PI / RAND_MAX;
+                distancia = rand() % (radio - std::max(datoW, datoH) / 2);
+
+                x = centroX + distancia * cos(angulo);
+                y = centroY + distancia * sin(angulo);
+
+                nuevaPosicion = { x - datoW / 2, y - datoH / 2, datoW, datoH };
+
+                // verificar solapamiento
+                posicionValida = true;
+                for (const auto posicion : posiciones) {
+                    if (seSolapan(posicion, nuevaPosicion)) {
+                        posicionValida = false;
+                        break;
+                    }
+                }
+
+            } while (!posicionValida ||
+                     (x - datoW / 2 < centroX - radio ||
+                         x + datoW / 2 > centroX + radio) ||
+                     (y - datoH / 2 < centroY - radio ||
+                         y + datoH / 2 > centroY + radio));
+
+            Canvas->TextOutW(nuevaPosicion.x, nuevaPosicion.y, dato);
+            posiciones.push_back(nuevaPosicion);
+            pc = pc->sig;
+        }
+
+        Canvas->Brush->Style = bsSolid;
+        Canvas->Font->Style = TFontStyles();
+    }
+
     void _union(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
     {
         ConjuntoPuntero* aux = new ConjuntoPuntero;
@@ -168,27 +279,6 @@ namespace UConjuntoPuntero
         delete aux;
     };
 
-    void _union()
-    {
-        ConjuntoPuntero* a = new ConjuntoPuntero();
-        ConjuntoPuntero* b = new ConjuntoPuntero();
-        ConjuntoPuntero* c = new ConjuntoPuntero();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        _union(a, b, c);
-        std::cout << a->mostrar() << std::endl;
-        std::cout << b->mostrar() << std::endl;
-        std::cout << c->mostrar() << std::endl;
-
-        delete a, b, c;
-    }
-
     void _interseccion(
         ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
     {
@@ -211,47 +301,9 @@ namespace UConjuntoPuntero
         delete aux;
     }
 
-    void _interseccion()
-    {
-        ConjuntoPuntero* a = new ConjuntoPuntero();
-        ConjuntoPuntero* b = new ConjuntoPuntero();
-        ConjuntoPuntero* c = new ConjuntoPuntero();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        _interseccion(a, b, c);
-        std::cout << a->mostrar() << std::endl;
-        std::cout << b->mostrar() << std::endl;
-        std::cout << c->mostrar() << std::endl;
-
-        delete a, b, c;
-    }
-
     bool _equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b)
     {
         return a->cardinal() == b->cardinal();
     }
-
-    void _equivalentes()
-    {
-        ConjuntoPuntero* a = new ConjuntoPuntero();
-        ConjuntoPuntero* b = new ConjuntoPuntero();
-        a->inserta(1);
-        a->inserta(2);
-        a->inserta(3);
-        a->inserta(5);
-        b->inserta(1);
-        b->inserta(2);
-        b->inserta(3);
-        b->inserta(4);
-        std::cout << (_equivalentes(a, b) ? "si" : "no") << " equivalentes"
-                  << std::endl;
-
-        delete a, b;
-    }
 } // namespace UConjuntoPuntero
+

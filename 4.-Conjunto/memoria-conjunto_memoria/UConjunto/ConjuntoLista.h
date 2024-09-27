@@ -32,11 +32,11 @@ namespace UConjuntoLista
         int muestrea();
         ~ConjuntoLista();
         std::string mostrar();
-    };
 
-    void _union();
-    void _interseccion();
-    void _equivalentes();
+        void dibujar_conjunto(TForm* Form, int posX, int posY);
+        void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
+            std::string nombre);
+    };
 
     void _union(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
     void _interseccion(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);

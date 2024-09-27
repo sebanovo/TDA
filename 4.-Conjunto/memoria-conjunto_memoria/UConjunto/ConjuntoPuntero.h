@@ -30,11 +30,11 @@ namespace UConjuntoPuntero
         int muestrea();
         ~ConjuntoPuntero();
         std::string mostrar();
-    };
 
-    void _union();
-    void _interseccion();
-    void _equivalentes();
+        void dibujar_conjunto(TForm* Form, int posX, int posY);
+        void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
+            std::string nombre);
+    };
 
     void _union(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
     void _interseccion(
@@ -42,3 +42,4 @@ namespace UConjuntoPuntero
     bool _equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b);
 } // namespace UConjuntoPuntero
 #endif
+
