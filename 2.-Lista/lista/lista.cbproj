@@ -4,7 +4,7 @@
         <ProjectVersion>19.5</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <AppType>Application</AppType>
-        <MainSource>lista_puntero.cpp</MainSource>
+        <MainSource>lista.cpp</MainSource>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
@@ -64,9 +64,9 @@
         <Icon_MainIcon>$(BDS)\bin\cbuilder_PROJECTICON.ico</Icon_MainIcon>
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
-        <SanitizedProjectName>lista_puntero</SanitizedProjectName>
-        <IncludePath>UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <SanitizedProjectName>lista</SanitizedProjectName>
+        <IncludePath>ULista\;UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>ULista\;UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;ibmonitor;ibxbindings;ibxpress;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclib;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -77,12 +77,12 @@
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
-        <BCC_PCHName_Clang>lista_punteroPCH1.h</BCC_PCHName_Clang>
+        <BCC_PCHName_Clang>listaPCH1.h</BCC_PCHName_Clang>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;ibmonitor;ibxbindings;ibxpress;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclib;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
-        <BCC_PCHName_Clang>lista_punteroPCH1.h</BCC_PCHName_Clang>
+        <BCC_PCHName_Clang>listaPCH1.h</BCC_PCHName_Clang>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
@@ -122,10 +122,10 @@
     </PropertyGroup>
     <ItemGroup>
         <None Include=".gitignore"/>
-        <CppCompile Include="lista_puntero.cpp">
+        <CppCompile Include="lista.cpp">
             <BuildOrder>0</BuildOrder>
         </CppCompile>
-        <PCHCompile Include="lista_punteroPCH1.h">
+        <PCHCompile Include="listaPCH1.h">
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
@@ -135,9 +135,21 @@
             <DependentOn>main.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <CppCompile Include="UListaPuntero\UListaPuntero.cpp">
-            <DependentOn>UListaPuntero\UListaPuntero.h</DependentOn>
+        <CppCompile Include="UCSMemoria\CSMemoria.cpp">
+            <DependentOn>UCSMemoria\CSMemoria.h</DependentOn>
+            <BuildOrder>7</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ULista\ListaPuntero.cpp">
+            <DependentOn>ULista\ListaPuntero.h</DependentOn>
             <BuildOrder>4</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ULista\ListaSM.cpp">
+            <DependentOn>ULista\ListaSM.h</DependentOn>
+            <BuildOrder>5</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="ULista\ListaVector.cpp">
+            <DependentOn>ULista\ListaVector.h</DependentOn>
+            <BuildOrder>6</BuildOrder>
         </CppCompile>
         <FormResources Include="main.dfm"/>
         <BuildConfiguration Include="Base">
@@ -164,7 +176,7 @@
                     <ProjectProperties Name="IndexFiles">False</ProjectProperties>
                 </ProjectProperties>
                 <Source>
-                    <Source Name="MainSource">lista_puntero.cpp</Source>
+                    <Source Name="MainSource">lista.cpp</Source>
                 </Source>
             </CPlusPlusBuilder.Personality>
             <Deployment Version="4">
@@ -218,15 +230,15 @@
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName=".\Win32\Debug\lista_puntero.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName=".\Win32\Debug\lista.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
-                        <RemoteName>lista_puntero.exe</RemoteName>
+                        <RemoteName>lista.exe</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
-                <DeployFile LocalName=".\Win32\Debug\lista_puntero.tds" Configuration="Debug" Class="DebugSymbols">
+                <DeployFile LocalName=".\Win32\Debug\lista.tds" Configuration="Debug" Class="DebugSymbols">
                     <Platform Name="Win32">
-                        <RemoteName>lista_puntero.tds</RemoteName>
+                        <RemoteName>lista.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

@@ -4,7 +4,7 @@
 #pragma hdrstop
 
 #include "main.h"
-#include "UListaPuntero/UListaPuntero.h"
+#include "ULista/ListaPuntero.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"

@@ -2,7 +2,7 @@
 
 #pragma hdrstop
 
-#include "UListapuntero.h"
+#include "Listapuntero.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
@@ -38,12 +38,11 @@ namespace UListaPuntero
     direccion ListaPuntero::siguiente(direccion dir)
     {
         if (vacia())
-            throw std::runtime_error("La lista esta vacía\n");
+            throw new Exception("La lista esta vacía\n");
         if (!es_direccion_valida(dir))
-            throw std::runtime_error("No existe esta dirección en la Lista");
+            throw new Exception("No existe esta dirección en la Lista");
         if (dir == fin())
-            throw std::runtime_error(
-                "No existe la dirección siguiente a esta\n");
+            throw new Exception("No existe la dirección siguiente a esta\n");
 
         return dir->sig;
     }
@@ -52,12 +51,11 @@ namespace UListaPuntero
     direccion ListaPuntero::anterior(direccion dir)
     {
         if (vacia())
-            throw std::runtime_error("La lista esta vacía\n");
+            throw new Exception("La lista esta vacía\n");
         if (!es_direccion_valida(dir))
-            throw std::runtime_error("No existe esta dirección en la Lista");
+            throw new Exception("No existe esta dirección en la Lista");
         if (dir == primero())
-            throw std::runtime_error(
-                "No existe la dirección anterior a esta\n");
+            throw new Exception("No existe la dirección anterior a esta\n");
 
         Nodo* x = PtrElementos;
         Nodo* ant;
@@ -81,9 +79,9 @@ namespace UListaPuntero
     int ListaPuntero::recupera(direccion dir)
     {
         if (vacia())
-            throw std::runtime_error("La lista esta vacía\n");
+            throw new Exception("La lista esta vacía\n");
         if (!es_direccion_valida(dir))
-            throw std::runtime_error("No existe esta dirección en la Lista");
+            throw new Exception("No existe esta dirección en la Lista");
         return dir->elemento;
     }
 
@@ -103,7 +101,7 @@ namespace UListaPuntero
         if (vacia()) {
             PtrElementos = x;
         } else if (!es_direccion_valida(dir))
-            throw std::runtime_error("La dirección no i valida");
+            throw new Exception("La dirección no i valida");
         else if (dir == primero()) { // caso especial
             x->sig = PtrElementos;
             PtrElementos = x;
@@ -146,14 +144,14 @@ namespace UListaPuntero
     void ListaPuntero::suprime(direccion dir)
     {
         if (vacia())
-            throw std::runtime_error("La lista esta vacía");
+            throw new Exception("La lista esta vacía");
         if (!es_direccion_valida(dir))
-            throw std::runtime_error("La dirección no es valida");
+            throw new Exception("La dirección no es valida");
         if (PtrElementos == dir) {
             Nodo* temp = PtrElementos;
             PtrElementos = PtrElementos->sig;
             delete temp;
-            return;
+            //            return;
         } else {
             Nodo* ant = anterior(dir);
             ant->sig = dir->sig;
@@ -166,9 +164,9 @@ namespace UListaPuntero
     void ListaPuntero::modifica(direccion dir, int element)
     {
         if (vacia())
-            throw std::runtime_error("La lista esta vacía");
+            throw new Exception("La lista esta vacía");
         if (!es_direccion_valida(dir))
-            throw std::runtime_error("La dirección no es valida");
+            throw new Exception("La dirección no es valida");
         dir->elemento = element;
     }
 

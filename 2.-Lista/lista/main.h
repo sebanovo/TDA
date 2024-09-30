@@ -7,7 +7,7 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "UListaPuntero/UListaPuntero.h"
+#include "ULista/ListaPuntero.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {
