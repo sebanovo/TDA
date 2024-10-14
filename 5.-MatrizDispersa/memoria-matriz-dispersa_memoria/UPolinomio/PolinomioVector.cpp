@@ -1,105 +1,54 @@
-﻿
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 
 #include <vector>
-#include "PolinomioSM.h"
-
+#include "PolinomioVector.h"
 #include "math.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UPolinomioSM
+namespace UPolinomioVector
 {
-    using std::string;
     using std::to_string;
-    using UCSMemoria::NULO;
-
-    PolinomioSM::PolinomioSM()
+    PolinomioVector::PolinomioVector()
     {
         nt = 0;
-        PtrPoli = NULO;
-        mem = new UCSMemoria::CSMemoria();
+        vc = new int[MAX];
+        ve = new int[MAX];
     }
 
-    PolinomioSM::PolinomioSM(UCSMemoria::CSMemoria* m)
-    {
-        nt = 0;
-        PtrPoli = UCSMemoria::NULO;
-        mem = m;
-    }
-
-    // devuelve la direccion del termino del exponente (osea un nodo)
-    int PolinomioSM::buscar_exponente(int exp)
-    {
-        int dir = PtrPoli;
-        int dirEx = NULO;
-
-        if (dir == NULO)
-            return NULO; // exception
-
-        while (dir != NULO) {
-            if (mem->obtener_dato(dir, _exp) == exp)
-                return dir;
-            dir = mem->obtener_dato(dir, _sig);
-        }
-        return dirEx;
-    }
-
-    // devuelve la direccion donde esta el termino n (osea el nodo)
-    int PolinomioSM::buscar_termino_n(int n)
-    {
-        int dir = PtrPoli;
-        int dirTer = NULO;
-
-        if (dir == NULO)
-            return NULO; // exception
-
-        int Nt = 0;
-        while (dir != NULO) {
-            Nt = Nt + 1;
-            if (Nt == n)
-                return dir;
-
-            dir = mem->obtener_dato(dir, _sig);
-        }
-        return dirTer;
-    }
-
-    bool PolinomioSM::es_cero()
+    // verifica si no hay terminos
+    bool PolinomioVector::es_cero()
     {
         return nt == 0;
     }
 
-    // devuelve el grado del polinomio
-    int PolinomioSM::grado()
+    // obtiene el grado del polinomio
+    int PolinomioVector::grado()
     {
-        int dir = PtrPoli;
-        if (dir == NULO)
-            return -1; // exception
-
-        int gradoMax = mem->obtener_dato(dir, _sig);
-        while (dir != NULO) {
-            if (mem->obtener_dato(dir, _exp) > gradoMax)
-                gradoMax = mem->obtener_dato(dir, _exp);
-            dir = mem->obtener_dato(dir, _sig);
+        // if (nt <= 0)
+        //     throw new Exception("No existen terminos");
+        int max = ve[1];
+        for (int i = 1; i <= nt; i++) {
+            if (ve[i] > max)
+                max = ve[i];
         }
-        return gradoMax;
+        return max;
     }
 
-    // devuelve el coeficiente del exponente del termino
-    int PolinomioSM::coeficiente(int exp)
+    // devuelve el coeficiente asociado a ese exponente
+    int PolinomioVector::coeficiente(int exp)
     {
-        int dir = buscar_exponente(exp);
-        if (dir == NULO)
-            return -1; // exception
-        return mem->obtener_dato(dir, _coef);
+        for (int i = 1; i <= nt; i++) {
+            if (ve[i] == exp)
+                return vc[i];
+        }
+        return 0;
     }
 
-    // P1 + P2
-    void PolinomioSM::sumar(PolinomioSM* p1, PolinomioSM* p2)
+    void PolinomioVector::sumar(PolinomioVector* p1, PolinomioVector* p2)
     {
         for (int i = 1; i <= p1->numero_terminos(); i++) {
             int exp = p1->exponente(i);
@@ -113,8 +62,7 @@ namespace UPolinomioSM
         }
     }
 
-    // P1 - P2
-    void PolinomioSM::restar(PolinomioSM* p1, PolinomioSM* p2)
+    void PolinomioVector::restar(PolinomioVector* p1, PolinomioVector* p2)
     {
         for (int i = 1; i <= p1->numero_terminos(); i++) {
             int exp = p1->exponente(i);
@@ -128,12 +76,11 @@ namespace UPolinomioSM
         }
     }
 
-    // P2 * P2
-    void PolinomioSM::multiplicar(PolinomioSM* p1, PolinomioSM* p2)
+    void PolinomioVector::multiplicar(PolinomioVector* p1, PolinomioVector* p2)
     {
-        // = (2x + 1) * (3x + 3)
-        // = 2x * 3x + 2x * 3 + 1 * 3x + 1 * 3;
-        // = 6x^2 + 9x + 3
+        // P1 * P2 = (2x + 1) * (3x + 3)
+        // 2x * 3x + 2x * 3 + 1 * 3x + 1 * 3;
+        // 6x^2 + 9x + 3
         for (int i = 1; i <= p1->numero_terminos(); i++) {
             for (int j = 1; j <= p2->numero_terminos(); j++) {
                 int exp1 = p1->exponente(i);
@@ -147,57 +94,87 @@ namespace UPolinomioSM
         }
     }
 
-    // pone un termino con su coeficiente y su exponente
-    void PolinomioSM::poner_termino(int coef, int exp)
+    // retorna la direccion del exponente
+    int PolinomioVector::buscar_exponente(int exp)
     {
-        int existe = buscar_exponente(exp);
-        if (existe == NULO) { //
-            int aux = mem->new_espacio(_coef_exp_sig);
-            if (aux != NULO) {
-                mem->poner_dato(aux, _coef, coef);
-                mem->poner_dato(aux, _exp, exp);
-                mem->poner_dato(aux, _sig, PtrPoli);
-                PtrPoli = aux;
+        for (int i = 1; i <= nt; i++) {
+            if (ve[i] == exp)
+                return i;
+        }
+        return -1;
+    }
+
+    // pone un termino al polinomio
+    void PolinomioVector::poner_termino(int coef, int exp)
+    {
+        int dir_exp = buscar_exponente(exp);
+        if (dir_exp == -1) {
+            if (coef != 0) {
+                vc[nt + 1] = coef;
+                ve[nt + 1] = exp;
                 nt++;
-            } else {
-                throw new Exception("Error de espacio de memoria");
             }
         } else {
-            mem->poner_dato(
-                existe, _coef, mem->obtener_dato(existe, _coef) + coef);
+            vc[dir_exp] = coef + vc[dir_exp];
+            if (vc[dir_exp] == 0) {
+                for (int i = dir_exp; i < nt; i++) {
+                    vc[i] = vc[i + 1];
+                    ve[i] = ve[i + 1];
+                }
+                nt--;
+            }
         }
     }
 
-    int PolinomioSM::numero_terminos()
+    // devuelve el número de terminos
+    int PolinomioVector::numero_terminos()
     {
         return nt;
     }
 
-    // devuelve el exponente
-    int PolinomioSM::exponente(int nroTer)
+    // devuelvo el exponente asociado al nro de termino
+    int PolinomioVector::exponente(int nroTer)
     {
-        int dir = buscar_termino_n(nroTer);
-        return dir != NULO ? mem->obtener_dato(dir, _exp)
-                           : throw new Exception("No existe este exponente");
+        // if (nroTer < 0 || nroTer > MAX)
+        //     new Exception("Fuera de los límites");
+        return ve[nroTer];
     }
 
-    // cambia el coeficiente indicando el termino con el exponente asociado
-    void PolinomioSM::asignar_coeficiente(int coef, int exp)
+    // cambia el coeficiente del termino
+    void PolinomioVector::asignar_coeficiente(int coef, int exp)
     {
         int dir = buscar_exponente(exp);
-        if (dir != NULO) {
-            mem->poner_dato(dir, _coef, coef);
-            if (coef == 0) {
-                int aux = dir;
-                dir = mem->obtener_dato(dir, _sig);
-                mem->delete_espacio(aux);
+        if (dir != -1) {
+            vc[dir] = coef;
+            if (vc[dir] == 0) {
+                for (int i = dir; i < numero_terminos(); i++) {
+                    vc[i] = vc[i + 1];
+                    ve[i] = ve[i + 1];
+                }
             }
         } else {
-            throw new Exception("No existe ese t�rmino");
+            throw new Exception("No existe ese exponente");
         }
     }
 
-    double PolinomioSM::evaluar(double x)
+    // muestra el polinomio
+    string PolinomioVector::mostrar()
+    {
+        string s = "";
+        for (int i = 1; i <= nt; i++) {
+            s += vc[i] >= 0 && s != "" ? "+" : "";
+            s += to_string(vc[i]) + "x^" + to_string(ve[i]) + "  ";
+        }
+        return s;
+    }
+
+    PolinomioVector::~PolinomioVector()
+    {
+        delete[] vc;
+        delete[] ve;
+    }
+
+    double PolinomioVector::evaluar(double x)
     {
         double resultado = 0.0;
 
@@ -210,50 +187,31 @@ namespace UPolinomioSM
         return resultado;
     }
 
-    string PolinomioSM::mostrar()
+    void derivada(PolinomioVector p, PolinomioVector p1)
     {
-        int x = PtrPoli;
-        string s = "";
-
-        while (x != NULO) {
-            s += mem->obtener_dato(x, _coef) >= 0 && s != "" ? "+" : "";
-            s += std::to_string(mem->obtener_dato(x, _coef)) + "x^" +
-                 std::to_string(mem->obtener_dato(x, _exp)) + "  ";
-            x = mem->obtener_dato(x, _sig);
-        }
-        return s;
-    }
-
-    PolinomioSM::~PolinomioSM()
-    {
-        delete mem;
-    }
-
-    void derivada(PolinomioSM* p, PolinomioSM* p1)
-    {
-        for (int i = 1; i <= p->numero_terminos(); i++) {
-            int exp = p->exponente(i);
-            int coef = p->coeficiente(exp);
-            p1->poner_termino(coef * exp, exp - 1);
+        for (int i = 1; i <= p.numero_terminos(); i++) {
+            int exp = p.exponente(i);
+            int co = p.coeficiente(exp);
+            p1.poner_termino(co * exp, exp - 1);
         }
     }
 
-    std::string mostrar_integral(PolinomioSM* p)
+    std::string mostrar_integral(PolinomioVector p)
     {
         std::string s = "";
-        for (int i = 1; i <= p->numero_terminos(); i++) {
-            int exp = p->exponente(i);
-            int co = p->coeficiente(exp);
+        for (int i = 1; i <= p.numero_terminos(); i++) {
+            int exp = p.exponente(i);
+            int co = p.coeficiente(exp);
 
             s += "(" + std::to_string(co) + "x^" + std::to_string(exp + 1) +
                  ")/" + std::to_string(exp + 1) + " + ";
-            if (i == p->numero_terminos())
+            if (i == p.numero_terminos())
                 s += "C";
         }
         return s;
     }
 
-    void PolinomioSM::dibujar_polinomio(TForm* Form, int posX, int posY)
+    void PolinomioVector::dibujar_polinomio(TForm* Form, int posX, int posY)
     {
         TCanvas* Canvas = Form->Canvas;
         // limpiar el lienzo
@@ -268,7 +226,7 @@ namespace UPolinomioSM
         Form->Canvas->TextOutW(posX, posY, mostrar().c_str());
     }
 
-    void PolinomioSM::graficar(
+    void PolinomioVector::graficar(
         TForm* Form, int posX, int posY, int ancho, int alto)
     {
         TCanvas* Canvas = Form->Canvas;
@@ -390,7 +348,7 @@ namespace UPolinomioSM
         RestoreDC(hdc, savedDC);
     }
 
-    void PolinomioSM::graficar_image(TImage* Image, double a, double b)
+    void PolinomioVector::graficar_image(TImage* Image, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         Canvas->FillRect(Canvas->ClipRect);
@@ -507,7 +465,7 @@ namespace UPolinomioSM
         Canvas->Brush->Style = bsSolid;
     }
 
-    void PolinomioSM::graficar_integral(TImage* Image, double a, double b)
+    void PolinomioVector::graficar_integral(TImage* Image, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         int alto = Image->Height;
@@ -558,9 +516,9 @@ namespace UPolinomioSM
         Canvas->Rectangle(0, 0, ancho, alto);
         Canvas->Brush->Style = bsSolid;
     }
-    //
-    void graficar_interseccion(
-        TImage* Image, PolinomioSM* p1, PolinomioSM* p2, double a, double b)
+
+    void graficar_interseccion(TImage* Image, PolinomioVector* p1,
+        PolinomioVector* p2, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         Canvas->FillRect(Canvas->ClipRect);
@@ -718,7 +676,8 @@ namespace UPolinomioSM
         Canvas->Brush->Style = bsSolid;
     }
 
-    std::string intersectar(PolinomioSM* p1, PolinomioSM* p2, int a, int b)
+    std::string intersectar(
+        PolinomioVector* p1, PolinomioVector* p2, int a, int b)
     {
         struct Puntos
         {
@@ -748,5 +707,5 @@ namespace UPolinomioSM
         }
         return s;
     }
-} // namespace UPolinomioSM
+} // namespace UPolinomioVector
 

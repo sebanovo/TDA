@@ -13,7 +13,7 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {}
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject* Sender)
 {
-    M = new UCSMemoria::CSMemoria();
+    M = new UCSMemoria::CSMemoria;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button2Click(TObject* Sender)
@@ -46,9 +46,35 @@ void __fastcall TForm1::Button5Click(TObject* Sender)
 }
 //---------------------------------------------------------------------------
 
+void __fastcall TForm1::Button6Click(TObject* Sender)
+{
+    listaSM = new UListaSM::ListaSM(M);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button7Click(TObject* Sender)
+{
+    listaSM->inserta_primero(Edit8->Text.ToInt());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button8Click(TObject* Sender)
+{
+    listaSM->inserta_ultimo(Edit9->Text.ToInt());
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button9Click(TObject* Sender)
+{
+    int posX = 300;
+    int posY = 600;
+    listaSM->dibujar_lista(Form1, posX, posY);
+}
+//---------------------------------------------------------------------------
+
 void __fastcall TForm1::Button10Click(TObject* Sender)
 {
-    pol1 = new UPolinomioSM::PolinomioSM(M);
+    polinomioLista = new UPolinomioLista::PolinomioLista(M);
 }
 //---------------------------------------------------------------------------
 
@@ -56,8 +82,7 @@ void __fastcall TForm1::Button11Click(TObject* Sender)
 {
     int coef = Edit10->Text.ToInt();
     int exp = Edit11->Text.ToInt();
-
-    pol1->poner_termino(coef, exp);
+    polinomioLista->poner_termino(coef, exp);
 }
 //---------------------------------------------------------------------------
 
@@ -65,37 +90,16 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
 {
     int posX = 300;
     int posY = 900;
-    double a = Edit8->Text.ToDouble();
-    double b = Edit9->Text.ToDouble();
 
-    Canvas->FillRect(Canvas->ClipRect);
-
-    UPolinomioSM::graficar_interseccion(Image1, pol1, pol2, a, b);
-    pol1->dibujar_polinomio(Form1, 700, 800);
-    pol2->dibujar_polinomio(Form1, 700, 900);
-    // polinomioLista->graficar(Form1, 600, 10, 700, 700);
+    polinomioLista->dibujar_polinomio(Form1, 400, 800);
+    polinomioLista->graficar_image(Image1, -10, 10);
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button13Click(TObject* Sender)
 {
-    int a = Edit8->Text.ToInt();
-    int b = Edit9->Text.ToInt();
-    std::string re = UPolinomioSM::intersectar(pol1, pol2, a, b);
-    ShowMessage(re.c_str());
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button6Click(TObject* Sender)
-{
-    pol2 = new UPolinomioSM::PolinomioSM(M);
-}
-//---------------------------------------------------------------------------
-void __fastcall TForm1::Button7Click(TObject* Sender)
-{
-    int coef = Edit12->Text.ToInt();
-    int exp = Edit13->Text.ToInt();
-
-    pol2->poner_termino(coef, exp);
+    UPolinomioLista::PolinomioLista* poli1 =
+        new UPolinomioLista::PolinomioLista(M);
+    UPolinomioLista::derivada(polinomioLista, poli1);
 }
 //---------------------------------------------------------------------------
 

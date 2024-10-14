@@ -558,7 +558,7 @@ namespace UPolinomioSM
         Canvas->Rectangle(0, 0, ancho, alto);
         Canvas->Brush->Style = bsSolid;
     }
-    //
+
     void graficar_interseccion(
         TImage* Image, PolinomioSM* p1, PolinomioSM* p2, double a, double b)
     {

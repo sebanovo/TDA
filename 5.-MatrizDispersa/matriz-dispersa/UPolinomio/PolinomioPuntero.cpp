@@ -4,132 +4,121 @@
 #pragma hdrstop
 
 #include <vector>
-#include "PolinomioSM.h"
-
+#include "PolinomioPuntero.h"
 #include "math.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UPolinomioSM
+namespace UPolinomioPuntero
 {
-    using std::string;
-    using std::to_string;
-    using UCSMemoria::NULO;
-
-    PolinomioSM::PolinomioSM()
+    PolinomioPuntero::PolinomioPuntero()
     {
         nt = 0;
-        PtrPoli = NULO;
-        mem = new UCSMemoria::CSMemoria();
-    }
-
-    PolinomioSM::PolinomioSM(UCSMemoria::CSMemoria* m)
-    {
-        nt = 0;
-        PtrPoli = UCSMemoria::NULO;
-        mem = m;
+        PtrPoli = nullptr;
     }
 
     // devuelve la direccion del termino del exponente (osea un nodo)
-    int PolinomioSM::buscar_exponente(int exp)
+    direccion PolinomioPuntero::buscar_exponente(int exp)
     {
-        int dir = PtrPoli;
-        int dirEx = NULO;
+        Nodo* dir = PtrPoli;
+        Nodo* dirEx = nullptr;
+        if (dir == nullptr)
+            return nullptr; // exception
 
-        if (dir == NULO)
-            return NULO; // exception
-
-        while (dir != NULO) {
-            if (mem->obtener_dato(dir, _exp) == exp)
+        while (dir != nullptr) {
+            if (dir->exp == exp)
                 return dir;
-            dir = mem->obtener_dato(dir, _sig);
+            dir = dir->sig;
         }
         return dirEx;
     }
 
     // devuelve la direccion donde esta el termino n (osea el nodo)
-    int PolinomioSM::buscar_termino_n(int n)
+    direccion PolinomioPuntero::buscar_termino_n(int n)
     {
-        int dir = PtrPoli;
-        int dirTer = NULO;
+        Nodo* dir = PtrPoli;
+        Nodo* dirTer = nullptr;
 
-        if (dir == NULO)
-            return NULO; // exception
+        if (dir == nullptr)
+            return nullptr; // exception
 
         int Nt = 0;
-        while (dir != NULO) {
+        while (dir != nullptr) {
             Nt = Nt + 1;
             if (Nt == n)
                 return dir;
 
-            dir = mem->obtener_dato(dir, _sig);
+            dir = dir->sig;
         }
         return dirTer;
     }
 
-    bool PolinomioSM::es_cero()
+    bool PolinomioPuntero::es_cero()
     {
         return nt == 0;
     }
 
     // devuelve el grado del polinomio
-    int PolinomioSM::grado()
+    int PolinomioPuntero::grado()
     {
-        int dir = PtrPoli;
-        if (dir == NULO)
+        Nodo* dir = PtrPoli;
+        if (dir == nullptr)
             return -1; // exception
 
-        int gradoMax = mem->obtener_dato(dir, _sig);
-        while (dir != NULO) {
-            if (mem->obtener_dato(dir, _exp) > gradoMax)
-                gradoMax = mem->obtener_dato(dir, _exp);
-            dir = mem->obtener_dato(dir, _sig);
+        int gradoMax = dir->exp;
+        while (dir != nullptr) {
+            if (dir->exp > gradoMax)
+                gradoMax = dir->exp;
+            dir = dir->sig;
         }
         return gradoMax;
     }
 
     // devuelve el coeficiente del exponente del termino
-    int PolinomioSM::coeficiente(int exp)
+    int PolinomioPuntero::coeficiente(int exp)
     {
-        int dir = buscar_exponente(exp);
-        if (dir == NULO)
+        Nodo* dir = buscar_exponente(exp);
+        if (dir == nullptr)
             return -1; // exception
-        return mem->obtener_dato(dir, _coef);
+        return dir->coef;
     }
 
     // P1 + P2
-    void PolinomioSM::sumar(PolinomioSM* p1, PolinomioSM* p2)
+    void PolinomioPuntero::sumar(PolinomioPuntero* p1, PolinomioPuntero* p2)
     {
+        // poner_en_cero();
         for (int i = 1; i <= p1->numero_terminos(); i++) {
-            int exp = p1->exponente(i);
-            int coef = p1->coeficiente(exp);
-            poner_termino(coef, exp);
+            int ex = p1->exponente(i);
+            int co = p1->coeficiente(ex);
+            poner_termino(co, ex);
         }
         for (int i = 1; i <= p2->numero_terminos(); i++) {
-            int exp = p2->exponente(i);
-            int coef = p2->coeficiente(exp);
-            poner_termino(coef, exp);
+            int ex = p2->exponente(i);
+            int co = p2->coeficiente(ex);
+            poner_termino(co, ex);
         }
     }
 
     // P1 - P2
-    void PolinomioSM::restar(PolinomioSM* p1, PolinomioSM* p2)
+    void PolinomioPuntero::restar(PolinomioPuntero* p1, PolinomioPuntero* p2)
     {
+        // poner_en_cero();
         for (int i = 1; i <= p1->numero_terminos(); i++) {
-            int exp = p1->exponente(i);
-            int coef = p1->coeficiente(exp);
-            poner_termino(coef, exp);
+            int ex = p1->exponente(i);
+            int co = p1->coeficiente(ex);
+            poner_termino(co, ex);
         }
         for (int i = 1; i <= p2->numero_terminos(); i++) {
-            int exp = p2->exponente(i);
-            int coef = p2->coeficiente(exp) * -1;
-            poner_termino(coef, exp);
+            int ex = p2->exponente(i);
+            int co = p2->coeficiente(ex) * -1;
+            poner_termino(co, ex);
         }
     }
 
-    // P2 * P2
-    void PolinomioSM::multiplicar(PolinomioSM* p1, PolinomioSM* p2)
+    // P1 * P2
+    void PolinomioPuntero::multiplicar(
+        PolinomioPuntero* p1, PolinomioPuntero* p2)
     {
         // = (2x + 1) * (3x + 3)
         // = 2x * 3x + 2x * 3 + 1 * 3x + 1 * 3;
@@ -148,56 +137,57 @@ namespace UPolinomioSM
     }
 
     // pone un termino con su coeficiente y su exponente
-    void PolinomioSM::poner_termino(int coef, int exp)
+    void PolinomioPuntero::poner_termino(int coef, int exp)
     {
-        int existe = buscar_exponente(exp);
-        if (existe == NULO) { //
-            int aux = mem->new_espacio(_coef_exp_sig);
-            if (aux != NULO) {
-                mem->poner_dato(aux, _coef, coef);
-                mem->poner_dato(aux, _exp, exp);
-                mem->poner_dato(aux, _sig, PtrPoli);
+        Nodo* dir = buscar_exponente(exp);
+        if (dir == nullptr) {
+            Nodo* aux = new Nodo;
+            aux->sig = nullptr;
+            if (aux != nullptr) {
+                aux->coef = coef;
+                aux->exp = exp;
+                aux->sig = PtrPoli;
                 PtrPoli = aux;
                 nt++;
             } else {
                 throw new Exception("Error de espacio de memoria");
             }
         } else {
-            mem->poner_dato(
-                existe, _coef, mem->obtener_dato(existe, _coef) + coef);
+            dir->coef = dir->coef + coef;
         }
     }
 
-    int PolinomioSM::numero_terminos()
+    int PolinomioPuntero::numero_terminos()
     {
         return nt;
     }
 
     // devuelve el exponente
-    int PolinomioSM::exponente(int nroTer)
+    int PolinomioPuntero::exponente(int nroTer)
     {
-        int dir = buscar_termino_n(nroTer);
-        return dir != NULO ? mem->obtener_dato(dir, _exp)
-                           : throw new Exception("No existe este exponente");
+        Nodo* dir = buscar_termino_n(nroTer);
+        return dir != nullptr ? dir->exp : -1;
     }
 
     // cambia el coeficiente indicando el termino con el exponente asociado
-    void PolinomioSM::asignar_coeficiente(int coef, int exp)
+    void PolinomioPuntero::asignar_coeficiente(int coef, int exp)
     {
-        int dir = buscar_exponente(exp);
-        if (dir != NULO) {
-            mem->poner_dato(dir, _coef, coef);
+        Nodo* dir = buscar_exponente(exp);
+        if (dir != nullptr) {
+            dir->coef = coef;
             if (coef == 0) {
-                int aux = dir;
-                dir = mem->obtener_dato(dir, _sig);
-                mem->delete_espacio(aux);
+                Nodo* aux = dir;
+                dir = dir->sig;
+                delete aux;
+                aux = nullptr;
+                dir = nullptr;
             }
         } else {
-            throw new Exception("No existe ese t�rmino");
+            throw new Exception("No existe ese término");
         }
     }
 
-    double PolinomioSM::evaluar(double x)
+    double PolinomioPuntero::evaluar(double x)
     {
         double resultado = 0.0;
 
@@ -210,50 +200,56 @@ namespace UPolinomioSM
         return resultado;
     }
 
-    string PolinomioSM::mostrar()
+    string PolinomioPuntero::mostrar()
     {
-        int x = PtrPoli;
+        Nodo* x = PtrPoli;
         string s = "";
 
-        while (x != NULO) {
-            s += mem->obtener_dato(x, _coef) >= 0 && s != "" ? "+" : "";
-            s += std::to_string(mem->obtener_dato(x, _coef)) + "x^" +
-                 std::to_string(mem->obtener_dato(x, _exp)) + "  ";
-            x = mem->obtener_dato(x, _sig);
+        while (x != nullptr) {
+            s += x->coef >= 0 && s != "" ? "+" : "";
+            s += std::to_string(x->coef) + "x^" + std::to_string(x->exp) + "  ";
+            x = x->sig;
         }
         return s;
     }
 
-    PolinomioSM::~PolinomioSM()
+    PolinomioPuntero::~PolinomioPuntero()
     {
-        delete mem;
+        Nodo* current = PtrPoli;
+        while (current != nullptr) {
+            Nodo* next = current->sig;
+            delete current;
+            current = next;
+        }
+        current = nullptr;
+        PtrPoli = nullptr;
     }
 
-    void derivada(PolinomioSM* p, PolinomioSM* p1)
+    void derivada(PolinomioPuntero p, PolinomioPuntero p1)
     {
-        for (int i = 1; i <= p->numero_terminos(); i++) {
-            int exp = p->exponente(i);
-            int coef = p->coeficiente(exp);
-            p1->poner_termino(coef * exp, exp - 1);
+        for (int i = 1; i <= p.numero_terminos(); i++) {
+            int exp = p.exponente(i);
+            int coef = p.coeficiente(exp);
+            p1.poner_termino(coef * exp, exp - 1);
         }
     }
 
-    std::string mostrar_integral(PolinomioSM* p)
+    std::string mostrar_integral(PolinomioPuntero p)
     {
         std::string s = "";
-        for (int i = 1; i <= p->numero_terminos(); i++) {
-            int exp = p->exponente(i);
-            int co = p->coeficiente(exp);
+        for (int i = 1; i <= p.numero_terminos(); i++) {
+            int exp = p.exponente(i);
+            int co = p.coeficiente(exp);
 
             s += "(" + std::to_string(co) + "x^" + std::to_string(exp + 1) +
                  ")/" + std::to_string(exp + 1) + " + ";
-            if (i == p->numero_terminos())
+            if (i == p.numero_terminos())
                 s += "C";
         }
         return s;
     }
 
-    void PolinomioSM::dibujar_polinomio(TForm* Form, int posX, int posY)
+    void PolinomioPuntero::dibujar_polinomio(TForm* Form, int posX, int posY)
     {
         TCanvas* Canvas = Form->Canvas;
         // limpiar el lienzo
@@ -268,7 +264,7 @@ namespace UPolinomioSM
         Form->Canvas->TextOutW(posX, posY, mostrar().c_str());
     }
 
-    void PolinomioSM::graficar(
+    void PolinomioPuntero::graficar(
         TForm* Form, int posX, int posY, int ancho, int alto)
     {
         TCanvas* Canvas = Form->Canvas;
@@ -390,7 +386,7 @@ namespace UPolinomioSM
         RestoreDC(hdc, savedDC);
     }
 
-    void PolinomioSM::graficar_image(TImage* Image, double a, double b)
+    void PolinomioPuntero::graficar_image(TImage* Image, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         Canvas->FillRect(Canvas->ClipRect);
@@ -507,7 +503,7 @@ namespace UPolinomioSM
         Canvas->Brush->Style = bsSolid;
     }
 
-    void PolinomioSM::graficar_integral(TImage* Image, double a, double b)
+    void PolinomioPuntero::graficar_integral(TImage* Image, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         int alto = Image->Height;
@@ -558,9 +554,9 @@ namespace UPolinomioSM
         Canvas->Rectangle(0, 0, ancho, alto);
         Canvas->Brush->Style = bsSolid;
     }
-    //
-    void graficar_interseccion(
-        TImage* Image, PolinomioSM* p1, PolinomioSM* p2, double a, double b)
+
+    void graficar_interseccion(TImage* Image, PolinomioPuntero* p1,
+        PolinomioPuntero* p2, double a, double b)
     {
         TCanvas* Canvas = Image->Canvas;
         Canvas->FillRect(Canvas->ClipRect);
@@ -718,7 +714,8 @@ namespace UPolinomioSM
         Canvas->Brush->Style = bsSolid;
     }
 
-    std::string intersectar(PolinomioSM* p1, PolinomioSM* p2, int a, int b)
+    std::string intersectar(
+        PolinomioPuntero* p1, PolinomioPuntero* p2, int a, int b)
     {
         struct Puntos
         {
@@ -748,5 +745,5 @@ namespace UPolinomioSM
         }
         return s;
     }
-} // namespace UPolinomioSM
+} // namespace UPolinomioPuntero
 
