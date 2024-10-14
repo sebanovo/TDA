@@ -65,8 +65,8 @@
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
         <SanitizedProjectName>lista</SanitizedProjectName>
-        <IncludePath>ULista\;UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>ULista\;UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>UMatrizDispersa\;UPolinomio\;UConjunto\;ULista\;UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>UMatrizDispersa\;UPolinomio\;UConjunto\;ULista\;UListaPuntero\;UListaVector\;UCSMemoria\;UMemoria\;Memoria\;Nueva carpeta\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win32)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;ibmonitor;ibxbindings;ibxpress;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclib;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
@@ -135,6 +135,22 @@
             <DependentOn>main.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
+        <CppCompile Include="UConjunto\ConjuntoLista.cpp">
+            <DependentOn>UConjunto\ConjuntoLista.h</DependentOn>
+            <BuildOrder>8</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UConjunto\ConjuntoPuntero.cpp">
+            <DependentOn>UConjunto\ConjuntoPuntero.h</DependentOn>
+            <BuildOrder>9</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UConjunto\ConjuntoSM.cpp">
+            <DependentOn>UConjunto\ConjuntoSM.h</DependentOn>
+            <BuildOrder>10</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UConjunto\ConjuntoVector.cpp">
+            <DependentOn>UConjunto\ConjuntoVector.h</DependentOn>
+            <BuildOrder>11</BuildOrder>
+        </CppCompile>
         <CppCompile Include="UCSMemoria\CSMemoria.cpp">
             <DependentOn>UCSMemoria\CSMemoria.h</DependentOn>
             <BuildOrder>7</BuildOrder>
@@ -150,6 +166,46 @@
         <CppCompile Include="ULista\ListaVector.cpp">
             <DependentOn>ULista\ListaVector.h</DependentOn>
             <BuildOrder>6</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UMatrizDispersa\MatrizDispersaCSR.cpp">
+            <DependentOn>UMatrizDispersa\MatrizDispersaCSR.h</DependentOn>
+            <BuildOrder>16</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UMatrizDispersa\MatrizDispersaPuntero.cpp">
+            <DependentOn>UMatrizDispersa\MatrizDispersaPuntero.h</DependentOn>
+            <BuildOrder>17</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UMatrizDispersa\MatrizDispersaPunteroDoble.cpp">
+            <DependentOn>UMatrizDispersa\MatrizDispersaPunteroDoble.h</DependentOn>
+            <BuildOrder>18</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UMatrizDispersa\MatrizDispersaSM.cpp">
+            <DependentOn>UMatrizDispersa\MatrizDispersaSM.h</DependentOn>
+            <BuildOrder>19</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UMatrizDispersa\MatrizDispersaSMDoble.cpp">
+            <DependentOn>UMatrizDispersa\MatrizDispersaSMDoble.h</DependentOn>
+            <BuildOrder>20</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UMatrizDispersa\MatrizDispersaVector.cpp">
+            <DependentOn>UMatrizDispersa\MatrizDispersaVector.h</DependentOn>
+            <BuildOrder>21</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioLista.cpp">
+            <DependentOn>UPolinomio\PolinomioLista.h</DependentOn>
+            <BuildOrder>12</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioPuntero.cpp">
+            <DependentOn>UPolinomio\PolinomioPuntero.h</DependentOn>
+            <BuildOrder>13</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioSM.cpp">
+            <DependentOn>UPolinomio\PolinomioSM.h</DependentOn>
+            <BuildOrder>14</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="UPolinomio\PolinomioVector.cpp">
+            <DependentOn>UPolinomio\PolinomioVector.h</DependentOn>
+            <BuildOrder>15</BuildOrder>
         </CppCompile>
         <FormResources Include="main.dfm"/>
         <BuildConfiguration Include="Base">

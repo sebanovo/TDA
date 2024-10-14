@@ -14,24 +14,29 @@ __fastcall TForm1::TForm1(TComponent* Owner) : TForm(Owner) {}
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button1Click(TObject* Sender)
 {
-    lista = new UListaPuntero::ListaPuntero;
+    Matriz = new UMatrizDispersaVector::MatrizDispersaVector;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button2Click(TObject* Sender)
 {
-    lista->inserta_primero(Edit1->Text.ToInt());
+    Matriz->dimensionar(Edit1->Text.ToInt(), Edit2->Text.ToInt());
 }
 //---------------------------------------------------------------------------
-void _fastcall TForm1::Button3Click(TObject* Sender)
+void __fastcall TForm1::Button3Click(TObject* Sender)
 {
-    lista->inserta_ultimo(Edit2->Text.ToInt());
+    //
 }
 //---------------------------------------------------------------------------
+
 void __fastcall TForm1::Button4Click(TObject* Sender)
 {
-    int posX = 300;
-    int posY = 300;
-    lista->dibujar_lista(Form1, posX, posY);
+    //
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button5Click(TObject* Sender)
+{
+    //
 }
 //---------------------------------------------------------------------------
 

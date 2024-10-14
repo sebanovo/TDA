@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Form1'
-  ClientHeight = 483
-  ClientWidth = 948
+  ClientHeight = 725
+  ClientWidth = 1042
   Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,11 +12,11 @@ object Form1: TForm1
   Font.Style = []
   TextHeight = 15
   object Button1: TButton
-    Left = 24
-    Top = 56
-    Width = 161
-    Height = 58
-    Caption = 'Crear Lista'
+    Left = 8
+    Top = 59
+    Width = 153
+    Height = 49
+    Caption = 'Crear Matriz'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -17
@@ -24,14 +24,14 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 0
-    OnClick = Button1Click
+    WordWrap = True
   end
   object Button2: TButton
-    Left = 24
-    Top = 128
-    Width = 161
-    Height = 58
-    Caption = 'Insertar Inicio'
+    Left = 8
+    Top = 114
+    Width = 153
+    Height = 49
+    Caption = 'Dimensionar Matriz'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -17
@@ -39,14 +39,15 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 1
+    WordWrap = True
     OnClick = Button2Click
   end
   object Button3: TButton
-    Left = 24
-    Top = 201
-    Width = 161
-    Height = 58
-    Caption = 'Insertar Final'
+    Left = 8
+    Top = 169
+    Width = 153
+    Height = 49
+    Caption = 'Asignar Valor Por Defecto'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -17
@@ -54,14 +55,15 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 2
+    WordWrap = True
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 24
-    Top = 273
-    Width = 161
-    Height = 58
-    Caption = 'Mostrar Lista'
+    Left = 8
+    Top = 224
+    Width = 153
+    Height = 49
+    Caption = 'Poner Dato'
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
     Font.Height = -17
@@ -69,12 +71,13 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 3
+    WordWrap = True
     OnClick = Button4Click
   end
   object Edit1: TEdit
-    Left = 191
-    Top = 141
-    Width = 121
+    Left = 175
+    Top = 123
+    Width = 90
     Height = 31
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -85,9 +88,9 @@ object Form1: TForm1
     TabOrder = 4
   end
   object Edit2: TEdit
-    Left = 191
-    Top = 214
-    Width = 121
+    Left = 271
+    Top = 123
+    Width = 90
     Height = 31
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -96,5 +99,73 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 5
+  end
+  object Button5: TButton
+    Left = 8
+    Top = 279
+    Width = 153
+    Height = 49
+    Caption = 'Mostrar Matriz'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 6
+    WordWrap = True
+    OnClick = Button5Click
+  end
+  object Edit3: TEdit
+    Left = 175
+    Top = 178
+    Width = 90
+    Height = 31
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 7
+  end
+  object Edit4: TEdit
+    Left = 175
+    Top = 233
+    Width = 90
+    Height = 31
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 8
+  end
+  object Edit5: TEdit
+    Left = 271
+    Top = 233
+    Width = 90
+    Height = 31
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 9
+  end
+  object Edit6: TEdit
+    Left = 367
+    Top = 233
+    Width = 90
+    Height = 31
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 10
   end
 end

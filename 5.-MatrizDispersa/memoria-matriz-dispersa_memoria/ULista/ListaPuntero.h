@@ -8,7 +8,6 @@
 
 namespace UListaPuntero
 {
-    using std::runtime_error;
     using std::string;
 
     struct Nodo;

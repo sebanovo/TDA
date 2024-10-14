@@ -14,8 +14,8 @@ namespace UCSMemoria
 {
     using std::string;
     //const int TamanoCelda = 20; // 20
-    const int TamanoCeldaX = 100; // 40
-    const int TamanoCeldaY = 40; // 30
+    const int TamanoCeldaX = 80; // 100
+    const int TamanoCeldaY = 30; // 40
 
     const int NULO = -1;
 
@@ -29,7 +29,7 @@ namespace UCSMemoria
     class CSMemoria
     {
       private:
-        const int MAX = 30;
+        const int MAX = 1000;
         int libre;
         Nodo* mem;
       public:
