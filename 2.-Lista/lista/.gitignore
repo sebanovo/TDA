@@ -1,9 +1,9 @@
-__astcache
+**/__astcache/
 
-__history
+**/__history/
 
-__recovery
+**/__recovery/
 
-Win32
+**/Win32/
 
-lista_vector.cbproj.local
+*.cbproj.local
