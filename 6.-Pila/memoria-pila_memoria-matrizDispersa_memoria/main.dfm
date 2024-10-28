@@ -321,4 +321,20 @@ object Form1: TForm1
     WordWrap = True
     OnClick = Button11Click
   end
+  object Button12: TButton
+    Left = 8
+    Top = 630
+    Width = 153
+    Height = 49
+    Caption = 'Avanzar'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -17
+    Font.Name = '@Microsoft YaHei UI'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 21
+    WordWrap = True
+    OnClick = Button12Click
+  end
 end

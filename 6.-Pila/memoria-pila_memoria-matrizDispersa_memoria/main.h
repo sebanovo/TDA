@@ -50,6 +50,7 @@ class TForm1 : public TForm
     TButton* Button9;
     TButton* Button10;
     TButton* Button11;
+    TButton* Button12;
     TEdit* Edit1;
     TEdit* Edit2;
     TEdit* Edit3;
@@ -71,10 +72,12 @@ class TForm1 : public TForm
     void __fastcall Button9Click(TObject* Sender);
     void __fastcall Button10Click(TObject* Sender);
     void __fastcall Button11Click(TObject* Sender);
+    void __fastcall Button12Click(TObject* Sender);
   private:
     UCSMemoria::CSMemoria* M; // User declarations
     //    UPilaSM::PilaSM* pila;
     UPilaVector::PilaVector* pila;
+    UPilaVector::PilaVector* pila2;
     UMatrizDispersaSM::MatrizDispersaSM* matriz;
   public: // User declarations
     __fastcall TForm1(TComponent* Owner);

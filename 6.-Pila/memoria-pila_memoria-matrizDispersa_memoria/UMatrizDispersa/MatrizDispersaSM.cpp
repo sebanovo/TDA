@@ -2,6 +2,7 @@
 
 #pragma hdrstop
 #include <sstream>
+#include <vector>
 #include "MatrizDispersaSM.h"
 
 //---------------------------------------------------------------------------
@@ -210,10 +211,35 @@ namespace UMatrizDispersaSM
         //        Form->Canvas->Pen->Color = clBlack;
         int auxX = posX;
         int auxY = posY;
+        std::vector<std::vector<int> > v = {
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
+            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
+            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+        };
+        bool bFila = false;
+        bool bColumna = false;
+        int cFila = 0;
+        int cColumna = 0;
         for (int f = 1; f <= df; f++) {
             for (int c = 1; c <= dc; c++) {
-                dibujar_celda(
-                    Form, clBtnFace, true, posX, posY, String(elemento(f, c)));
+                if (df == 9 && dc == 9) {
+                    if (v[f - 1][c - 1] == 0) {
+                        dibujar_celda(Form, clBtnFace, true, posX, posY,
+                            String(elemento(f, c)));
+                    } else {
+                        dibujar_celda(Form, clYellow, true, posX, posY,
+                            String(elemento(f, c)));
+                    }
+                } else {
+                    dibujar_celda(Form, clBtnFace, true, posX, posY,
+                        String(elemento(f, c)));
+                }
                 posX += TamanoCelda;
             }
             posX = auxX;

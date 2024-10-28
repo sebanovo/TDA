@@ -21,6 +21,7 @@ void __fastcall TForm1::Button1Click(TObject* Sender)
     M = new UCSMemoria::CSMemoria;
     //    pila = new UPilaSM::PilaSM(M);
     pila = new UPilaVector::PilaVector;
+    pila2 = new UPilaVector::PilaVector;
 }
 //---------------------------------------------------------------------------
 void __fastcall TForm1::Button2Click(TObject* Sender)
@@ -28,7 +29,7 @@ void __fastcall TForm1::Button2Click(TObject* Sender)
     AnsiString ids = Edit1->Text;
     M->new_espacio(ids.c_str());
 }
-//---------------------------------------------------------------------------
+//-----------------z----------------------------------------------------------
 
 void __fastcall TForm1::Button3Click(TObject* Sender)
 {
@@ -134,29 +135,6 @@ bool esSudoku(UMatrizDispersaSM::MatrizDispersaSM* m)
     // Si se cumplieron todas las condiciones, es un Sudoku válido
     return true;
 }
-void __fastcall TForm1::Button10Click(TObject* Sender)
-{
-    ShowMessage(esSudoku(matriz) ? "ES SUDOKU" : "NO ES SUDOKU");
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm1::Button11Click(TObject* Sender)
-{
-    int f, c, elemento;
-    if (pila->vacia())
-        return;
-    pila->sacar(&elemento);
-    if (pila->vacia())
-        return;
-    pila->sacar(&c);
-    if (pila->vacia())
-        return;
-    pila->sacar(&f);
-
-    matriz->poner(f, c, elemento);
-    Button8Click(Sender);
-}
-//---------------------------------------------------------------------------
 
 void ponerSudoku(
     UMatrizDispersaSM::MatrizDispersaSM* matriz, UPilaSM::PilaSM* pila)
@@ -183,5 +161,55 @@ void ponerSudoku(
             matriz->poner(f + 1, c + 1, v[f][c]);
         }
     }
+}
+void __fastcall TForm1::Button10Click(TObject* Sender)
+{
+    ShowMessage(esSudoku(matriz) ? "ES SUDOKU" : "NO ES SUDOKU");
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button11Click(TObject* Sender)
+{
+    int f, c, elemento;
+    if (pila->vacia())
+        return;
+    pila->sacar(&elemento);
+    if (pila->vacia())
+        return;
+    pila->sacar(&c);
+    if (pila->vacia())
+        return;
+    pila->sacar(&f);
+
+    int anterior = matriz->elemento(f, c);
+    matriz->poner(f, c, elemento);
+    pila2->meter(f);
+    pila2->meter(c);
+    pila2->meter(anterior);
+    Button8Click(Sender);
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TForm1::Button12Click(TObject* Sender)
+{
+    // pending
+    int f, c, elemento;
+    if (pila2->vacia())
+        return;
+    pila2->sacar(&elemento);
+    if (pila2->vacia())
+        return;
+    pila2->sacar(&c);
+    if (pila2->vacia())
+        return;
+    pila2->sacar(&f);
+
+    int anterior = matriz->elemento(f, c);
+    matriz->poner(f, c, elemento);
+
+    pila->meter(f);
+    pila->meter(c);
+    pila->meter(anterior);
+    Button8Click(Sender);
 }
 
