@@ -47,7 +47,8 @@ namespace UMatrizDispersaSM
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
         int x = PtrMatD;
-        while (x != NULO) {
+        while (x != NULO)
+        {
             if (mem->obtener_dato(x, _fil) == f &&
                 mem->obtener_dato(x, _col) == c)
                 return x;
@@ -61,7 +62,8 @@ namespace UMatrizDispersaSM
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
         int dir = buscar(f, c);
-        if (dir == NULO && elemento != repe) {
+        if (dir == NULO && elemento != repe)
+        {
             int x = mem->new_espacio(_fil_col_dato_sig);
             if (x == NULO)
                 throw new Exception("No hay espacio en la memoria");
@@ -71,15 +73,20 @@ namespace UMatrizDispersaSM
             mem->poner_dato(x, _sig, PtrMatD);
             PtrMatD = x;
             nt++;
-        } else {
+        }
+        else
+        {
             mem->poner_dato(dir, _dato, elemento);
-            if (elemento == repe) {
+            if (elemento == repe)
+            {
                 if (dir == PtrMatD)
                     PtrMatD = mem->obtener_dato(PtrMatD, _sig);
-                else {
+                else
+                {
                     int x = PtrMatD;
                     int ant = NULO;
-                    while (x != NULO) {
+                    while (x != NULO)
+                    {
                         if (x == dir)
                             break;
                         ant = x;
@@ -104,7 +111,8 @@ namespace UMatrizDispersaSM
     bool MatrizDispersaSM::hay(int elemento)
     {
         int x = PtrMatD;
-        while (x != NULO) {
+        while (x != NULO)
+        {
             if (mem->obtener_dato(x, _dato) == elemento)
                 return true;
             x = mem->obtener_dato(x, _sig);
@@ -116,18 +124,24 @@ namespace UMatrizDispersaSM
     {
         if (PtrMatD == NULO || !hay(elemento))
             repe = elemento;
-        else {
-            for (int i = 1; i <= df; i++) {
-                for (int j = 1; j <= dc; j++) {
+        else
+        {
+            for (int i = 1; i <= df; i++)
+            {
+                for (int j = 1; j <= dc; j++)
+                {
                     int el = this->elemento(i, j);
-                    if (el == elemento) { //
+                    if (el == elemento)
+                    {  //
                         int dir = buscar(i, j);
                         if (dir == PtrMatD)
                             PtrMatD = mem->obtener_dato(PtrMatD, _sig);
-                        else {
+                        else
+                        {
                             int x = PtrMatD;
                             int ant = NULO;
-                            while (x != NULO) {
+                            while (x != NULO)
+                            {
                                 if (x == dir)
                                     break;
                                 ant = x;
@@ -138,7 +152,9 @@ namespace UMatrizDispersaSM
                         }
                         mem->delete_espacio(dir);
                         nt--;
-                    } else if (el == repe) {
+                    }
+                    else if (el == repe)
+                    {
                         int x = mem->new_espacio(_fil_col_dato_sig);
                         if (x == NULO)
                             throw new Exception("No hay espacio en la memoria");
@@ -165,8 +181,10 @@ namespace UMatrizDispersaSM
     std::string MatrizDispersaSM::mostrar()
     {
         std::string s = "";
-        for (int i = 1; i <= df; i++) {
-            for (int j = 1; j <= dc; j++) {
+        for (int i = 1; i <= df; i++)
+        {
+            for (int j = 1; j <= dc; j++)
+            {
                 s += std::to_string(elemento(i, j)) + "\t";
             }
             s += "\r\n";
@@ -182,7 +200,7 @@ namespace UMatrizDispersaSM
     }
 
     void MatrizDispersaSM::dibujar_celda(TForm* Form, TColor brushColor,
-        bool withBorder, int posX, int posY, String cad)
+                                         bool withBorder, int posX, int posY, String cad)
     {
         TCanvas* Canvas = Form->Canvas;
         Canvas->Font->Size = 20;
@@ -212,33 +230,41 @@ namespace UMatrizDispersaSM
         int auxX = posX;
         int auxY = posY;
         std::vector<std::vector<int> > v = {
-            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
-            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
-            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
-            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
-            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
-            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
-            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
-            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
-            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            {0, 0, 0, 1, 1, 1, 0, 0, 0},
+            {0, 0, 0, 1, 1, 1, 0, 0, 0},
+            {0, 0, 0, 1, 1, 1, 0, 0, 0},
+            {1, 1, 1, 0, 0, 0, 1, 1, 1},
+            {1, 1, 1, 0, 0, 0, 1, 1, 1},
+            {1, 1, 1, 0, 0, 0, 1, 1, 1},
+            {0, 0, 0, 1, 1, 1, 0, 0, 0},
+            {0, 0, 0, 1, 1, 1, 0, 0, 0},
+            {0, 0, 0, 1, 1, 1, 0, 0, 0},
         };
         bool bFila = false;
         bool bColumna = false;
         int cFila = 0;
         int cColumna = 0;
-        for (int f = 1; f <= df; f++) {
-            for (int c = 1; c <= dc; c++) {
-                if (df == 9 && dc == 9) {
-                    if (v[f - 1][c - 1] == 0) {
-                        dibujar_celda(Form, clBtnFace, true, posX, posY,
-                            String(elemento(f, c)));
-                    } else {
-                        dibujar_celda(Form, clYellow, true, posX, posY,
-                            String(elemento(f, c)));
+        for (int f = 1; f <= df; f++)
+        {
+            for (int c = 1; c <= dc; c++)
+            {
+                if (df == 9 && dc == 9)
+                {
+                    if (v[f - 1][c - 1] == 0)
+                    {
+                        dibujar_celda(Form, clHighlight, true, posX, posY,
+                                      String(elemento(f, c)));
                     }
-                } else {
+                    else
+                    {
+                        dibujar_celda(Form, clYellow, true, posX, posY,
+                                      String(elemento(f, c)));
+                    }
+                }
+                else
+                {
                     dibujar_celda(Form, clBtnFace, true, posX, posY,
-                        String(elemento(f, c)));
+                                  String(elemento(f, c)));
                 }
                 posX += TamanoCelda;
             }
@@ -260,8 +286,10 @@ namespace UMatrizDispersaSM
     int MatrizDispersaSM::suma(MatrizDispersaSM* m)
     {
         int suma = 0;
-        for (int f = 1; f <= m->dimension_fila(); f++) {
-            for (int c = 1; c <= m->dimension_columna(); c++) {
+        for (int f = 1; f <= m->dimension_fila(); f++)
+        {
+            for (int c = 1; c <= m->dimension_columna(); c++)
+            {
                 suma += m->elemento(f, c);
             }
         }
@@ -274,8 +302,10 @@ namespace UMatrizDispersaSM
         int f = m->dimension_fila();
         int c = m->dimension_columna();
         m1->dimensionar(c, f);
-        for (int i = 1; i <= f; i++) {
-            for (int j = 1; j <= c; j++) {
+        for (int i = 1; i <= f; i++)
+        {
+            for (int j = 1; j <= c; j++)
+            {
                 m1->poner(j, i, m->elemento(i, j));
             }
         }
@@ -288,13 +318,14 @@ namespace UMatrizDispersaSM
         int c = m->dimension_columna();
         if (f != c)
             return false;
-        for (int i = 1; i <= f; i++) {
-            for (int j = 1; j <= c; j++) {
+        for (int i = 1; i <= f; i++)
+        {
+            for (int j = 1; j <= c; j++)
+            {
                 if (m->elemento(i, j) != m->elemento(j, i))
                     return false;
             }
         }
         return true;
     }
-} // namespace UMatrizDispersaSM
-
+}  // namespace UMatrizDispersaSM
