@@ -8,6 +8,8 @@
 
 namespace UPilaSM
 {
+    const int TamanoCelda = 100;
+
     const std::string _elemento_sig = "elemento,sig";
     const std::string _elemento = "->elemento";
     const std::string _sig = "->sig";
@@ -22,10 +24,15 @@ namespace UPilaSM
         PilaSM(UCSMemoria::CSMemoria* m);
         bool vacia();
         void meter(int e);
-        void sacar(int* e);
+        void sacar(int &e);
         int cima();
         std::string mostrar();
         ~PilaSM();
+
+        void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
+            int posX, int posY, String cad);
+        void graficar_pila(TForm* Form, int posX, int posY);
     };
 }; // namespace UPilaSM
 #endif
+

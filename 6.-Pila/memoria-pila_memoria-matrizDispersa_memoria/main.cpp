@@ -173,13 +173,13 @@ void __fastcall TForm1::Button11Click(TObject* Sender)
     int f, c, elemento;
     if (pila->vacia())
         return;
-    pila->sacar(&elemento);
+    pila->sacar(elemento);
     if (pila->vacia())
         return;
-    pila->sacar(&c);
+    pila->sacar(c);
     if (pila->vacia())
         return;
-    pila->sacar(&f);
+    pila->sacar(f);
 
     int anterior = matriz->elemento(f, c);
     matriz->poner(f, c, elemento);
@@ -196,13 +196,13 @@ void __fastcall TForm1::Button12Click(TObject* Sender)
     int f, c, elemento;
     if (pila2->vacia())
         return;
-    pila2->sacar(&elemento);
+    pila2->sacar(elemento);
     if (pila2->vacia())
         return;
-    pila2->sacar(&c);
+    pila2->sacar(c);
     if (pila2->vacia())
         return;
-    pila2->sacar(&f);
+    pila2->sacar(f);
 
     int anterior = matriz->elemento(f, c);
     matriz->poner(f, c, elemento);

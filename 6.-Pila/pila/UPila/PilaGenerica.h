@@ -1,30 +1,36 @@
 //---------------------------------------------------------------------------
 
-#ifndef PilaEnteroH
-#define PilaEnteroH
+#ifndef PilaGenericaH
+#define PilaGenericaH
 //---------------------------------------------------------------------------
 #include <string>
 
-namespace UPilaEntero
+namespace UPilaGenerica
 {
     const int TamanoCelda = 100;
-    class PilaEntero
+    template<typename T>
+    class PilaGenerica
     {
       private:
-        int datos;
+        const int MAX = 1000;
+        T* elementos;
+        int tope;
       public:
-        PilaEntero();
+        PilaGenerica();
         bool vacia();
-        void meter(int e);
-        void sacar(int &e);
-        int cima();
+        void meter(T e);
+        void sacar(T &e);
+        T cima();
         std::string mostrar();
-        ~PilaEntero() = default;
+        ~PilaGenerica();
 
         void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
             int posX, int posY, String cad);
         void graficar_pila(TForm* Form, int posX, int posY);
     };
-}; // namespace UPilaEntero
+
+    std::string infija_a_postfija(std::string expresionInfija);
+    double evaluar_postfija(std::string postfija);
+}; // namespace UPilaGenerica
 #endif
 

@@ -8,7 +8,8 @@
 
 namespace UPilaSM
 {
-    const int TamanoCelda = 50;
+    const int TamanoCelda = 100;
+
     const std::string _elemento_sig = "elemento,sig";
     const std::string _elemento = "->elemento";
     const std::string _sig = "->sig";
@@ -23,7 +24,7 @@ namespace UPilaSM
         PilaSM(UCSMemoria::CSMemoria* m);
         bool vacia();
         void meter(int e);
-        void sacar(int* e);
+        void sacar(int &e);
         int cima();
         std::string mostrar();
         ~PilaSM();

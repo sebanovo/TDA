@@ -39,12 +39,12 @@ namespace UPilaSM
         tope = x;
     }
 
-    void PilaSM::sacar(int* e)
+    void PilaSM::sacar(int &e)
     {
         if (vacia())
             throw new Exception("No hay elementos que sacar");
         // if (e == NULO) throw std::invalid_argument("Puntero nulo pasado a sacar");
-        *e = mem->obtener_dato(tope, _elemento);
+        e = mem->obtener_dato(tope, _elemento);
         int aux = tope;
         tope = mem->obtener_dato(tope, _sig);
         mem->delete_espacio(aux);
@@ -60,16 +60,16 @@ namespace UPilaSM
     std::string PilaSM::mostrar()
     {
         std::string s = "";
-        PilaSM* aux = new PilaSM;
+        PilaSM aux;
         while (!vacia()) {
             int e;
-            sacar(&e);
+            sacar(e);
             s += "| " + std::to_string(e) + " |\n";
-            aux->meter(e);
+            aux.meter(e);
         }
-        while (!aux->vacia()) {
+        while (!aux.vacia()) {
             int e;
-            aux->sacar(&e);
+            aux.sacar(e);
             meter(e);
         }
         return s;
@@ -101,18 +101,26 @@ namespace UPilaSM
         Canvas->Pen->Color = clBlack;
         Canvas->TextOutW(posXCentro, posYCentro, cad);
     }
+
     void PilaSM::graficar_pila(TForm* Form, int posX, int posY)
     {
         Form->Canvas->Brush->Color = Form->Color;
+        Form->Canvas->FillRect(Form->Canvas->ClipRect);
         //        Form->Canvas->Pen->Color = clBlack;
-        int x = tope;
-        while (x != NULO) {
-            dibujar_celda(Form, clBtnFace, true, posX, posY,
-                String(mem->obtener_dato(x, _elemento)));
+        std::string s = "";
+        PilaSM aux;
+        while (!vacia()) {
+            int e;
+            sacar(e);
+            dibujar_celda(Form, clBtnFace, true, posX, posY, String(e));
             posY += TamanoCelda;
-            x = mem->obtener_dato(x, _sig);
+            aux.meter(e);
         }
-
+        while (!aux.vacia()) {
+            int e;
+            aux.sacar(e);
+            meter(e);
+        }
         Form->Canvas->Brush->Color = Form->Color;
         Form->Canvas->TextOutW(posX, posY, "Cima " + String(cima()));
     }

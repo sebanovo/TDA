@@ -175,6 +175,10 @@
             <DependentOn>UPila\PilaEntero.h</DependentOn>
             <BuildOrder>17</BuildOrder>
         </CppCompile>
+        <CppCompile Include="UPila\PilaGenerica.cpp">
+            <DependentOn>UPila\PilaGenerica.h</DependentOn>
+            <BuildOrder>22</BuildOrder>
+        </CppCompile>
         <CppCompile Include="UPila\PilaLista.cpp">
             <DependentOn>UPila\PilaLista.h</DependentOn>
             <BuildOrder>18</BuildOrder>

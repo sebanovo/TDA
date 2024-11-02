@@ -7,6 +7,11 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.Dialogs.hpp>
+#include <Vcl.ExtDlgs.hpp>
+
 #include "UCSMemoria/CSMemoria.h"
 #include "ULista/ListaPuntero.h"
 #include "ULista/ListaSM.h"
@@ -31,11 +36,7 @@
 #include "UPila/PilaSM.h"
 #include "UPila/PilaEntero.h"
 #include "UPila/PilaCadena.h"
-
-#include <Vcl.ExtCtrls.hpp>
-#include <Vcl.Imaging.pngimage.hpp>
-#include <Vcl.Dialogs.hpp>
-#include <Vcl.ExtDlgs.hpp>
+#include "UPila/PilaGenerica.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {

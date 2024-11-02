@@ -13,13 +13,17 @@
 #include <Vcl.StdCtrls.hpp>
 
 #include "UCSMemoria/CSMemoria.h"
+#include "ULista/ListaSM.h"
+#include "ULista/ListaVector.h"
+#include "UPolinomio/PolinomioLista.h"
+#include "UPolinomio/PolinomioPuntero.h"
+#include "UPolinomio/PolinomioSM.h"
+#include "UPolinomio/PolinomioVector.h"
 #include "UConjunto/ConjuntoLista.h"
 #include "UConjunto/ConjuntoPuntero.h"
 #include "UConjunto/ConjuntoSM.h"
 #include "UConjunto/ConjuntoVector.h"
 #include "ULista/ListaPuntero.h"
-#include "ULista/ListaSM.h"
-#include "ULista/ListaVector.h"
 #include "UMatrizDispersa/MatrizDispersaCSR.h"
 #include "UMatrizDispersa/MatrizDispersaPuntero.h"
 #include "UMatrizDispersa/MatrizDispersaPunteroDoble.h"
@@ -32,10 +36,7 @@
 #include "UPila/PilaPuntero.h"
 #include "UPila/PilaSM.h"
 #include "UPila/PilaVector.h"
-#include "UPolinomio/PolinomioLista.h"
-#include "UPolinomio/PolinomioPuntero.h"
-#include "UPolinomio/PolinomioSM.h"
-#include "UPolinomio/PolinomioVector.h"
+#include "UPila/PilaGenerica.h"
 //---------------------------------------------------------------------------
 class TForm1 : public TForm
 {

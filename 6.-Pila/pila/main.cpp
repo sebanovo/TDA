@@ -31,7 +31,7 @@ void __fastcall TForm1::Button2Click(TObject* Sender)
 void __fastcall TForm1::Button3Click(TObject* Sender)
 {
     int x;
-    pila->sacar(&x);
+    pila->sacar(x);
     ShowMessage("Sacado " + String(x));
 }
 //---------------------------------------------------------------------------
