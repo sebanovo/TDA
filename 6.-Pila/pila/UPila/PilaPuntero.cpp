@@ -68,7 +68,13 @@ namespace UPilaPuntero
 
     PilaPuntero::~PilaPuntero()
     {
-        delete tope;
+        Nodo* x = tope;
+        while (x != nullptr)
+        {
+            Nodo* aux = tope;
+            tope = tope->sig;
+            delete aux;
+        }
     }
 
     void PilaPuntero::dibujar_celda(TForm* Form, TColor brushColor,

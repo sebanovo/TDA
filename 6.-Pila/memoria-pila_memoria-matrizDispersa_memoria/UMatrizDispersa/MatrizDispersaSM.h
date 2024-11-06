@@ -46,6 +46,11 @@ namespace UMatrizDispersaSM
         static int suma(MatrizDispersaSM* m);
         static void transpuesta(MatrizDispersaSM* m, MatrizDispersaSM* m1);
         static bool es_simetrica(MatrizDispersaSM* m);
+
+        int repetido()
+        {
+            return repe;
+        }
     };
 } // namespace UMatrizDispersaSM
 

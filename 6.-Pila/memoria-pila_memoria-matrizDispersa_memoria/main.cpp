@@ -136,6 +136,65 @@ bool esSudoku(UMatrizDispersaSM::MatrizDispersaSM* m)
     return true;
 }
 
+int calcular_subcuadriculas(int n)
+{
+    int* divisores = new int[n];
+    int num_divisores = 0;
+    for (int i = 1; i <= n; i++) {
+        if (n % i == 0) {
+            divisores[num_divisores++] = i;
+        }
+    }
+}
+
+String esSudokuValido(UMatrizDispersaSM::MatrizDispersaSM* m, int repe)
+{
+    int n = m->dimension_fila();
+    int* usadoFila = new int[n + 1];
+    int* usadoColumna = new int[n + 1];
+    int* usadoSubcuadricula = new int[n + 1];
+    String s = "";
+    for (int i = 1; i <= n; i++) {
+        usadoFila[i] = usadoColumna[i] = usadoSubcuadricula[i] = 0;
+    }
+    int filasPorSubcuadricula = calcular_subcuadriculas(n);
+    int columnasPorSubcuadricula = n / filasPorSubcuadricula;
+    for (int fila = 1; fila <= n; fila++) {
+        for (int columna = 1; columna <= n; columna++) {
+            int numero = m->elemento(fila, columna);
+            if (numero != 0) {
+                if (numero < 1 || numero > n) {
+                    s += "\n error: numero fuera de rango en fila: " +
+                         IntToStr(fila) + " y columna: " + IntToStr(columna) +
+                         "\n";
+                }
+            }
+            int subcuadricula = (fila - 1) / filasPorSubcuadricula *
+                                    (n / columnasPorSubcuadricula) +
+                                (columna - 1) / columnasPorSubcuadricula + 1;
+            if (numero != repe)
+            { // repe casi siempre es 0 en una matriz dispersa
+                if (usadoFila[fila] & (1 << (numero - 1)))
+                    s += "\n error : numero repetido en fila: " +
+                         IntToStr(fila) + "\n";
+                if (usadoColumna[columna] & (1 << (numero - 1)))
+                    s += "\n error: numero repetido en columna: " +
+                         IntToStr(columna) + "\n";
+                if (usadoSubcuadricula[subcuadricula] & (1 << (numero - 1)))
+                    s += "\n error: numero repetido en subcuadricula: " +
+                         IntToStr(subcuadricula) + "\n";
+                usadoFila[fila] |= (1 << (numero - 1));
+                usadoColumna[columna] |= (1 << (numero - 1));
+                usadoSubcuadricula[subcuadricula] |= (1 << (numero - 1));
+            }
+        }
+    }
+    delete[] usadoFila;
+    delete[] usadoColumna;
+    delete[] usadoSubcuadricula;
+    return s;
+}
+
 void ponerSudoku(
     UMatrizDispersaSM::MatrizDispersaSM* matriz, UPilaSM::PilaSM* pila)
 {
@@ -164,7 +223,8 @@ void ponerSudoku(
 }
 void __fastcall TForm1::Button10Click(TObject* Sender)
 {
-    ShowMessage(esSudoku(matriz) ? "ES SUDOKU" : "NO ES SUDOKU");
+    //    ShowMessage(esSudoku(matriz) ? "ES SUDOKU" : "NO ES SUDOKU");
+    ShowMessage(esSudokuValido(matriz, matriz->repetido()));
 }
 //---------------------------------------------------------------------------
 
