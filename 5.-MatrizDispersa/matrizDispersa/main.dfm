@@ -87,6 +87,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 4
+    Text = '9'
   end
   object Edit2: TEdit
     Left = 271
@@ -100,6 +101,7 @@ object Form1: TForm1
     Font.Style = []
     ParentFont = False
     TabOrder = 5
+    Text = '9'
   end
   object Button5: TButton
     Left = 8

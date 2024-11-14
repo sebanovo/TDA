@@ -54,6 +54,7 @@ namespace UMatrizDispersaPuntero {
             nt++;
 
         } else {
+	    if(dir == nullptr && elemento == repe) return;
             dir->dato = elemento;
             if (elemento == repe) {
                 if (dir == PtrMatD)

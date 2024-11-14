@@ -2,40 +2,48 @@
 
 #pragma hdrstop
 #include <sstream>
+#include <vector>
 #include "MatrizDispersaSM.h"
 
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UMatrizDispersaSM {
+namespace UMatrizDispersaSM
+{
     using UCSMemoria::NULO;
 
-    MatrizDispersaSM::MatrizDispersaSM() {
+    MatrizDispersaSM::MatrizDispersaSM()
+    {
         PtrMatD = NULO;
         mem = new UCSMemoria::CSMemoria;
         df = dc = nt = repe = 0;
     }
 
-    MatrizDispersaSM::MatrizDispersaSM(UCSMemoria::CSMemoria* m) {
+    MatrizDispersaSM::MatrizDispersaSM(UCSMemoria::CSMemoria* m)
+    {
         PtrMatD = NULO;
         mem = m;
         df = dc = nt = repe = 0;
     }
 
-    void MatrizDispersaSM::dimensionar(int f, int c) {
+    void MatrizDispersaSM::dimensionar(int f, int c)
+    {
         df = f;
         dc = c;
     }
 
-    int MatrizDispersaSM::dimension_fila() {
+    int MatrizDispersaSM::dimension_fila()
+    {
         return df;
     }
 
-    int MatrizDispersaSM::dimension_columna() {
+    int MatrizDispersaSM::dimension_columna()
+    {
         return dc;
     }
 
-    int MatrizDispersaSM::buscar(int f, int c) {
+    int MatrizDispersaSM::buscar(int f, int c)
+    {
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
         int x = PtrMatD;
@@ -48,7 +56,8 @@ namespace UMatrizDispersaSM {
         return NULO;
     }
 
-    void MatrizDispersaSM::poner(int f, int c, int elemento) {
+    void MatrizDispersaSM::poner(int f, int c, int elemento)
+    {
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
         int dir = buscar(f, c);
@@ -63,6 +72,7 @@ namespace UMatrizDispersaSM {
             PtrMatD = x;
             nt++;
         } else {
+ 	    if(dir == NULO && elemento == repe) return;
             mem->poner_dato(dir, _dato, elemento);
             if (elemento == repe) {
                 if (dir == PtrMatD)
@@ -84,14 +94,16 @@ namespace UMatrizDispersaSM {
         }
     }
 
-    int MatrizDispersaSM::elemento(int f, int c) {
+    int MatrizDispersaSM::elemento(int f, int c)
+    {
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
         int dir = buscar(f, c);
         return dir == NULO ? repe : mem->obtener_dato(dir, _dato);
     }
 
-    bool MatrizDispersaSM::hay(int elemento) {
+    bool MatrizDispersaSM::hay(int elemento)
+    {
         int x = PtrMatD;
         while (x != NULO) {
             if (mem->obtener_dato(x, _dato) == elemento)
@@ -101,14 +113,15 @@ namespace UMatrizDispersaSM {
         return false;
     }
 
-    void MatrizDispersaSM::definir_valor_repetido(int elemento) {
+    void MatrizDispersaSM::definir_valor_repetido(int elemento)
+    {
         if (PtrMatD == NULO || !hay(elemento))
             repe = elemento;
         else {
             for (int i = 1; i <= df; i++) {
                 for (int j = 1; j <= dc; j++) {
                     int el = this->elemento(i, j);
-                    if (el == elemento) {  //
+                    if (el == elemento) { //
                         int dir = buscar(i, j);
                         if (dir == PtrMatD)
                             PtrMatD = mem->obtener_dato(PtrMatD, _sig);
@@ -143,13 +156,15 @@ namespace UMatrizDispersaSM {
         }
     }
 
-    MatrizDispersaSM::~MatrizDispersaSM() {
+    MatrizDispersaSM::~MatrizDispersaSM()
+    {
         if (mem == nullptr)
             return;
         delete mem;
     }
 
-    std::string MatrizDispersaSM::mostrar() {
+    std::string MatrizDispersaSM::mostrar()
+    {
         std::string s = "";
         for (int i = 1; i <= df; i++) {
             for (int j = 1; j <= dc; j++) {
@@ -168,7 +183,8 @@ namespace UMatrizDispersaSM {
     }
 
     void MatrizDispersaSM::dibujar_celda(TForm* Form, TColor brushColor,
-                                         bool withBorder, int posX, int posY, String cad) {
+        bool withBorder, int posX, int posY, String cad)
+    {
         TCanvas* Canvas = Form->Canvas;
         Canvas->Font->Size = 20;
         Canvas->Font->Name = "Microsoft YaHei UI";
@@ -189,16 +205,42 @@ namespace UMatrizDispersaSM {
     }
 
     void MatrizDispersaSM::graficar_matriz_dispersa(
-        TForm* Form, int posX, int posY) {
+        TForm* Form, int posX, int posY)
+    {
         Form->Canvas->Brush->Color = Form->Color;
         Form->Canvas->FillRect(Form->Canvas->ClipRect);
         //        Form->Canvas->Pen->Color = clBlack;
         int auxX = posX;
         int auxY = posY;
+        std::vector<std::vector<int> > v = {
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
+            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
+            { 1, 1, 1, 0, 0, 0, 1, 1, 1 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+            { 0, 0, 0, 1, 1, 1, 0, 0, 0 },
+        };
+        bool bFila = false;
+        bool bColumna = false;
+        int cFila = 0;
+        int cColumna = 0;
         for (int f = 1; f <= df; f++) {
             for (int c = 1; c <= dc; c++) {
-                dibujar_celda(
-                    Form, clBtnFace, true, posX, posY, String(elemento(f, c)));
+                if (df == 9 && dc == 9) {
+                    if (v[f - 1][c - 1] == 0) {
+                        dibujar_celda(Form, clHighlight, true, posX, posY,
+                            String(elemento(f, c)));
+                    } else {
+                        dibujar_celda(Form, clYellow, true, posX, posY,
+                            String(elemento(f, c)));
+                    }
+                } else {
+                    dibujar_celda(Form, clBtnFace, true, posX, posY,
+                        String(elemento(f, c)));
+                }
                 posX += TamanoCelda;
             }
             posX = auxX;
@@ -216,7 +258,8 @@ namespace UMatrizDispersaSM {
         Form->Canvas->TextOutW(posX, posY, "repe = " + String(repe));
     }
 
-    int MatrizDispersaSM::suma(MatrizDispersaSM* m) {
+    int MatrizDispersaSM::suma(MatrizDispersaSM* m)
+    {
         int suma = 0;
         for (int f = 1; f <= m->dimension_fila(); f++) {
             for (int c = 1; c <= m->dimension_columna(); c++) {
@@ -226,7 +269,9 @@ namespace UMatrizDispersaSM {
         return suma;
     }
 
-    void MatrizDispersaSM::transpuesta(MatrizDispersaSM* m, MatrizDispersaSM* m1) {
+    void MatrizDispersaSM::transpuesta(
+        MatrizDispersaSM* m, MatrizDispersaSM* m1)
+    {
         int f = m->dimension_fila();
         int c = m->dimension_columna();
         m1->dimensionar(c, f);
@@ -238,7 +283,8 @@ namespace UMatrizDispersaSM {
         return;
     }
 
-    bool MatrizDispersaSM::es_simetrica(MatrizDispersaSM* m) {
+    bool MatrizDispersaSM::es_simetrica(MatrizDispersaSM* m)
+    {
         int f = m->dimension_fila();
         int c = m->dimension_columna();
         if (f != c)
@@ -251,4 +297,5 @@ namespace UMatrizDispersaSM {
         }
         return true;
     }
-}  // namespace UMatrizDispersaSM
+} // namespace UMatrizDispersaSM
+

@@ -7,23 +7,23 @@
 #include <string>
 #include "UCSMemoria/CSMemoria.h"
 
-namespace UMatrizDispersaSMDoble {
-    const int TamanoCelda = 100;
-    using namespace std;
+namespace UMatrizDispersaSMDoble
+{
+    const int TamanoCelda = 50;
+    const std::string _col = "->col";
+    const std::string _dato = "->dato";
+    const std::string _sigC = "->sigC";
+    const std::string _col_dato_sigC = "col,dato,sigC";
 
-    const string _col = "->col";
-    const string _dato = "->dato";
-    const string _sigC = "->sigC";
-    const string _col_dato_sigC = "col,dato,sigC";
+    const std::string _fil = "->fil";
+    const std::string _antF = "->antF";
+    const std::string _sigF = "->sigF";
+    const std::string _PtrCol = "->ptrCol";
+    const std::string _fil_antF_sigF_ptrCol = "fil,antF,sigF,ptrCol";
 
-    const string _fil = "->fil";
-    const string _antF = "->antF";
-    const string _sigF = "->sigF";
-    const string _ptrCol = "->ptrCol";
-    const string _fil_antF_sigF_ptrCol = "fil,antF,sigF,ptrCol";
-
-    class MatrizDispersaSMDoble {
-       private:
+    class MatrizDispersaSMDoble
+    {
+        private:
         UCSMemoria::CSMemoria* mem;
         int PtrFil, repe, df, dc, nt;
 
@@ -35,7 +35,7 @@ namespace UMatrizDispersaSMDoble {
         void suprimir(int dir);
         bool hay(int elemento);
 
-       public:
+        public:
         MatrizDispersaSMDoble();
         MatrizDispersaSMDoble(UCSMemoria::CSMemoria* m);
         void dimensionar(int f, int c);
@@ -44,11 +44,10 @@ namespace UMatrizDispersaSMDoble {
         void poner(int f, int c, int elemento);
         int elemento(int f, int c);
         void definir_valor_repetido(int elemento);
-        string mostrar();
+        std::string mostrar();
+        ~MatrizDispersaSMDoble();
 
         // graficar
-        void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
-                           int posX, int posY, String cad);
         void graficar_matriz_dispersa(TForm* Form, int posX, int posY);
 
         // ejercicios
@@ -56,5 +55,8 @@ namespace UMatrizDispersaSMDoble {
         static void transpuesta(MatrizDispersaSMDoble* m, MatrizDispersaSMDoble* m1);
         static bool es_simetrica(MatrizDispersaSMDoble* m);
     };
-}  // namespace UMatrizDispersaSMDoble
+
+    void resolverSudoku(MatrizDispersaSMDoble* m);
+    bool esSudoku(MatrizDispersaSMDoble* m);
+} // namespace UMatrizDispersaSMDoble
 #endif

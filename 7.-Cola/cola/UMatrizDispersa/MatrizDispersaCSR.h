@@ -5,19 +5,21 @@
 //---------------------------------------------------------------------------
 #include <iostream>
 #include <string>
+
 namespace UMatrizDispersaCSR
 {
-    const int TamanoCelda = 100;
+    const int TamanoCelda = 50;
     class MatrizDispersaCSR
     {
-      private:
+        private:
         const int MAX = 1000;
         int *vf, *vc, *vd; // filas, columnas, datos
         int df, dc, nt, repe;
-        int buscar_posicion_vd(int f, int c);
+        int existe_elemento(int f, int c);
         int donde_insertar(int f, int c);
         bool hay(int elemento);
-      public:
+
+        public:
         MatrizDispersaCSR();
         void dimensionar(int df, int dc);
         int dimension_fila();
@@ -29,8 +31,6 @@ namespace UMatrizDispersaCSR
         ~MatrizDispersaCSR();
 
         // graficar
-        void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
-            int posX, int posY, String cad);
         void graficar_matriz_dispersa(TForm* Form, int posX, int posY);
 
         // ejercicios
@@ -39,7 +39,8 @@ namespace UMatrizDispersaCSR
         static bool es_simetrica(MatrizDispersaCSR* m);
     };
 
+    void resolverSudoku(MatrizDispersaCSR* m);
+    bool esSudoku(MatrizDispersaCSR* m);
 } // namespace UMatrizDispersaCSR
 
 #endif
-

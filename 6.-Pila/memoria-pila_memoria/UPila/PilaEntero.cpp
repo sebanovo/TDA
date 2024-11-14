@@ -58,7 +58,7 @@ namespace UPilaEntero
         return s;
     }
 
-    void PilaEntero::dibujar_celda(TForm* Form, TColor brushColor,
+    void dibujar_celda(TForm* Form, TColor brushColor,
         bool withBorder, int posX, int posY, String cad)
     {
         TCanvas* Canvas = Form->Canvas;

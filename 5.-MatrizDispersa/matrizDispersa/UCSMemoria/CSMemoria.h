@@ -51,12 +51,9 @@ namespace UCSMemoria
         int numero_ids(string id);
         string obtener_id(string cadena, int n);
         bool hay_al_menos_un_id(string cadena);
-        bool hay_un_id_repetido(string cadena);
         string eliminar_flecha(string cadena);
 
         // metodos de dibujado
-        void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
-            int posX, int posY, String cad);
       public:
         void dibujar_memoria(TForm* Form, int posX, int posY, int a, int b);
     };

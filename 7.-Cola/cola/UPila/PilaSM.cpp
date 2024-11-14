@@ -80,7 +80,7 @@ namespace UPilaSM
         delete mem;
     }
 
-    void PilaSM::dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
+    void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
         int posX, int posY, String cad)
     {
         TCanvas* Canvas = Form->Canvas;

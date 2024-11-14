@@ -6,23 +6,27 @@
 #include <iostream>
 #include <string>
 
-namespace UMatrizDispersaPunteroDoble {
-    const int TamanoCelda = 100;
-    struct NodoColumna {
+namespace UMatrizDispersaPunteroDoble
+{
+    const int TamanoCelda = 50;
+    struct NodoColumna
+    {
         int col;
         int dato;
         NodoColumna* sigC;
     };
 
-    struct NodoFila {
+    struct NodoFila
+    {
         int fil;
         NodoFila* antF;
         NodoFila* sigF;
         NodoColumna* PtrCol;
     };
 
-    class MatrizDispersaPunteroDoble {
-       private:
+    class MatrizDispersaPunteroDoble
+    {
+        private:
         NodoFila* PtrFil;
         int repe, df, dc, nt;
 
@@ -34,7 +38,7 @@ namespace UMatrizDispersaPunteroDoble {
         void suprimir(NodoFila* dir);
         bool hay(int elemento);
 
-       public:
+        public:
         MatrizDispersaPunteroDoble();
         void dimensionar(int f, int c);
         int dimension_fila();
@@ -43,17 +47,20 @@ namespace UMatrizDispersaPunteroDoble {
         int elemento(int f, int c);
         void definir_valor_repetido(int elemento);
         std::string mostrar();
+        ~MatrizDispersaPunteroDoble();
 
         // graficar
-        void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
-                           int posX, int posY, String cad);
         void graficar_matriz_dispersa(TForm* Form, int posX, int posY);
 
         // ejercicios
         static int suma(MatrizDispersaPunteroDoble* m);
-        static void transpuesta(MatrizDispersaPunteroDoble* m, MatrizDispersaPunteroDoble* m1);
+        static void transpuesta(MatrizDispersaPunteroDoble* m,
+        MatrizDispersaPunteroDoble* m1);
         static bool es_simetrica(MatrizDispersaPunteroDoble* m);
     };
-}  // namespace UMatrizDispersaPunteroDoble
+
+    void resolverSudoku(MatrizDispersaPunteroDoble* m);
+    bool esSudoku(MatrizDispersaPunteroDoble* m);
+} // namespace UMatrizDispersaPunteroDoble
 
 #endif

@@ -5,18 +5,21 @@
 //---------------------------------------------------------------------------
 #include <iostream>
 #include <string>
-namespace UMatrizDispersaCSR {
-    const int TamanoCelda = 100;
-    class MatrizDispersaCSR {
-       private:
+
+namespace UMatrizDispersaCSR
+{
+    const int TamanoCelda = 50;
+    class MatrizDispersaCSR
+    {
+        private:
         const int MAX = 1000;
-        int *vf, *vc, *vd;  // filas, columnas, datos
+        int *vf, *vc, *vd; // filas, columnas, datos
         int df, dc, nt, repe;
-        int buscar_posicion_vd(int f, int c);
+        int existe_elemento(int f, int c);
         int donde_insertar(int f, int c);
         bool hay(int elemento);
 
-       public:
+        public:
         MatrizDispersaCSR();
         void dimensionar(int df, int dc);
         int dimension_fila();
@@ -28,16 +31,16 @@ namespace UMatrizDispersaCSR {
         ~MatrizDispersaCSR();
 
         // graficar
-        void dibujar_celda(TForm *Form, TColor brushColor, bool withBorder,
-                           int posX, int posY, String cad);
-        void graficar_matriz_dispersa(TForm *Form, int posX, int posY);
+        void graficar_matriz_dispersa(TForm* Form, int posX, int posY);
 
         // ejercicios
-        static int suma(MatrizDispersaCSR *m);
-        static void transpuesta(MatrizDispersaCSR *m, MatrizDispersaCSR *m1);
-        static bool es_simetrica(MatrizDispersaCSR *m);
+        static int suma(MatrizDispersaCSR* m);
+        static void transpuesta(MatrizDispersaCSR* m, MatrizDispersaCSR* m1);
+        static bool es_simetrica(MatrizDispersaCSR* m);
     };
 
-}  // namespace UMatrizDispersaCSR
+    void resolverSudoku(MatrizDispersaCSR* m);
+    bool esSudoku(MatrizDispersaCSR* m);
+} // namespace UMatrizDispersaCSR
 
 #endif

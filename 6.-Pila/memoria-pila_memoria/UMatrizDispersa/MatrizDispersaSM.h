@@ -7,24 +7,24 @@
 #include <string>
 #include "UCSMemoria/CSMemoria.h"
 
-namespace UMatrizDispersaSM {
-    using std::string;
-    const int TamanoCelda = 100;
+namespace UMatrizDispersaSM
+{
+    const int TamanoCelda = 50;
+    const std::string _fil_col_dato_sig = "fil,col,dato,sig";
+    const std::string _fil = "->fil";
+    const std::string _col = "->col";
+    const std::string _dato = "->dato";
+    const std::string _sig = "->sig";
 
-    const string _fil_col_dato_sig = "fil,col,dato,sig";
-    const string _fil = "->fil";
-    const string _col = "->col";
-    const string _dato = "->dato";
-    const string _sig = "->sig";
-
-    class MatrizDispersaSM {
-       private:
+    class MatrizDispersaSM
+    {
+        private:
         UCSMemoria::CSMemoria* mem;
         int PtrMatD, repe, df, dc, nt;
         int buscar(int f, int c);
         bool hay(int elemento);
 
-       public:
+        public:
         MatrizDispersaSM();
         MatrizDispersaSM(UCSMemoria::CSMemoria* m);
         void dimensionar(int f, int c);
@@ -37,8 +37,6 @@ namespace UMatrizDispersaSM {
         ~MatrizDispersaSM();
 
         // graficar
-        void MatrizDispersaSM::dibujar_celda(TForm* Form, TColor brushColor,
-                                             bool withBorder, int posX, int posY, String cad);
         void graficar_matriz_dispersa(TForm* Form, int posX, int posY);
 
         // ejercicios
@@ -46,6 +44,9 @@ namespace UMatrizDispersaSM {
         static void transpuesta(MatrizDispersaSM* m, MatrizDispersaSM* m1);
         static bool es_simetrica(MatrizDispersaSM* m);
     };
-}  // namespace UMatrizDispersaSM
+
+    void resolverSudoku(MatrizDispersaSM* m);
+    bool esSudoku(MatrizDispersaSM* m);
+} // namespace UMatrizDispersaSM
 
 #endif

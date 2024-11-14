@@ -37,8 +37,6 @@ namespace UCSMemoria
         //            throw new Exception("La cadena esta vacía");
         //        if (!hay_al_menos_un_id(cadena))
         //            throw new Exception("Tiene que haber almenos un id");
-        //        if (hay_un_id_repetido(cadena))
-        //            throw new Exception("Hay un id repetido en la cadena");
 
         int cant = numero_ids(cadena);
         int dir = libre;
@@ -229,24 +227,6 @@ namespace UCSMemoria
         return false;
     }
 
-    // verifica que no se repitan ids ejem: "fono,x,y,,fono"
-    bool CSMemoria::hay_un_id_repetido(string cadena)
-    {
-        set<string> idsUnicos;
-        stringstream ss(cadena);
-        string id;
-
-        while (getline(ss, id, ',')) {
-            if (id.empty())
-                continue;
-            if (idsUnicos.find(id) != idsUnicos.end())
-                return true;
-            idsUnicos.insert(id);
-        }
-
-        return false;
-    }
-
     // elimina la flecha
     string CSMemoria::eliminar_flecha(string cadena)
     {
@@ -258,8 +238,8 @@ namespace UCSMemoria
         return cadena.substr(2, cadena.length());
     }
 
-    void CSMemoria::dibujar_celda(TForm* Form, TColor brushColor,
-        bool withBorder, int posX, int posY, String cad)
+    void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
+        int posX, int posY, String cad)
     {
         TCanvas* Canvas = Form->Canvas;
         Canvas->Font->Size = 12;

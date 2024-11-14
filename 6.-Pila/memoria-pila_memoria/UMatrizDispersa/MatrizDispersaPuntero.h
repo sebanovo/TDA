@@ -6,23 +6,26 @@
 #include <iostream>
 #include <string>
 
-namespace UMatrizDispersaPuntero {
-    const int TamanoCelda = 100;
-    struct Nodo {
+namespace UMatrizDispersaPuntero
+{
+    const int TamanoCelda = 50;
+    struct Nodo
+    {
         int fil;
         int col;
         int dato;
         Nodo* sig;
     };
 
-    class MatrizDispersaPuntero {
-       private:
+    class MatrizDispersaPuntero
+    {
+        private:
         Nodo* PtrMatD;
         int repe, df, dc, nt;
         Nodo* buscar(int f, int c);
         bool hay(int elemento);
 
-       public:
+        public:
         MatrizDispersaPuntero();
         void dimensionar(int f, int c);
         int dimension_fila();
@@ -34,8 +37,6 @@ namespace UMatrizDispersaPuntero {
         ~MatrizDispersaPuntero();
 
         // graficar
-        void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
-                           int posX, int posY, String cad);
         void graficar_matriz_dispersa(TForm* Form, int posX, int posY);
 
         // ejercicios
@@ -44,5 +45,7 @@ namespace UMatrizDispersaPuntero {
         static bool es_simetrica(MatrizDispersaPuntero* m);
     };
 
-}  // namespace UMatrizDispersaPuntero
+    void resolverSudoku(MatrizDispersaPuntero* m);
+    bool esSudoku(MatrizDispersaPuntero* m);
+} // namespace UMatrizDispersaPuntero
 #endif

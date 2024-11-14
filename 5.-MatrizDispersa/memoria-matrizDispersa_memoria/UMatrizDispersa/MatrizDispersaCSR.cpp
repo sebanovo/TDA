@@ -7,8 +7,10 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UMatrizDispersaCSR {
-    MatrizDispersaCSR::MatrizDispersaCSR() {
+namespace UMatrizDispersaCSR
+{
+    MatrizDispersaCSR::MatrizDispersaCSR()
+    {
         df = dc = nt = repe = 0;
         vf = new int[MAX];
         vc = new int[MAX];
@@ -27,7 +29,8 @@ namespace UMatrizDispersaCSR {
     }
 
     // dimensionar la fila y la columna
-    void MatrizDispersaCSR::dimensionar(int f, int c) {
+    void MatrizDispersaCSR::dimensionar(int f, int c)
+    {
         df = f;
         dc = c;
 
@@ -37,18 +40,17 @@ namespace UMatrizDispersaCSR {
     }
 
     // verifica que exista el elemento
-    int MatrizDispersaCSR::buscar_posicion_vd(int f, int c) {
+    int MatrizDispersaCSR::existe_elemento(int f, int c)
+    {
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
 
         int lug_antes = 0;
         for (int i = 1; i <= f - 1; i++) {
-            lug_antes += (vf[i + 1] - vf[i]);
+            lug_antes += vf[i + 1] - vf[i];
         }
 
-        int max_elem = vf[f + 1] - vf[f];
-
-        for (int i = 1; i <= max_elem; i++) {
+        for (int i = 1; i <= vf[f + 1] - vf[f]; i++) {
             if (vc[lug_antes + i] == c)
                 return lug_antes + i;
         }
@@ -56,7 +58,8 @@ namespace UMatrizDispersaCSR {
     }
 
     // busca la posicion de vd donde insertar
-    int MatrizDispersaCSR::donde_insertar(int f, int c) {
+    int MatrizDispersaCSR::donde_insertar(int f, int c)
+    {
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
         int lugar_antes = 0;
@@ -69,18 +72,19 @@ namespace UMatrizDispersaCSR {
 
         for (int i = 1; i <= vf[f + 1] - vf[f]; i++) {
             lugar = lugar_antes + i;
-            if (c > vc[lugar])
+            if (c == vc[lugar])
                 nuevo_lugar = lugar;
         }
         return nuevo_lugar + 1;
     }
 
     // pone o remplaza un elemento en la matriz (fila, columna, elemento)
-    void MatrizDispersaCSR::poner(int f, int c, int elemento) {
+    void MatrizDispersaCSR::poner(int f, int c, int elemento)
+    {
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
 
-        int lugar = buscar_posicion_vd(f, c);
+        int lugar = existe_elemento(f, c);
         if (lugar > 0) {
             vd[lugar] = elemento;
             if (vd[lugar] == repe) {
@@ -88,7 +92,7 @@ namespace UMatrizDispersaCSR {
                     vd[i] = vd[i + 1];
                     vc[i] = vc[i + 1];
                 }
-                for (int i = f; i <= df + 1; i++) {
+                for (int i = f + 1; i <= df + 1; i++) {
                     vf[i]--;
                 }
                 nt--;
@@ -96,7 +100,7 @@ namespace UMatrizDispersaCSR {
         } else {
             if (elemento != repe) {
                 int pos = donde_insertar(f, c);
-                for (int i = nt; i >= pos; i--) {
+                for (int i = nt + 1; i >= pos; i--) {
                     vd[i] = vd[i - 1];
                     vc[i] = vc[i - 1];
                 }
@@ -110,23 +114,27 @@ namespace UMatrizDispersaCSR {
     }
 
     // devuelve el elemento (fila, columna)
-    int MatrizDispersaCSR::elemento(int f, int c) {
+    int MatrizDispersaCSR::elemento(int f, int c)
+    {
         if ((f < 1 || f > df) || (c < 1 || c > dc))
             throw new Exception("Indices fuera de rango!!");
-        int lugar = buscar_posicion_vd(f, c);
+        int lugar = existe_elemento(f, c);
         return lugar < 1 ? repe : vd[lugar];
     }
 
-    int MatrizDispersaCSR::dimension_fila() {
+    int MatrizDispersaCSR::dimension_fila()
+    {
         return df;
     }
 
-    int MatrizDispersaCSR::dimension_columna() {
+    int MatrizDispersaCSR::dimension_columna()
+    {
         return dc;
     }
 
     // verifica si hay el elemento especificado en la matriz
-    bool MatrizDispersaCSR::hay(int elemento) {
+    bool MatrizDispersaCSR::hay(int elemento)
+    {
         for (int i = 1; i <= nt; i++)
             if (vd[i] == elemento)
                 return true;
@@ -134,7 +142,8 @@ namespace UMatrizDispersaCSR {
     }
 
     // define y redefine la matriz con un nuevo valor repetido
-    void MatrizDispersaCSR::definir_valor_repetido(int elemento) {
+    void MatrizDispersaCSR::definir_valor_repetido(int elemento)
+    {
         if (nt == 0 || !hay(elemento)) {
             repe = elemento;
         } else {
@@ -142,24 +151,24 @@ namespace UMatrizDispersaCSR {
                 for (int j = 1; j <= dc; j++) {
                     int el = this->elemento(i, j);
                     if (el == elemento) {
-                        int lugar = buscar_posicion_vd(i, j);
+                        int lugar = existe_elemento(i, j);
                         for (int k = lugar; k < nt; k++) {
                             vd[k] = vd[k + 1];
                             vc[k] = vc[k + 1];
                         }
-                        for (int k = i; k <= df + 1; k++)
+                        for (int k = i + 1; k <= df + 1; k++)
                             vf[k]--;
                         nt--;
                     } else if (el == repe) {
                         int pos = donde_insertar(i, j);
-                        for (int k = nt; k > pos; k--) {
+                        for (int k = nt + 1; k > pos; k--) {
                             vd[k] = vd[k - 1];
                             vc[k] = vc[k - 1];
                         }
-                        vd[pos] = elemento;
+                        vd[pos] = repe;
                         vc[pos] = j;
                         nt++;
-                        for (int k = i; k <= df + 1; k++)
+                        for (int k = i + 1; k <= df + 1; k++)
                             vf[k]++;
                     }
                 }
@@ -168,7 +177,8 @@ namespace UMatrizDispersaCSR {
         }
     }
 
-    std::string MatrizDispersaCSR::mostrar() {
+    std::string MatrizDispersaCSR::mostrar()
+    {
         std::string s = "";
         for (int f = 1; f <= df; f++) {
             for (int c = 1; c <= dc; c++) {
@@ -205,12 +215,15 @@ namespace UMatrizDispersaCSR {
         return s + info.str();
     }
 
-    MatrizDispersaCSR::~MatrizDispersaCSR() {
+    MatrizDispersaCSR::~MatrizDispersaCSR()
+    {
         delete[] vf, vc, vd;
     }
-    void MatrizDispersaCSR::dibujar_celda(TForm *Form, TColor brushColor,
-                                          bool withBorder, int posX, int posY, String cad) {
-        TCanvas *Canvas = Form->Canvas;
+
+    void MatrizDispersaCSR::dibujar_celda(TForm* Form, TColor brushColor,
+        bool withBorder, int posX, int posY, String cad)
+    {
+        TCanvas* Canvas = Form->Canvas;
         Canvas->Font->Size = 20;
         Canvas->Font->Name = "Microsoft YaHei UI";
 
@@ -230,7 +243,8 @@ namespace UMatrizDispersaCSR {
     }
 
     void MatrizDispersaCSR::graficar_matriz_dispersa(
-        TForm *Form, int posX, int posY) {
+        TForm* Form, int posX, int posY)
+    {
         Form->Canvas->Brush->Color = Form->Color;
         Form->Canvas->FillRect(Form->Canvas->ClipRect);
         //        Form->Canvas->Pen->Color = clBlack;
@@ -257,7 +271,8 @@ namespace UMatrizDispersaCSR {
         Form->Canvas->TextOutW(posX, posY, "repe = " + String(repe));
     }
 
-    int MatrizDispersaCSR::suma(MatrizDispersaCSR *m) {
+    int MatrizDispersaCSR::suma(MatrizDispersaCSR* m)
+    {
         int suma = 0;
         for (int f = 1; f <= m->dimension_fila(); f++) {
             for (int c = 1; c <= m->dimension_columna(); c++) {
@@ -268,7 +283,9 @@ namespace UMatrizDispersaCSR {
         return suma;
     }
 
-    void MatrizDispersaCSR::transpuesta(MatrizDispersaCSR *m, MatrizDispersaCSR *m1) {
+    void MatrizDispersaCSR::transpuesta(
+        MatrizDispersaCSR* m, MatrizDispersaCSR* m1)
+    {
         int f = m->dimension_fila();
         int c = m->dimension_columna();
         m1->dimensionar(c, f);
@@ -280,10 +297,12 @@ namespace UMatrizDispersaCSR {
         return;
     }
 
-    bool MatrizDispersaCSR::es_simetrica(MatrizDispersaCSR *m) {
+    bool MatrizDispersaCSR::es_simetrica(MatrizDispersaCSR* m)
+    {
         int f = m->dimension_fila();
         int c = m->dimension_columna();
-        if (f != c) return false;
+        if (f != c)
+            return false;
         for (int i = 1; i <= f; i++) {
             for (int j = 1; j <= c; j++) {
                 if (m->elemento(i, j) != m->elemento(j, i))
@@ -292,4 +311,5 @@ namespace UMatrizDispersaCSR {
         }
         return true;
     }
-}  // namespace UMatrizDispersaCSR
+} // namespace UMatrizDispersaCSR
+

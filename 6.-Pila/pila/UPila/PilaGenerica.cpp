@@ -94,8 +94,7 @@ namespace UPilaGenerica
         delete[] elementos;
     }
 
-    template<typename T>
-    void PilaGenerica<T>::dibujar_celda(TForm* Form, TColor brushColor,
+    void dibujar_celda(TForm* Form, TColor brushColor,
         bool withBorder, int posX, int posY, String cad)
     {
         TCanvas* Canvas = Form->Canvas;

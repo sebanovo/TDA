@@ -69,7 +69,7 @@ namespace UPilaVector
         delete[] elementos;
     }
 
-    void PilaVector::dibujar_celda(TForm* Form, TColor brushColor,
+    void dibujar_celda(TForm* Form, TColor brushColor,
         bool withBorder, int posX, int posY, String cad)
     {
         TCanvas* Canvas = Form->Canvas;

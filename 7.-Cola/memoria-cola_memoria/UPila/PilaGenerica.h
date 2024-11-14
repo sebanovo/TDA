@@ -24,8 +24,7 @@ namespace UPilaGenerica
         std::string mostrar();
         ~PilaGenerica();
 
-        void dibujar_celda(TForm* Form, TColor brushColor, bool withBorder,
-            int posX, int posY, String cad);
+        // graficar
         void graficar_pila(TForm* Form, int posX, int posY);
     };
 
