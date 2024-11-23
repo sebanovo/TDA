@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 #include <algorithm>
@@ -145,6 +145,7 @@ namespace UConjuntoVector
         Canvas->FillRect(rect);
 
         // dibujar circulo
+        int oldPenWidth = Canvas->Pen->Width;
         Canvas->Pen->Width = 10;
         Canvas->Pen->Color = clBlack;
         Canvas->Brush->Color = clBtnFace;
@@ -179,7 +180,7 @@ namespace UConjuntoVector
                 int x, y;
                 Posicion nuevaPosicion;
 
-                // Repetir hasta encontrar una posición sin solapamiento
+                // Repetir hasta encontrar una posiciï¿½n sin solapamiento
                 bool posicionValida;
                 do {
                     angulo = rand() * 2 * M_PI / RAND_MAX;
@@ -213,9 +214,11 @@ namespace UConjuntoVector
 
         Canvas->Brush->Style = bsSolid;
         Canvas->Font->Style = TFontStyles();
+        Canvas->Pen->Width = oldPenWidth;
     }
 
-    void _union(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c)
+    void ConjuntoVector::_union(
+        ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c)
     {
         ConjuntoVector* aux = new ConjuntoVector;
         while (!a->vacio()) {
@@ -245,7 +248,8 @@ namespace UConjuntoVector
         delete aux;
     };
 
-    void _interseccion(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c)
+    void ConjuntoVector::_interseccion(
+        ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c)
     {
         auto* aux = new ConjuntoVector;
         while (!a->vacio()) {
@@ -266,7 +270,7 @@ namespace UConjuntoVector
         delete aux;
     }
 
-    bool _equivalentes(ConjuntoVector* a, ConjuntoVector* b)
+    bool ConjuntoVector::_equivalentes(ConjuntoVector* a, ConjuntoVector* b)
     {
         return a->cardinal() == b->cardinal();
     }

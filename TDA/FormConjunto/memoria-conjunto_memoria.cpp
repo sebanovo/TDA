@@ -83,7 +83,7 @@ void __fastcall TForm6::Button7Click(TObject* Sender)
     switch (conjunto[1]) {
         case 'A':
             A->dibujar_conjunto(Form6, 400, 200);
-            //            A->graficar_conjunto(Form6, 500, 600, radio, "A");
+            A->graficar_conjunto(Form6, 500, 600, radio, "A");
             break;
         case 'B':
             B->dibujar_conjunto(Form6, 400, 300);

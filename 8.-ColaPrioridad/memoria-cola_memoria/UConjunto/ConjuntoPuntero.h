@@ -6,18 +6,20 @@
 #include <iostream>
 #include <string>
 
-namespace UConjuntoPuntero {
-    struct Nodo {
+namespace UConjuntoPuntero
+{
+    struct Nodo
+    {
         int dato;
         Nodo* sig;
     };
 
-    class ConjuntoPuntero {
-       private:
+    class ConjuntoPuntero
+    {
+      private:
         Nodo* PtrConj;
         int cant;
-
-       public:
+      public:
         ConjuntoPuntero();
         int cardinal();
         bool vacio();
@@ -31,12 +33,15 @@ namespace UConjuntoPuntero {
 
         void dibujar_conjunto(TForm* Form, int posX, int posY);
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
-                               std::string nombre);
+            std::string nombre);
 
         // ejercicios
-        static void _union(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
-        static void _interseccion(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
+        static void _union(
+            ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
+        static void _interseccion(
+            ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
         static bool _equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b);
     };
-}  // namespace UConjuntoPuntero
+} // namespace UConjuntoPuntero
 #endif
+

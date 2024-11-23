@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 #include <algorithm>
@@ -9,31 +9,37 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UConjuntoLista {
+namespace UConjuntoLista
+{
     using UCSMemoria::NULO;
-    ConjuntoLista::ConjuntoLista() {
+    ConjuntoLista::ConjuntoLista()
+    {
         mem = new UCSMemoria::CSMemoria;
         elem = new UListaSM::ListaSM(mem);
         // elem = new UListaVector::ListaVector;
     }
 
-    ConjuntoLista::ConjuntoLista(UCSMemoria::CSMemoria* m) {
+    ConjuntoLista::ConjuntoLista(UCSMemoria::CSMemoria* m)
+    {
         elem = new UListaSM::ListaSM(m);
         // elem = new UListaVector::ListaVector;
     }
 
     // cantidad de elementos del conjunto
-    int ConjuntoLista::cardinal() {
+    int ConjuntoLista::cardinal()
+    {
         return elem->_longitud();
     }
 
     // esta vacio?
-    bool ConjuntoLista::vacio() {
+    bool ConjuntoLista::vacio()
+    {
         return elem->_longitud() == 0;
     }
 
     // busca el lugar que ocupa el elemento E en el conjunto
-    int ConjuntoLista::ordinal(int e) {
+    int ConjuntoLista::ordinal(int e)
+    {
         int resp = 0;
         int pc = elem->primero();
         while (pc != NULO) {
@@ -47,7 +53,8 @@ namespace UConjuntoLista {
     }
 
     // inserta elementos en el conjunto
-    void ConjuntoLista::inserta(int e) {
+    void ConjuntoLista::inserta(int e)
+    {
         if (!pertenece(e)) {
             elem->inserta(elem->primero(), e);
         } else {
@@ -56,7 +63,8 @@ namespace UConjuntoLista {
     }
 
     // elimna un elemento del conjunto
-    void ConjuntoLista::suprime(int e) {
+    void ConjuntoLista::suprime(int e)
+    {
         if (!pertenece(e))
             return;
 
@@ -74,7 +82,8 @@ namespace UConjuntoLista {
         }
     }
 
-    bool ConjuntoLista::pertenece(int e) {
+    bool ConjuntoLista::pertenece(int e)
+    {
         int aux = elem->primero();
         while (aux != -1) {
             if (elem->recupera(aux) == e)
@@ -85,9 +94,10 @@ namespace UConjuntoLista {
     }
 
     // busca un elemento al azar que pertenezca al conjunto
-    int ConjuntoLista::muestrea() {
+    int ConjuntoLista::muestrea()
+    {
         int i = 0;
-        int lugar = rand() % cardinal() + 1;  // >= 1 && <= cant
+        int lugar = rand() % cardinal() + 1; // >= 1 && <= cant
         int aux = elem->primero();
         while (aux != -1) {
             i++;
@@ -98,12 +108,14 @@ namespace UConjuntoLista {
         }
     }
 
-    ConjuntoLista::~ConjuntoLista() {
+    ConjuntoLista::~ConjuntoLista()
+    {
         delete elem;
         // delete mem;
     }
 
-    std::string ConjuntoLista::mostrar() {
+    std::string ConjuntoLista::mostrar()
+    {
         std::string s = "{";
         int aux = elem->_longitud() == 0 ? aux = -1 : elem->primero();
         int i = 0;
@@ -116,7 +128,8 @@ namespace UConjuntoLista {
         return s + "}";
     }
 
-    void ConjuntoLista::dibujar_conjunto(TForm* Form, int posX, int posY) {
+    void ConjuntoLista::dibujar_conjunto(TForm* Form, int posX, int posY)
+    {
         TCanvas* Canvas = Form->Canvas;
         // limpiar el lienzo
         int anchoTexto = Canvas->TextWidth(mostrar().c_str());
@@ -130,20 +143,23 @@ namespace UConjuntoLista {
         Form->Canvas->TextOutW(posX, posY, mostrar().c_str());
     }
 
-    struct Posicion {
+    struct Posicion
+    {
         int x;
         int y;
         int width;
         int height;
     };
 
-    bool seSolapan(const Posicion a, const Posicion b) {
+    bool seSolapan(const Posicion a, const Posicion b)
+    {
         return !(a.x + a.width < b.x || a.x > b.x + b.width ||
                  a.y + a.height < b.y || a.y > b.y + b.height);
     }
 
     void ConjuntoLista::graficar_conjunto(
-        TForm* Form, int centroX, int centroY, int radio, std::string nombre) {
+        TForm* Form, int centroX, int centroY, int radio, std::string nombre)
+    {
         TCanvas* Canvas = Form->Canvas;
 
         // limpiar el circulo
@@ -153,6 +169,7 @@ namespace UConjuntoLista {
         Canvas->FillRect(rect);
 
         // dibujar circulo
+        int oldPenWidth = Canvas->Pen->Width;
         Canvas->Pen->Width = 10;
         Canvas->Pen->Color = clBlack;
         Canvas->Brush->Color = clBtnFace;
@@ -196,7 +213,7 @@ namespace UConjuntoLista {
                 x = centroX + distancia * cos(angulo);
                 y = centroY + distancia * sin(angulo);
 
-                nuevaPosicion = {x - datoW / 2, y - datoH / 2, datoW, datoH};
+                nuevaPosicion = { x - datoW / 2, y - datoH / 2, datoW, datoH };
 
                 // verificar solapamiento
                 posicionValida = true;
@@ -209,9 +226,9 @@ namespace UConjuntoLista {
 
             } while (!posicionValida ||
                      (x - datoW / 2 < centroX - radio ||
-                      x + datoW / 2 > centroX + radio) ||
+                         x + datoW / 2 > centroX + radio) ||
                      (y - datoH / 2 < centroY - radio ||
-                      y + datoH / 2 > centroY + radio));
+                         y + datoH / 2 > centroY + radio));
 
             Canvas->TextOutW(nuevaPosicion.x, nuevaPosicion.y, dato);
             posiciones.push_back(nuevaPosicion);
@@ -220,9 +237,12 @@ namespace UConjuntoLista {
 
         Canvas->Brush->Style = bsSolid;
         Canvas->Font->Style = TFontStyles();
+        Canvas->Pen->Width = oldPenWidth;
     }
 
-    void ConjuntoLista::_union(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c) {
+    void ConjuntoLista::_union(
+        ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c)
+    {
         ConjuntoLista* aux = new ConjuntoLista;
         while (!a->vacio()) {
             int m = a->muestrea();
@@ -251,7 +271,9 @@ namespace UConjuntoLista {
         delete aux;
     };
 
-    void ConjuntoLista::_interseccion(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c) {
+    void ConjuntoLista::_interseccion(
+        ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c)
+    {
         auto* aux = new ConjuntoLista;
         while (!a->vacio()) {
             int m = a->muestrea();
@@ -271,7 +293,9 @@ namespace UConjuntoLista {
         delete aux;
     }
 
-    bool ConjuntoLista::_equivalentes(ConjuntoLista* a, ConjuntoLista* b) {
+    bool ConjuntoLista::_equivalentes(ConjuntoLista* a, ConjuntoLista* b)
+    {
         return a->cardinal() == b->cardinal();
     }
-}  // namespace UConjuntoLista
+} // namespace UConjuntoLista
+

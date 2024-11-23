@@ -8,18 +8,19 @@
 
 #include "UCSMemoria/CSMemoria.h"
 
-namespace UConjuntoSM {
+namespace UConjuntoSM
+{
     const std::string _dato_sig = "dato,sig";
     const std::string _dato = "->dato";
     const std::string _sig = "->sig";
 
-    class ConjuntoSM {
-       private:
+    class ConjuntoSM
+    {
+      private:
         UCSMemoria::CSMemoria* mem;
         int PtrConj;
         int cant;
-
-       public:
+      public:
         ConjuntoSM();
         ConjuntoSM(UCSMemoria::CSMemoria* m);
         int cardinal();
@@ -34,7 +35,7 @@ namespace UConjuntoSM {
 
         void dibujar_conjunto(TForm* Form, int posX, int posY);
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
-                               std::string nombre);
+            std::string nombre);
 
         // ejercicios
         static void _union(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c);
@@ -42,5 +43,6 @@ namespace UConjuntoSM {
         static bool _equivalentes(ConjuntoSM* a, ConjuntoSM* b);
     };
 
-}  // namespace UConjuntoSM
+} // namespace UConjuntoSM
 #endif
+

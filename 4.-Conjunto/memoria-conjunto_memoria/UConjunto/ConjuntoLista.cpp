@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 #include <algorithm>
@@ -169,6 +169,7 @@ namespace UConjuntoLista
         Canvas->FillRect(rect);
 
         // dibujar circulo
+        int oldPenWidth = Canvas->Pen->Width;
         Canvas->Pen->Width = 10;
         Canvas->Pen->Color = clBlack;
         Canvas->Brush->Color = clBtnFace;
@@ -203,7 +204,7 @@ namespace UConjuntoLista
             int x, y;
             Posicion nuevaPosicion;
 
-            // Repetir hasta encontrar una posición sin solapamiento
+            // Repetir hasta encontrar una posiciï¿½n sin solapamiento
             bool posicionValida;
             do {
                 angulo = rand() * 2 * M_PI / RAND_MAX;
@@ -236,9 +237,11 @@ namespace UConjuntoLista
 
         Canvas->Brush->Style = bsSolid;
         Canvas->Font->Style = TFontStyles();
+        Canvas->Pen->Width = oldPenWidth;
     }
 
-    void _union(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c)
+    void ConjuntoLista::_union(
+        ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c)
     {
         ConjuntoLista* aux = new ConjuntoLista;
         while (!a->vacio()) {
@@ -266,9 +269,10 @@ namespace UConjuntoLista
         // }
 
         delete aux;
-    }
+    };
 
-    void _interseccion(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c)
+    void ConjuntoLista::_interseccion(
+        ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c)
     {
         auto* aux = new ConjuntoLista;
         while (!a->vacio()) {
@@ -289,7 +293,7 @@ namespace UConjuntoLista
         delete aux;
     }
 
-    bool _equivalentes(ConjuntoLista* a, ConjuntoLista* b)
+    bool ConjuntoLista::_equivalentes(ConjuntoLista* a, ConjuntoLista* b)
     {
         return a->cardinal() == b->cardinal();
     }

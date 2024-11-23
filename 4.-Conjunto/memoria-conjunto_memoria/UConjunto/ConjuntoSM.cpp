@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 
@@ -187,6 +187,7 @@ namespace UConjuntoSM
         Canvas->FillRect(rect);
 
         // dibujar circulo
+        int oldPenWidth = Canvas->Pen->Width;
         Canvas->Pen->Width = 10;
         Canvas->Pen->Color = clBlack;
         Canvas->Brush->Color = clBtnFace;
@@ -220,7 +221,7 @@ namespace UConjuntoSM
             int x, y;
             Posicion nuevaPosicion;
 
-            // Repetir hasta encontrar una posición sin solapamiento
+            // Repetir hasta encontrar una posiciï¿½n sin solapamiento
             bool posicionValida;
             do {
                 angulo = rand() * 2 * M_PI / RAND_MAX;
@@ -253,9 +254,10 @@ namespace UConjuntoSM
 
         Canvas->Brush->Style = bsSolid;
         Canvas->Font->Style = TFontStyles();
+        Canvas->Pen->Width = oldPenWidth;
     }
 
-    void _union(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c)
+    void ConjuntoSM::_union(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c)
     {
         ConjuntoSM* aux = new ConjuntoSM;
         while (!a->vacio()) {
@@ -285,7 +287,7 @@ namespace UConjuntoSM
         delete aux;
     };
 
-    void _interseccion(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c)
+    void ConjuntoSM::_interseccion(ConjuntoSM* a, ConjuntoSM* b, ConjuntoSM* c)
     {
         auto* aux = new ConjuntoSM;
         while (!a->vacio()) {
@@ -306,7 +308,7 @@ namespace UConjuntoSM
         delete aux;
     }
 
-    bool _equivalentes(ConjuntoSM* a, ConjuntoSM* b)
+    bool ConjuntoSM::_equivalentes(ConjuntoSM* a, ConjuntoSM* b)
     {
         return a->cardinal() == b->cardinal();
     }

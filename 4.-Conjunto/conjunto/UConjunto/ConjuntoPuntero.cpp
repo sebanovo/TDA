@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+ï»¿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 #include <algorithm>
@@ -181,6 +181,7 @@ namespace UConjuntoPuntero
         Canvas->FillRect(rect);
 
         // dibujar circulo
+        int oldPenWidth = Canvas->Pen->Width;
         Canvas->Pen->Width = 10;
         Canvas->Pen->Color = clBlack;
         Canvas->Brush->Color = clBtnFace;
@@ -214,7 +215,7 @@ namespace UConjuntoPuntero
             int x, y;
             Posicion nuevaPosicion;
 
-            // Repetir hasta encontrar una posición sin solapamiento
+            // Repetir hasta encontrar una posiciï¿½n sin solapamiento
             bool posicionValida;
             do {
                 angulo = rand() * 2 * M_PI / RAND_MAX;
@@ -247,9 +248,11 @@ namespace UConjuntoPuntero
 
         Canvas->Brush->Style = bsSolid;
         Canvas->Font->Style = TFontStyles();
+        Canvas->Pen->Width = oldPenWidth;
     }
 
-    void _union(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
+    void ConjuntoPuntero::_union(
+        ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
     {
         ConjuntoPuntero* aux = new ConjuntoPuntero;
         while (!a->vacio()) {
@@ -279,7 +282,7 @@ namespace UConjuntoPuntero
         delete aux;
     };
 
-    void _interseccion(
+    void ConjuntoPuntero::_interseccion(
         ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
     {
         auto* aux = new ConjuntoPuntero;
@@ -301,7 +304,7 @@ namespace UConjuntoPuntero
         delete aux;
     }
 
-    bool _equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b)
+    bool ConjuntoPuntero::_equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b)
     {
         return a->cardinal() == b->cardinal();
     }

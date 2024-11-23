@@ -12,14 +12,15 @@
 // Conjunto LISTA
 // SOLO FUNCIONA PARA UNA (LISTA SM) Y (LISTA VECTOR)
 
-namespace UConjuntoLista {
-    class ConjuntoLista {
-       private:
+namespace UConjuntoLista
+{
+    class ConjuntoLista
+    {
+      private:
         // UListaVector::ListaVector* elem;
         UListaSM::ListaSM* elem;
         UCSMemoria::CSMemoria* mem;
-
-       public:
+      public:
         ConjuntoLista();
         ConjuntoLista(UCSMemoria::CSMemoria* m);
         int cardinal();
@@ -34,12 +35,15 @@ namespace UConjuntoLista {
 
         void dibujar_conjunto(TForm* Form, int posX, int posY);
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
-                               std::string nombre);
+            std::string nombre);
 
         // ejercicios
-        static void _union(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
-        static void _interseccion(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
+        static void _union(
+            ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
+        static void _interseccion(
+            ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
         static bool _equivalentes(ConjuntoLista* a, ConjuntoLista* b);
     };
-}  // namespace UConjuntoLista
+} // namespace UConjuntoLista
 #endif
+

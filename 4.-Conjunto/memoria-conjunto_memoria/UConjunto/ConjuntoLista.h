@@ -36,11 +36,14 @@ namespace UConjuntoLista
         void dibujar_conjunto(TForm* Form, int posX, int posY);
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
             std::string nombre);
-    };
 
-    void _union(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
-    void _interseccion(ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
-    bool _equivalentes(ConjuntoLista* a, ConjuntoLista* b);
+        // ejercicios
+        static void _union(
+            ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
+        static void _interseccion(
+            ConjuntoLista* a, ConjuntoLista* b, ConjuntoLista* c);
+        static bool _equivalentes(ConjuntoLista* a, ConjuntoLista* b);
+    };
 } // namespace UConjuntoLista
 #endif
 

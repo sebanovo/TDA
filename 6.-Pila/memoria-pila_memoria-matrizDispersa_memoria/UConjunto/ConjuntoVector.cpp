@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 #include <algorithm>
@@ -9,8 +9,10 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UConjuntoVector {
-    ConjuntoVector::ConjuntoVector() {
+namespace UConjuntoVector
+{
+    ConjuntoVector::ConjuntoVector()
+    {
         v = new bool[MAX];
         cant = 0;
         for (int i = 1; i <= MAX; i++) {
@@ -19,18 +21,21 @@ namespace UConjuntoVector {
     }
 
     // cantidad de elementos del conjunto
-    int ConjuntoVector::cardinal() {
+    int ConjuntoVector::cardinal()
+    {
         return cant;
     }
 
     // esta vacio?
-    bool ConjuntoVector::vacio() {
+    bool ConjuntoVector::vacio()
+    {
         return cant == 0;
     }
 
     // busca el lugar que ocupa el elemento E en el conjunto
     // en este caso el indice coincide con el elemento
-    int ConjuntoVector::ordinal(int e) {
+    int ConjuntoVector::ordinal(int e)
+    {
         int resp = 0;
         for (int i = 1; i <= MAX; i++) {
             if (v[i] != 0) {
@@ -43,7 +48,8 @@ namespace UConjuntoVector {
     }
 
     // inserta elementos en el conjunto
-    void ConjuntoVector::inserta(int e) {
+    void ConjuntoVector::inserta(int e)
+    {
         if (!pertenece(e)) {
             v[e] = 1;
             cant++;
@@ -51,22 +57,25 @@ namespace UConjuntoVector {
     }
 
     // elimna un elemento del conjunto
-    void ConjuntoVector::suprime(int e) {
+    void ConjuntoVector::suprime(int e)
+    {
         if (pertenece(e)) {
             v[e] = 0;
             cant--;
         }
     }
 
-    bool ConjuntoVector::pertenece(int e) {
+    bool ConjuntoVector::pertenece(int e)
+    {
         return v[e] == 1;
     }
 
     // busca un elemento al azar que pertenezca al conjunto
-    int ConjuntoVector::muestrea() {
+    int ConjuntoVector::muestrea()
+    {
         int resp = 0;
         int elemento = 0;
-        int lug = rand() % cardinal() + 1;  // >= 1 && <= cant
+        int lug = rand() % cardinal() + 1; // >= 1 && <= cant
         for (int i = 1; i <= MAX; i++) {
             if (v[i] == 1) {
                 resp++;
@@ -77,11 +86,13 @@ namespace UConjuntoVector {
         return elemento;
     }
 
-    ConjuntoVector::~ConjuntoVector() {
+    ConjuntoVector::~ConjuntoVector()
+    {
         delete[] v;
     }
 
-    std::string ConjuntoVector::mostrar() {
+    std::string ConjuntoVector::mostrar()
+    {
         std::string s = "{";
         for (int i = 1, j = 0; i <= MAX; i++) {
             if (v[i]) {
@@ -93,7 +104,8 @@ namespace UConjuntoVector {
         return s + "}";
     }
 
-    void ConjuntoVector::dibujar_conjunto(TForm* Form, int posX, int posY) {
+    void ConjuntoVector::dibujar_conjunto(TForm* Form, int posX, int posY)
+    {
         TCanvas* Canvas = Form->Canvas;
         // limpiar el lienzo
         int anchoTexto = Canvas->TextWidth(mostrar().c_str());
@@ -107,20 +119,23 @@ namespace UConjuntoVector {
         Form->Canvas->TextOutW(posX, posY, mostrar().c_str());
     }
 
-    struct Posicion {
+    struct Posicion
+    {
         int x;
         int y;
         int width;
         int height;
     };
 
-    bool seSolapan(const Posicion a, const Posicion b) {
+    bool seSolapan(const Posicion a, const Posicion b)
+    {
         return !(a.x + a.width < b.x || a.x > b.x + b.width ||
                  a.y + a.height < b.y || a.y > b.y + b.height);
     }
 
     void ConjuntoVector::graficar_conjunto(
-        TForm* Form, int centroX, int centroY, int radio, std::string nombre) {
+        TForm* Form, int centroX, int centroY, int radio, std::string nombre)
+    {
         TCanvas* Canvas = Form->Canvas;
 
         // limpiar el circulo
@@ -130,6 +145,7 @@ namespace UConjuntoVector {
         Canvas->FillRect(rect);
 
         // dibujar circulo
+        int oldPenWidth = Canvas->Pen->Width;
         Canvas->Pen->Width = 10;
         Canvas->Pen->Color = clBlack;
         Canvas->Brush->Color = clBtnFace;
@@ -173,8 +189,8 @@ namespace UConjuntoVector {
                     x = centroX + distancia * cos(angulo);
                     y = centroY + distancia * sin(angulo);
 
-                    nuevaPosicion = {x - datoW / 2, y - datoH / 2, datoW,
-                                     datoH};
+                    nuevaPosicion = { x - datoW / 2, y - datoH / 2, datoW,
+                        datoH };
 
                     // verificar solapamiento
                     posicionValida = true;
@@ -187,9 +203,9 @@ namespace UConjuntoVector {
 
                 } while (!posicionValida ||
                          (x - datoW / 2 < centroX - radio ||
-                          x + datoW / 2 > centroX + radio) ||
+                             x + datoW / 2 > centroX + radio) ||
                          (y - datoH / 2 < centroY - radio ||
-                          y + datoH / 2 > centroY + radio));
+                             y + datoH / 2 > centroY + radio));
 
                 Canvas->TextOutW(nuevaPosicion.x, nuevaPosicion.y, dato);
                 posiciones.push_back(nuevaPosicion);
@@ -198,9 +214,12 @@ namespace UConjuntoVector {
 
         Canvas->Brush->Style = bsSolid;
         Canvas->Font->Style = TFontStyles();
+        Canvas->Pen->Width = oldPenWidth;
     }
 
-    void ConjuntoVector::_union(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c) {
+    void ConjuntoVector::_union(
+        ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c)
+    {
         ConjuntoVector* aux = new ConjuntoVector;
         while (!a->vacio()) {
             int m = a->muestrea();
@@ -229,7 +248,9 @@ namespace UConjuntoVector {
         delete aux;
     };
 
-    void ConjuntoVector::_interseccion(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c) {
+    void ConjuntoVector::_interseccion(
+        ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c)
+    {
         auto* aux = new ConjuntoVector;
         while (!a->vacio()) {
             int m = a->muestrea();
@@ -249,8 +270,10 @@ namespace UConjuntoVector {
         delete aux;
     }
 
-    bool ConjuntoVector::_equivalentes(ConjuntoVector* a, ConjuntoVector* b) {
+    bool ConjuntoVector::_equivalentes(ConjuntoVector* a, ConjuntoVector* b)
+    {
         return a->cardinal() == b->cardinal();
     }
 
-}  // namespace UConjuntoVector
+} // namespace UConjuntoVector
+

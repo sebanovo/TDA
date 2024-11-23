@@ -34,12 +34,14 @@ namespace UConjuntoPuntero
         void dibujar_conjunto(TForm* Form, int posX, int posY);
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
             std::string nombre);
-    };
 
-    void _union(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
-    void _interseccion(
-        ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
-    bool _equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b);
+        // ejercicios
+        static void _union(
+            ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
+        static void _interseccion(
+            ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c);
+        static bool _equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b);
+    };
 } // namespace UConjuntoPuntero
 #endif
 

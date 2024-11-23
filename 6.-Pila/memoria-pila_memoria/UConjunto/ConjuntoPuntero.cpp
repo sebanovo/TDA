@@ -1,4 +1,4 @@
-//---------------------------------------------------------------------------
+﻿//---------------------------------------------------------------------------
 
 #pragma hdrstop
 #include <algorithm>
@@ -9,24 +9,29 @@
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 
-namespace UConjuntoPuntero {
-    ConjuntoPuntero::ConjuntoPuntero() {
+namespace UConjuntoPuntero
+{
+    ConjuntoPuntero::ConjuntoPuntero()
+    {
         PtrConj = nullptr;
         cant = 0;
     }
 
     // cantidad de elementos del conjunto
-    int ConjuntoPuntero::cardinal() {
+    int ConjuntoPuntero::cardinal()
+    {
         return cant;
     }
 
     // esta vacio?
-    bool ConjuntoPuntero::vacio() {
-        return cant == 0;  //|| PtrConj == nullptr;
+    bool ConjuntoPuntero::vacio()
+    {
+        return cant == 0; //|| PtrConj == nullptr;
     }
 
     // busca el lugar que ocupa el elemento E en el conjunto
-    int ConjuntoPuntero::ordinal(int e) {
+    int ConjuntoPuntero::ordinal(int e)
+    {
         int resp = 0;
         Nodo* pc = PtrConj;
         while (pc != nullptr) {
@@ -40,7 +45,8 @@ namespace UConjuntoPuntero {
     }
 
     // inserta elementos en el conjunto
-    void ConjuntoPuntero::inserta(int e) {
+    void ConjuntoPuntero::inserta(int e)
+    {
         if (!pertenece(e)) {
             Nodo* dir = new Nodo();
             dir->dato = e;
@@ -53,12 +59,13 @@ namespace UConjuntoPuntero {
     }
 
     // elimna un elemento del conjunto
-    void ConjuntoPuntero::suprime(int e) {
+    void ConjuntoPuntero::suprime(int e)
+    {
         if (!pertenece(e))
             return;
 
         Nodo* dir;
-        if (PtrConj->dato == e) {  // caso si esta en la cabeza
+        if (PtrConj->dato == e) { // caso si esta en la cabeza
             dir = PtrConj;
             PtrConj = PtrConj->sig;
         } else {
@@ -79,7 +86,8 @@ namespace UConjuntoPuntero {
         delete dir;
     }
 
-    bool ConjuntoPuntero::pertenece(int e) {
+    bool ConjuntoPuntero::pertenece(int e)
+    {
         Nodo* pc = PtrConj;
         while (pc != nullptr) {
             if (pc->dato == e) {
@@ -91,11 +99,12 @@ namespace UConjuntoPuntero {
     }
 
     // busca un elemento al azar que pertenezca al conjunto
-    int ConjuntoPuntero::muestrea() {
+    int ConjuntoPuntero::muestrea()
+    {
         if (vacio())
             return -1;
         int i = 0;
-        int lugar = rand() % cardinal() + 1;  // >= 1 && <= cant
+        int lugar = rand() % cardinal() + 1; // >= 1 && <= cant
         Nodo* pc = PtrConj;
         while (pc != nullptr) {
             i++;
@@ -106,7 +115,8 @@ namespace UConjuntoPuntero {
         }
     }
 
-    ConjuntoPuntero::~ConjuntoPuntero() {
+    ConjuntoPuntero::~ConjuntoPuntero()
+    {
         Nodo* dir = PtrConj;
         Nodo* ant;
         while (dir != nullptr) {
@@ -116,7 +126,8 @@ namespace UConjuntoPuntero {
         }
     }
 
-    std::string ConjuntoPuntero::mostrar() {
+    std::string ConjuntoPuntero::mostrar()
+    {
         std::string s = "{";
         Nodo* x = PtrConj;
         int i = 0;
@@ -129,7 +140,8 @@ namespace UConjuntoPuntero {
         return s + "}";
     }
 
-    void ConjuntoPuntero::dibujar_conjunto(TForm* Form, int posX, int posY) {
+    void ConjuntoPuntero::dibujar_conjunto(TForm* Form, int posX, int posY)
+    {
         TCanvas* Canvas = Form->Canvas;
         // limpiar el lienzo
         int anchoTexto = Canvas->TextWidth(mostrar().c_str());
@@ -143,20 +155,23 @@ namespace UConjuntoPuntero {
         Form->Canvas->TextOutW(posX, posY, mostrar().c_str());
     }
 
-    struct Posicion {
+    struct Posicion
+    {
         int x;
         int y;
         int width;
         int height;
     };
 
-    bool seSolapan(const Posicion a, const Posicion b) {
+    bool seSolapan(const Posicion a, const Posicion b)
+    {
         return !(a.x + a.width < b.x || a.x > b.x + b.width ||
                  a.y + a.height < b.y || a.y > b.y + b.height);
     }
 
     void ConjuntoPuntero::graficar_conjunto(
-        TForm* Form, int centroX, int centroY, int radio, std::string nombre) {
+        TForm* Form, int centroX, int centroY, int radio, std::string nombre)
+    {
         TCanvas* Canvas = Form->Canvas;
 
         // limpiar el circulo
@@ -166,6 +181,7 @@ namespace UConjuntoPuntero {
         Canvas->FillRect(rect);
 
         // dibujar circulo
+        int oldPenWidth = Canvas->Pen->Width;
         Canvas->Pen->Width = 10;
         Canvas->Pen->Color = clBlack;
         Canvas->Brush->Color = clBtnFace;
@@ -208,7 +224,7 @@ namespace UConjuntoPuntero {
                 x = centroX + distancia * cos(angulo);
                 y = centroY + distancia * sin(angulo);
 
-                nuevaPosicion = {x - datoW / 2, y - datoH / 2, datoW, datoH};
+                nuevaPosicion = { x - datoW / 2, y - datoH / 2, datoW, datoH };
 
                 // verificar solapamiento
                 posicionValida = true;
@@ -221,9 +237,9 @@ namespace UConjuntoPuntero {
 
             } while (!posicionValida ||
                      (x - datoW / 2 < centroX - radio ||
-                      x + datoW / 2 > centroX + radio) ||
+                         x + datoW / 2 > centroX + radio) ||
                      (y - datoH / 2 < centroY - radio ||
-                      y + datoH / 2 > centroY + radio));
+                         y + datoH / 2 > centroY + radio));
 
             Canvas->TextOutW(nuevaPosicion.x, nuevaPosicion.y, dato);
             posiciones.push_back(nuevaPosicion);
@@ -232,9 +248,12 @@ namespace UConjuntoPuntero {
 
         Canvas->Brush->Style = bsSolid;
         Canvas->Font->Style = TFontStyles();
+        Canvas->Pen->Width = oldPenWidth;
     }
 
-    void ConjuntoPuntero::_union(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c) {
+    void ConjuntoPuntero::_union(
+        ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
+    {
         ConjuntoPuntero* aux = new ConjuntoPuntero;
         while (!a->vacio()) {
             int m = a->muestrea();
@@ -263,7 +282,9 @@ namespace UConjuntoPuntero {
         delete aux;
     };
 
-    void ConjuntoPuntero::_interseccion(ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c) {
+    void ConjuntoPuntero::_interseccion(
+        ConjuntoPuntero* a, ConjuntoPuntero* b, ConjuntoPuntero* c)
+    {
         auto* aux = new ConjuntoPuntero;
         while (!a->vacio()) {
             int m = a->muestrea();
@@ -283,7 +304,9 @@ namespace UConjuntoPuntero {
         delete aux;
     }
 
-    bool ConjuntoPuntero::_equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b) {
+    bool ConjuntoPuntero::_equivalentes(ConjuntoPuntero* a, ConjuntoPuntero* b)
+    {
         return a->cardinal() == b->cardinal();
     }
-}  // namespace UConjuntoPuntero
+} // namespace UConjuntoPuntero
+

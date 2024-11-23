@@ -29,11 +29,14 @@ namespace UConjuntoVector
         void dibujar_conjunto(TForm* Form, int posX, int posY);
         void graficar_conjunto(TForm* Form, int centroX, int centroY, int radio,
             std::string nombre);
-    };
 
-    void _union(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c);
-    void _interseccion(ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c);
-    bool _equivalente(ConjuntoVector* a, ConjuntoVector* b);
+        // ejercicios
+        static void _union(
+            ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c);
+        static void _interseccion(
+            ConjuntoVector* a, ConjuntoVector* b, ConjuntoVector* c);
+        static bool _equivalentes(ConjuntoVector* a, ConjuntoVector* b);
+    };
 } // namespace UConjuntoVector
 #endif
 
