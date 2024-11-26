@@ -211,17 +211,17 @@
             <DependentOn>FormMemoria\memoria.h</DependentOn>
             <BuildOrder>52</BuildOrder>
         </CppCompile>
+        <CppCompile Include="FormPila\memoria-pila_memoria-matrizdispersa_memoria.cpp">
+            <Form>Form11</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>FormPila\memoria-pila_memoria-matrizdispersa_memoria.h</DependentOn>
+            <BuildOrder>53</BuildOrder>
+        </CppCompile>
         <CppCompile Include="FormPila\memoria-pila_memoria.cpp">
             <Form>Form10</Form>
             <FormType>dfm</FormType>
             <DependentOn>FormPila\memoria-pila_memoria.h</DependentOn>
             <BuildOrder>52</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="FormPila\memoria-pila_memoria_matrizdispersa_memoria.cpp">
-            <Form>Form11</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>FormPila\memoria-pila_memoria_matrizdispersa_memoria.h</DependentOn>
-            <BuildOrder>53</BuildOrder>
         </CppCompile>
         <CppCompile Include="FormPila\pila.cpp">
             <Form>Form12</Form>
@@ -384,8 +384,8 @@
         <FormResources Include="FormMatrizDispersa\memoria-matrizdispersa_memoria.dfm"/>
         <FormResources Include="FormMatrizDispersa\matrizdispersa.dfm"/>
         <FormResources Include="FormLista\memoria-lista_memoria.dfm"/>
+        <FormResources Include="FormPila\memoria-pila_memoria-matrizdispersa_memoria.dfm"/>
         <FormResources Include="FormPila\memoria-pila_memoria.dfm"/>
-        <FormResources Include="FormPila\memoria-pila_memoria_matrizdispersa_memoria.dfm"/>
         <FormResources Include="FormMemoria\memoria.dfm"/>
         <FormResources Include="FormLista\lista.dfm"/>
         <FormResources Include="FormCola\cola.dfm"/>

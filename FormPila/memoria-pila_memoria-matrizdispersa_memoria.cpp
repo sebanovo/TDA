@@ -4,7 +4,7 @@
 #include <vector>
 #pragma hdrstop
 
-#include "memoria-pila_memoria_matrizdispersa_memoria.h"
+#include "memoria-pila_memoria-matrizdispersa_memoria.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"

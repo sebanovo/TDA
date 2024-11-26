@@ -7,8 +7,8 @@
 USEFORM("FormMatrizDispersa\memoria-matrizdispersa_memoria.cpp", Form8);
 USEFORM("FormMatrizDispersa\matrizdispersa.cpp", Form9);
 USEFORM("FormLista\memoria-lista_memoria.cpp", Form3);
+USEFORM("FormPila\memoria-pila_memoria-matrizdispersa_memoria.cpp", Form11);
 USEFORM("FormPila\memoria-pila_memoria.cpp", Form10);
-USEFORM("FormPila\memoria-pila_memoria_matrizdispersa_memoria.cpp", Form11);
 USEFORM("FormMemoria\memoria.cpp", Form1);
 USEFORM("FormLista\lista.cpp", Form2);
 USEFORM("FormCola\cola.cpp", Form14);
@@ -25,8 +25,9 @@ int WINAPI _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
     try
     {
         Application->Initialize();
-        Application->CreateForm(__classid(TForm10), &Form10);
-         Application->CreateForm(__classid(TForm1), &Form1);
+        Application->CreateForm(__classid(TForm1), &Form1);
+         Application->CreateForm(__classid(TForm10), &Form10);
+         Application->CreateForm(__classid(TForm8), &Form8);
          Application->Run();
     }
     catch (Exception &exception)

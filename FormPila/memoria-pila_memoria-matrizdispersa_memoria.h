@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef MEMORIA_PILA_MATRIZ_DISPERSAH
-#define MEMORIA_PILA_MATRIZ_DISPERSAH
+#ifndef MEMORIA_PILA_MEMORIA_MATRIZ_DISPERSAH
+#define MEMORIA_PILA_MEMORIA_MATRIZ_DISPERSAH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>

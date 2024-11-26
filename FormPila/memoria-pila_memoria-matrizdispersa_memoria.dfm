@@ -2,8 +2,8 @@ object Form11: TForm11
   Left = 0
   Top = 0
   Caption = 'Form11'
-  ClientHeight = 755
-  ClientWidth = 1055
+  ClientHeight = 746
+  ClientWidth = 1049
   Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
