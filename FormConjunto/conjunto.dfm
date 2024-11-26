@@ -57,7 +57,7 @@ object Form7: TForm7
     OnClick = Button3Click
   end
   object Button4: TButton
-    Left = 16
+    Left = 8
     Top = 228
     Width = 153
     Height = 49
@@ -129,5 +129,18 @@ object Form7: TForm7
     Font.Style = []
     ParentFont = False
     TabOrder = 7
+  end
+  object ComboBox1: TComboBox
+    Left = 192
+    Top = 272
+    Width = 97
+    Height = 23
+    ItemIndex = 0
+    TabOrder = 8
+    Text = 'A'
+    Items.Strings = (
+      'A'
+      'B'
+      'C')
   end
 end

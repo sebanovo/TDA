@@ -11,6 +11,7 @@
 #include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.Dialogs.hpp>
 #include <Vcl.ExtDlgs.hpp>
+
 #include "UCSMemoria/CSMemoria.h"
 #include "ULista/ListaPuntero.h"
 #include "ULista/ListaSM.h"

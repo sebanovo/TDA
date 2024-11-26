@@ -37,7 +37,7 @@ void __fastcall TForm7::Button3Click(TObject* Sender)
 void __fastcall TForm7::Button4Click(TObject* Sender)
 {
     String elemento, Conjunto;
-    Conjunto = InputBox("Seleccionar Conjunto", "Conjunto", "");
+    Conjunto = ComboBox1->Text;
 
     switch (Conjunto[1]) {
         case 'A':
@@ -63,7 +63,7 @@ void __fastcall TForm7::Button4Click(TObject* Sender)
 
 void __fastcall TForm7::Button5Click(TObject* Sender)
 {
-    String conjunto = InputBox("Mostrar Conjunto", "Conjunto", "");
+    String conjunto = ComboBox1->Text;
     int radio = 200;
 
     Canvas->Pen->Color = Form7->Color;

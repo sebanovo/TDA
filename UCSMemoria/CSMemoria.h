@@ -14,7 +14,7 @@ namespace UCSMemoria
 {
     using std::string;
     //const int TamanoCelda = 20; // 20
-    const int TamanoCeldaX = 80; // 100
+    const int TamanoCeldaX = 100; // 100
     const int TamanoCeldaY = 30; // 40
 
     const int NULO = -1;

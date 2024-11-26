@@ -5,12 +5,12 @@
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
-#include <Vcl.Dialogs.hpp>
-#include <Vcl.ExtCtrls.hpp>
-#include <Vcl.ExtDlgs.hpp>
-#include <Vcl.Forms.hpp>
-#include <Vcl.Imaging.pngimage.hpp>
 #include <Vcl.StdCtrls.hpp>
+#include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.Dialogs.hpp>
+#include <Vcl.ExtDlgs.hpp>
 
 #include "UCSMemoria/CSMemoria.h"
 #include "ULista/ListaSM.h"

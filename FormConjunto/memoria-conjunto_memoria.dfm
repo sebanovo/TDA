@@ -2,8 +2,8 @@ object Form6: TForm6
   Left = 0
   Top = 0
   Caption = 'Form6'
-  ClientHeight = 634
-  ClientWidth = 1086
+  ClientHeight = 625
+  ClientWidth = 1080
   Color = clActiveCaption
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -174,19 +174,17 @@ object Form6: TForm6
     TabOrder = 10
     OnClick = Button10Click
   end
-  object Button11: TButton
-    Left = 8
-    Top = 591
-    Width = 153
-    Height = 49
-    Caption = 'Salir'
-    Font.Charset = ANSI_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -17
-    Font.Name = '@Microsoft YaHei UI'
-    Font.Style = []
-    ParentFont = False
+  object ComboBox1: TComboBox
+    Left = 183
+    Top = 355
+    Width = 74
+    Height = 23
+    ItemIndex = 0
     TabOrder = 11
-    OnClick = Button11Click
+    Text = 'A'
+    Items.Strings = (
+      'A'
+      'B'
+      'C')
   end
 end

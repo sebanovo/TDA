@@ -6,4 +6,7 @@
 
 **/Win32/
 
+**/Win64/
+
 *.cbproj.local
+

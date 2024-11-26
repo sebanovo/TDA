@@ -48,11 +48,10 @@ void __fastcall TForm6::Button5Click(TObject* Sender)
 void __fastcall TForm6::Button6Click(TObject* Sender)
 {
     String elemento, Conjunto;
-    Conjunto = InputBox("Seleccionar Conjunto", "Conjunto", "");
+    Conjunto = ComboBox1->Text;
 
     switch (Conjunto[1]) {
         case 'A':
-
             elemento = InputBox("Insertar Elemento en A", "Elemento:", "");
             A->inserta(elemento.ToInt());
             break;
@@ -74,7 +73,7 @@ void __fastcall TForm6::Button6Click(TObject* Sender)
 
 void __fastcall TForm6::Button7Click(TObject* Sender)
 {
-    String conjunto = InputBox("Mostrar Conjunto", "Conjunto", "");
+    String conjunto = ComboBox1->Text;
     int radio = 200;
     Canvas->Pen->Color = Form6->Color;
     Canvas->Brush->Color = Form6->Color;
@@ -87,11 +86,11 @@ void __fastcall TForm6::Button7Click(TObject* Sender)
             break;
         case 'B':
             B->dibujar_conjunto(Form6, 400, 300);
-            //            B->graficar_conjunto(Form6, 1000, 600, radio, "B");
+            B->graficar_conjunto(Form6, 1000, 600, radio, "B");
             break;
         case 'C':
             C->dibujar_conjunto(Form6, 400, 400);
-            //            C->graficar_conjunto(Form6, 1500, 600, radio, "C");
+            C->graficar_conjunto(Form6, 1500, 600, radio, "C");
             break;
         default:
             ShowMessage("Conjunto No Valido");
@@ -113,12 +112,6 @@ void __fastcall TForm6::Button9Click(TObject* Sender)
 void __fastcall TForm6::Button10Click(TObject* Sender)
 {
     M->dibujar_memoria(Form6, 1300, 20, 0, 20);
-}
-//---------------------------------------------------------------------------
-
-void __fastcall TForm6::Button11Click(TObject* Sender)
-{
-    Close();
 }
 //---------------------------------------------------------------------------
 

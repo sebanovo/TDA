@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "memoria-pila_memorie.h"
+#include "memoria-pila_memoria.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -50,7 +50,6 @@ void __fastcall TForm10::Button7Click(TObject* Sender)
     conjuntoA->inserta(Edit5->Text.ToInt());
 }
 //---------------------------------------------------------------------------
-
 void __fastcall TForm10::Button8Click(TObject* Sender)
 {
     int radio = 200;
@@ -68,4 +67,3 @@ void __fastcall TForm10::Button5Click(TObject* Sender)
         Form10, 1000, 10, Edit3->Text.ToInt(), Edit4->Text.ToInt());
 }
 //---------------------------------------------------------------------------
-

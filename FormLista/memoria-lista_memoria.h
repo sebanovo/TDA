@@ -7,7 +7,7 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
-#include "UCSMemoria/UCSMemoria.h"
+#include "UCSMemoria/CSMemoria.h"
 #include "ULista/ListaPuntero.h"
 #include "ULista/ListaSM.h"
 #include "ULista/ListaVector.h"

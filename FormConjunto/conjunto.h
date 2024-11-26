@@ -35,6 +35,7 @@ class TForm7 : public TForm
     TButton* Button6;
     TButton* Button7;
     TButton* Button8;
+    TComboBox* ComboBox1;
     void __fastcall Button1Click(TObject* Sender);
     void __fastcall Button2Click(TObject* Sender);
     void __fastcall Button3Click(TObject* Sender);

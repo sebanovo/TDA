@@ -7,6 +7,11 @@
 #include <Vcl.Controls.hpp>
 #include <Vcl.StdCtrls.hpp>
 #include <Vcl.Forms.hpp>
+#include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Imaging.pngimage.hpp>
+#include <Vcl.Dialogs.hpp>
+#include <Vcl.ExtDlgs.hpp>
+
 #include "UCSMemoria/CSMemoria.h"
 #include "ULista/ListaPuntero.h"
 #include "ULista/ListaSM.h"
@@ -19,17 +24,12 @@
 #include "UConjunto/ConjuntoPuntero.h"
 #include "UConjunto/ConjuntoSM.h"
 #include "UConjunto/ConjuntoVector.h"
-#include <Vcl.ExtCtrls.hpp>
-#include <Vcl.Imaging.pngimage.hpp>
-#include <Vcl.Dialogs.hpp>
-#include <Vcl.ExtDlgs.hpp>
 //---------------------------------------------------------------------------
 class TForm6 : public TForm
 {
   __published: // IDE-managed Components
     TButton* Button1;
     TButton* Button2;
-    TEdit* Edit1;
     TButton* Button3;
     TButton* Button4;
     TButton* Button5;
@@ -38,7 +38,8 @@ class TForm6 : public TForm
     TButton* Button8;
     TButton* Button9;
     TButton* Button10;
-    TButton* Button11;
+    TEdit* Edit1;
+    TComboBox* ComboBox1;
     void __fastcall Button1Click(TObject* Sender);
     void __fastcall Button2Click(TObject* Sender);
     void __fastcall Button3Click(TObject* Sender);
@@ -49,9 +50,8 @@ class TForm6 : public TForm
     void __fastcall Button8Click(TObject* Sender);
     void __fastcall Button9Click(TObject* Sender);
     void __fastcall Button10Click(TObject* Sender);
-    void __fastcall Button11Click(TObject* Sender);
-  private:
-    UCSMemoria::CSMemoria* M; // User declarations
+  private: // User declarations
+    UCSMemoria::CSMemoria* M;
     UConjuntoSM::ConjuntoSM* A;
     UConjuntoSM::ConjuntoSM* B;
     UConjuntoSM::ConjuntoSM* C;

@@ -8,8 +8,8 @@
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
-        <CC_Suffix Condition="'$(CC_Suffix)'==''">c</CC_Suffix>
         <TargetedPlatforms>1</TargetedPlatforms>
+        <CC_Suffix Condition="'$(CC_Suffix)'==''">c</CC_Suffix>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Base' or '$(Base)'!=''">
         <Base>true</Base>
@@ -35,6 +35,12 @@
         <Cfg_1>true</Cfg_1>
         <Base>true</Base>
     </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_1)'=='true') or '$(Cfg_1_Win64)'!=''">
+        <Cfg_1_Win64>true</Cfg_1_Win64>
+        <CfgParent>Cfg_1</CfgParent>
+        <Cfg_1>true</Cfg_1>
+        <Base>true</Base>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Config)'=='Release' or '$(Cfg_2)'!=''">
         <Cfg_2>true</Cfg_2>
         <CfgParent>Base</CfgParent>
@@ -42,6 +48,12 @@
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='Win32' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win32)'!=''">
         <Cfg_2_Win32>true</Cfg_2_Win32>
+        <CfgParent>Cfg_2</CfgParent>
+        <Cfg_2>true</Cfg_2>
+        <Base>true</Base>
+    </PropertyGroup>
+    <PropertyGroup Condition="('$(Platform)'=='Win64' and '$(Cfg_2)'=='true') or '$(Cfg_2_Win64)'!=''">
+        <Cfg_2_Win64>true</Cfg_2_Win64>
         <CfgParent>Cfg_2</CfgParent>
         <Cfg_2>true</Cfg_2>
         <Base>true</Base>
@@ -78,11 +90,18 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
         <BCC_PCHName_Clang>TDAPCH1.h</BCC_PCHName_Clang>
+        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <PackageImports>adortl;appanalytics;bcbie;bcbsmp;bindcomp;bindcompdbx;bindcompfmx;bindcompvcl;bindcompvclsmp;bindcompvclwinx;bindengine;CloudService;CustomIPTransport;DataSnapClient;DataSnapCommon;DataSnapConnectors;DatasnapConnectorsFreePascal;DataSnapFireDAC;DataSnapIndy10ServerTransport;DataSnapNativeClient;DataSnapProviderClient;DataSnapServer;DataSnapServerMidas;dbexpress;dbrtl;dbxcds;DbxClientDriver;DbxCommonDriver;DBXDb2Driver;DBXFirebirdDriver;DBXInformixDriver;DBXInterBaseDriver;DBXMSSQLDriver;DBXMySQLDriver;DBXOdbcDriver;DBXOracleDriver;DBXSqliteDriver;DBXSybaseASADriver;DBXSybaseASEDriver;dsnap;dsnapcon;dsnapxml;emsclient;emsclientfiredac;emsedge;emshosting;emsserverresource;FireDAC;FireDACADSDriver;FireDACASADriver;FireDACCommon;FireDACCommonDriver;FireDACCommonODBC;FireDACDb2Driver;FireDACDBXDriver;FireDACDSDriver;FireDACIBDriver;FireDACInfxDriver;FireDACMongoDBDriver;FireDACMSAccDriver;FireDACMSSQLDriver;FireDACMySQLDriver;FireDACODBCDriver;FireDACOracleDriver;FireDACPgDriver;FireDACSqliteDriver;FireDACTDataDriver;fmx;fmxase;fmxdae;fmxFireDAC;fmxobj;FMXTee;FmxTeeUI;ibmonitor;ibxbindings;ibxpress;IndyCore;IndyIPClient;IndyIPCommon;IndyIPServer;IndyProtocols;IndySystem;inet;inetdb;inetdbxpress;RESTBackendComponents;RESTComponents;rtl;soapmidas;soaprtl;soapserver;Tee;TeeDB;TeeUI;tethering;vcl;vclactnband;vcldb;vcldsnap;vcledge;vclFireDAC;vclib;vclie;vclimg;VCLRESTComponents;VclSmp;vcltouch;vclwinx;vclx;xmlrtl;$(PackageImports)</PackageImports>
         <IncludePath>$(BDSINCLUDE)\windows\vcl;$(IncludePath)</IncludePath>
         <BCC_PCHName_Clang>TDAPCH1.h</BCC_PCHName_Clang>
+        <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
+        <BT_BuildType>Debug</BT_BuildType>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
+        <VerInfo_Locale>1033</VerInfo_Locale>
+        <Manifest_File>$(BDS)\bin\default_app.manifest</Manifest_File>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1)'!=''">
         <BCC_OptimizeForSpeed>false</BCC_OptimizeForSpeed>
@@ -114,6 +133,10 @@
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;vclimg.bpi</LinkPackageImports>
+    </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <Defines>NDEBUG;$(Defines)</Defines>
         <TASM_Debugging>None</TASM_Debugging>
@@ -121,6 +144,10 @@
     <PropertyGroup Condition="'$(Cfg_2_Win32)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <BCC_UseClassicCompiler>false</BCC_UseClassicCompiler>
+        <LinkPackageImports>rtl.bpi;vcl.bpi;vclimg.bpi</LinkPackageImports>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
+        <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <ItemGroup>
         <None Include=".gitignore"/>
@@ -184,23 +211,23 @@
             <DependentOn>FormMemoria\memoria.h</DependentOn>
             <BuildOrder>52</BuildOrder>
         </CppCompile>
-        <CppCompile Include="FormPila\memoria-pila_memoria-matrizdispersa_memoria.cpp">
-            <Form>Form11</Form>
-            <FormType>dfm</FormType>
-            <DependentOn>FormPila\memoria-pila_memoria-matrizdispersa_memoria.h</DependentOn>
-            <BuildOrder>46</BuildOrder>
-        </CppCompile>
-        <CppCompile Include="FormPila\memoria-pila_memorie.cpp">
+        <CppCompile Include="FormPila\memoria-pila_memoria.cpp">
             <Form>Form10</Form>
             <FormType>dfm</FormType>
-            <DependentOn>FormPila\memoria-pila_memorie.h</DependentOn>
-            <BuildOrder>47</BuildOrder>
+            <DependentOn>FormPila\memoria-pila_memoria.h</DependentOn>
+            <BuildOrder>52</BuildOrder>
+        </CppCompile>
+        <CppCompile Include="FormPila\memoria-pila_memoria_matrizdispersa_memoria.cpp">
+            <Form>Form11</Form>
+            <FormType>dfm</FormType>
+            <DependentOn>FormPila\memoria-pila_memoria_matrizdispersa_memoria.h</DependentOn>
+            <BuildOrder>53</BuildOrder>
         </CppCompile>
         <CppCompile Include="FormPila\pila.cpp">
             <Form>Form12</Form>
             <FormType>dfm</FormType>
             <DependentOn>FormPila\pila.h</DependentOn>
-            <BuildOrder>48</BuildOrder>
+            <BuildOrder>53</BuildOrder>
         </CppCompile>
         <CppCompile Include="FormPolinomio\memoria-polinomio_memoria.cpp">
             <Form>Form4</Form>
@@ -274,12 +301,6 @@
             <DependentOn>UCSMemoria\CSMemoria.h</DependentOn>
             <BuildOrder>17</BuildOrder>
         </CppCompile>
-        <CppCompile Include="UCSMemoria\UCSMemoria.cpp">
-            <BuildOrder>18</BuildOrder>
-        </CppCompile>
-        <None Include="UCSMemoria\UCSMemoria.h">
-            <BuildOrder>6</BuildOrder>
-        </None>
         <CppCompile Include="ULista\ListaPuntero.cpp">
             <DependentOn>ULista\ListaPuntero.h</DependentOn>
             <BuildOrder>19</BuildOrder>
@@ -363,8 +384,8 @@
         <FormResources Include="FormMatrizDispersa\memoria-matrizdispersa_memoria.dfm"/>
         <FormResources Include="FormMatrizDispersa\matrizdispersa.dfm"/>
         <FormResources Include="FormLista\memoria-lista_memoria.dfm"/>
-        <FormResources Include="FormPila\memoria-pila_memorie.dfm"/>
-        <FormResources Include="FormPila\memoria-pila_memoria-matrizdispersa_memoria.dfm"/>
+        <FormResources Include="FormPila\memoria-pila_memoria.dfm"/>
+        <FormResources Include="FormPila\memoria-pila_memoria_matrizdispersa_memoria.dfm"/>
         <FormResources Include="FormMemoria\memoria.dfm"/>
         <FormResources Include="FormLista\lista.dfm"/>
         <FormResources Include="FormCola\cola.dfm"/>
